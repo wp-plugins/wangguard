@@ -1,0 +1,357 @@
+# Translation of WangGuard in Spanish (Spain)
+# This file is distributed under the same license as the WangGuard package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2011-02-22 11:33-0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/0.1\n"
+"Project-Id-Version: WangGuard\n"
+"POT-Creation-Date: \n"
+"Last-Translator: WangGuard <info@wangguard.com>\n"
+"Language-Team: \n"
+
+#: ../wangguard-admin.php:146
+msgid "Settings"
+msgstr "Opciones"
+
+#: ../wangguard-admin.php:283
+#: ../wangguard-admin.php:374
+msgid "WangGuard Configuration"
+msgstr "Configuración de WangGuard"
+
+#: ../wangguard-admin.php:293
+msgid "Cheatin&#8217; uh?"
+msgstr "¿Haciendo trampa?"
+
+#: ../wangguard-admin.php:325
+msgid "WangGuard settings has been saved."
+msgstr "Las opciones de WangGuard han sido guardadas."
+
+#: ../wangguard-admin.php:360
+msgid "Your key has been cleared."
+msgstr "Su API Key ha sido borrada."
+
+#: ../wangguard-admin.php:361
+msgid "Your key has been verified!"
+msgstr "Su API Key ha sido verificada!"
+
+#: ../wangguard-admin.php:362
+msgid "The key you entered is invalid. Please double-check it."
+msgstr "La API Key ingresada no es válida. Por favor verifíquela."
+
+#: ../wangguard-admin.php:363
+msgid "The key you entered could not be verified because a connection to wangguard.com could not be established. Please check your server configuration."
+msgstr "La API Key ingresada no puede ser verificada ya que no es posible establecer una conexión con WangGuard. Por favor, comprueba la configuración de tu servidor."
+
+#: ../wangguard-admin.php:364
+#: ../wangguard-admin.php:1391
+#: ../wangguard-admin.php:1424
+#: ../wangguard-admin.php:1461
+msgid "There was a problem connecting to the WangGuard server. Please check your server configuration."
+msgstr "Hubo un problema conectando con el servidor de WangGuard. Por favor, comprueba la configuración de tu servidor."
+
+#: ../wangguard-admin.php:365
+msgid "Please enter an API key. (<a href=\"%s\" style=\"color:#fff\">Get your key here.</a>)"
+msgstr "Por favor, introduce la API Key. (<a href=\"%s\" style=\"color:#fff\">Consigue la API key aquí.</a>)"
+
+#: ../wangguard-admin.php:366
+msgid "Your PHP $_SERVER[\"SERVER_ADDR\"] reports the IP %s while a DNS resolution returns %s for your domain, in order for WangGuard to work properly these two IP must match, correct this issue on your httpd.conf is using apache, or contact your hosting provider."
+msgstr "Tu PHP $_SERVER[\"SERVER_ADDR\"] reporta la IP %s cuando la resolución DNS retorna %s para tu dominio, para que WangGuard funcione correctamente las dos IP deben coincidir, corrige este problema en tu httpd.conf si usas Apache, o contacta con tu proveedor de hosting."
+
+#: ../wangguard-admin.php:367
+msgid "This key is valid."
+msgstr "Su API Key es válida."
+
+#: ../wangguard-admin.php:368
+msgid "The key below was previously validated but a connection to wangguard.com can not be established at this time. Please check your server configuration."
+msgstr "La API key fue validada correctamente pero no se puede establecer una conexión en estos momentos. Por favor, comprueba la configuración de tu servidor."
+
+#: ../wangguard-admin.php:371
+msgid "Options saved."
+msgstr "Opciones guardadas."
+
+#: ../wangguard-admin.php:377
+msgid "For many people, <a href=\"%1$s\">WangGuard</a> will greatly reduce or even completely eliminate the Sploggers you get on your site. If one does happen to get through, simply mark it as Splogger on the Users screen. If you don't have an API key yet, <a href=\"%2$s\" target=\"_new\">get one here</a>."
+msgstr "Para mucha gente, <a href=\"%1$s\">WangGuard</a> reducirá o incluso eliminará totalmente a los Sploggers de sus sitios. Si sucediera que se registrara uno, simplemente márcalo como Splogger en la pantalla de Usuarios. Si aun no tienes una API Key, <a href=\"%2$s\" target=\"_new\">consíguela aquí</a>."
+
+#: ../wangguard-admin.php:379
+msgid "WangGuard API Key"
+msgstr "API Key de WangGuard"
+
+#: ../wangguard-admin.php:383
+msgid "<a href=\"http://wangguard.com/faq\" target=\"_new\">What is this?</a>"
+msgstr "<a href=\"http://wangguard.com/faq\" target=\"_new\">¿Qué es esto?</a>"
+
+#: ../wangguard-admin.php:386
+msgid "Why might my key be invalid?"
+msgstr "¿Por qué puede no ser válida?"
+
+#: ../wangguard-admin.php:387
+msgid "This can mean one of two things, either you copied the key wrong or that the plugin is unable to reach the WangGuard servers, which is most often caused by an issue with your web host around firewalls or similar."
+msgstr "Esto puede ser por dos cosas, has copiado la API key de forma incorrecta o el plugin es incapaz de conectar con el servidor de WangGuard, que suele estar causado por un firewall o similar en tu hosting."
+
+#: ../wangguard-admin.php:393
+msgid "Update options &raquo;"
+msgstr "Actuzalizar opciones &raquo;"
+
+#: ../wangguard-admin.php:399
+msgid "Security questions"
+msgstr "Preguntas de seguridad"
+
+#: ../wangguard-admin.php:400
+msgid "Security questions are randomly asked on the registration form to prevent automated signups."
+msgstr "Las preguntas de seguridad se muestran de forma aleatoria en el registro del sitio para frenar los registros automatizados."
+
+#: ../wangguard-admin.php:401
+msgid "Security questions are optional, it's up to you whether to use them or not."
+msgstr "Las preguntas de seguridad son opcionales, puedes usarlas o no."
+
+#: ../wangguard-admin.php:402
+msgid "Create you own security questions from the form below, or delete the questions you don't want anymore."
+msgstr "Crea tus propias preguntas de seguridad en el siguiente formulario o elimina las que ya no desees usar más."
+
+#: ../wangguard-admin.php:408
+msgid "Existing security questions"
+msgstr "Preguntas de seguridad existentes"
+
+#: ../wangguard-admin.php:412
+#: ../wangguard-admin.php:422
+#: ../wangguard-admin.php:1516
+msgid "Question"
+msgstr "Pregunta"
+
+#: ../wangguard-admin.php:413
+#: ../wangguard-admin.php:424
+#: ../wangguard-admin.php:1517
+msgid "Answer"
+msgstr "Respuesta"
+
+#: ../wangguard-admin.php:414
+msgid "Replied OK / Wrong"
+msgstr "Respondidas Bien / Mal"
+
+#: ../wangguard-admin.php:415
+#: ../wangguard-admin.php:1518
+msgid "delete question"
+msgstr "eliminar pregunta"
+
+#: ../wangguard-admin.php:421
+msgid "Add a new security question"
+msgstr "Agregar una nueva pregunta de seguridad"
+
+#: ../wangguard-admin.php:426
+msgid "Fill in both the question and the answer fields to create a new security question"
+msgstr "Completa los campos de pregunta y respuesta para crear una nueva pregunta de seguridad"
+
+#: ../wangguard-admin.php:428
+msgid "Create question &raquo;"
+msgstr "Crear pregunta &raquo;"
+
+#: ../wangguard-admin.php:434
+msgid "WangGuard settings"
+msgstr "Opciones de WangGuard"
+
+#: ../wangguard-admin.php:447
+msgid "<strong>Ninja mode.</strong><br/>By checking this option no confirmation message will be asked for report operations on the Users manager. Just remember that users gets deleted when reported, and when reporting a domain, users whose e-mail matches the reported domain gets deleted as well."
+msgstr "<strong>Modo Ninja.</strong><br/>Al seleccionar esta opción no se pedirá confirmación para las operaciones de reporte en la consola de Usuarios. Recuerda que los usuarios son eliminados una vez reportados, y que cuando reportas un dominio, todos los usuarios para los que el e-mail coincida con el dominio reportado, también serán eliminados."
+
+#: ../wangguard-admin.php:450
+msgid "Save options &raquo;"
+msgstr "Guardar opciones &raquo;"
+
+#: ../wangguard-admin.php:457
+msgid "Server Connectivity"
+msgstr "Conectividad del servidor"
+
+#: ../wangguard-admin.php:461
+msgid "Network functions are disabled."
+msgstr "Las funciones de red estan deshabilitadas."
+
+#: ../wangguard-admin.php:462
+msgid "Your web host or server administrator has disabled PHP's <code>fsockopen</code> or <code>gethostbynamel</code> functions.  <strong>WangGuard cannot work correctly until this is fixed.</strong>  Please contact your web host or firewall administrator."
+msgstr "Tu hosting o el administrador del servidor a deshabilitado <code>fsockopen</code> o la función <code>gethostbynamel</code> de PHP. <strong>WangGuard no puede funcionar de forma correcta hasta que esto se solucione.</strong> Por favor, contacta con tu hosting o con "
+
+#: ../wangguard-admin.php:470
+msgid "Unable to reach some WangGuard servers."
+msgstr "Imposible contactar con alguno de los servidores de WangGuard."
+
+#: ../wangguard-admin.php:471
+msgid "A network problem or firewall is blocking some connections from your web server to WangGuard.com.  WangGuard is working but this may cause problems during times of network congestion."
+msgstr "Un problema en la red o un firewall está bloqueando las conexiones desde tu servidor web a WanGuard. WangGuard está funcionando pero esto puede causar problemas en momentos de congestión de red."
+
+#: ../wangguard-admin.php:475
+msgid "Unable to reach any WangGuard servers."
+msgstr "No se ha podido conectar con ningún servidor de WangGuard."
+
+#: ../wangguard-admin.php:476
+msgid "A network problem or firewall is blocking all connections from your web server to WangGuard.com.  <strong>WangGuard cannot work correctly until this is fixed.</strong>"
+msgstr "Un problema con la red o firewall está bloqueando todas las conexiones desde tu servidor con WangGuard. <strong>WangGuard no puede funcionar de forma correcta hasta que soluciones ente problema.</strong>"
+
+#: ../wangguard-admin.php:480
+msgid "All WangGuard servers are available."
+msgstr "Todos los servidores de WangGuard estas disponibles."
+
+#: ../wangguard-admin.php:481
+msgid "WangGuard is working correctly.  All servers are accessible."
+msgstr "WangGuard está funcionando correctamente. Todos los servidores son accesibles."
+
+#: ../wangguard-admin.php:486
+msgid "Unable to find WangGuard servers."
+msgstr "No se han encontrado servidores de WangGuard."
+
+#: ../wangguard-admin.php:487
+msgid "A DNS problem or firewall is preventing all access from your web server to wangguard.com.  <strong>WangGuard cannot work correctly until this is fixed.</strong>"
+msgstr "Un problema de DNS o firewall no permite el acceso desde tu sitio a los servidores de wangguard.com. <strong>WangGuard no puede funcionar de forma correcta hasta que se solucione.</strong>"
+
+#: ../wangguard-admin.php:495
+msgid "WangGuard server"
+msgstr "Servidores de WangGuard"
+
+#: ../wangguard-admin.php:495
+msgid "Network Status"
+msgstr "Estado de la red"
+
+#: ../wangguard-admin.php:503
+msgid "No problems"
+msgstr "Sin problemas"
+
+#: ../wangguard-admin.php:503
+msgid "Obstructed"
+msgstr "Obstruído"
+
+#: ../wangguard-admin.php:511
+msgid "Last checked %s ago."
+msgstr "Verificado por última vez hace %s."
+
+#: ../wangguard-admin.php:512
+msgid "Check network status &raquo;"
+msgstr "Verificar estado de red &raquo;"
+
+#: ../wangguard-admin.php:773
+msgid "<a href=\"%1$s\">Click here</a> to change this setting."
+msgstr "<a href=\"%1$s\">Clic aquí</a> para cambiar esta opción."
+
+#: ../wangguard-admin.php:782
+msgid "WangGuard is almost ready."
+msgstr "WangGuard está casi listo."
+
+#: ../wangguard-admin.php:782
+msgid "You must <a href=\"%1$s\">enter your WangGuard API key</a> for it to work."
+msgstr "Debes <a href=\"%1$s\">introducir la API key de WangGuard</a> para que funcione."
+
+#: ../wangguard-admin.php:790
+msgid "WangGuard has detected a problem."
+msgstr "WangGuard ha detectado un problema."
+
+#: ../wangguard-admin.php:790
+msgid "A server or network problem is preventing WangGuard from working correctly.  <a href=\"%1$s\">Click here for more information</a> about how to fix the problem."
+msgstr "Un servidor o un problema con la red está impidiendo que WangGuard funcione de forma correcta. <a href=\"%1$s\">Clic aquí para más información</a> de cómo arreglar este problema."
+
+#: ../wangguard-admin.php:806
+msgid "WangGuard has checked %d users, and detected %d Sploggers."
+msgstr "WangGuard ha comprobado %d usuarios y ha detectado a %d Sploggers."
+
+#: ../wangguard-admin.php:831
+msgid "WangGuard Status"
+msgstr "Estado de WangGuard"
+
+#: ../wangguard-admin.php:847
+#: ../wangguard-admin.php:1688
+msgid "No status"
+msgstr "Sin estado"
+
+#: ../wangguard-admin.php:850
+#: ../wangguard-admin.php:1721
+msgid "Not checked"
+msgstr "No comprobado"
+
+#: ../wangguard-admin.php:853
+#: ../wangguard-admin.php:1705
+msgid "Reported as Splogger"
+msgstr "Reportado como Splogger"
+
+#: ../wangguard-admin.php:856
+msgid "Automatically reported as Splogger"
+msgstr "Reportado automáticamente como Splogger"
+
+#: ../wangguard-admin.php:859
+#: ../wangguard-admin.php:1712
+msgid "Checked"
+msgstr "Verificado"
+
+#: ../wangguard-admin.php:862
+#: ../wangguard-admin.php:1715
+msgid "Error"
+msgstr "Error"
+
+#: ../wangguard-admin.php:875
+msgid "Splogger"
+msgstr "Splogger"
+
+#: ../wangguard-admin.php:876
+msgid "Report Domain"
+msgstr "Reportar dominio"
+
+#: ../wangguard-admin.php:877
+msgid "Recheck"
+msgstr "Verificar"
+
+#: ../wangguard-admin.php:878
+msgid "Open Web"
+msgstr "Visitar web"
+
+#: ../wangguard-admin.php:972
+#: ../wangguard-admin.php:1028
+#: ../wangguard-admin.php:1078
+msgid "<strong>ERROR</strong>: The answer to the security question is invalid."
+msgstr "<strong>ERROR</strong>: La respuesta a la pregunta de seguridad no es correcta."
+
+#: ../wangguard-admin.php:978
+#: ../wangguard-admin.php:1034
+#: ../wangguard-admin.php:1084
+msgid "<strong>ERROR</strong>: Banned by WangGuard <a href=\"http://www.wangguard.com/faq\" target=\"_new\">Is a mistake?</a>."
+msgstr "<strong>ERROR</strong>: Baneado por WangGuard <a href=\"http://www.wangguard.com/faq\" target=\"_new\">¿Es un error?</a>."
+
+#: ../wangguard-admin.php:1372
+msgid "Do you confirm to flag this user as Splogger? This operation is IRREVERSIBLE and will DELETE the user."
+msgstr "¿Confirmas que quieres marcar a este usuario como Splogger? Esta operación es IRREBERSIBLE y el usuario será ELIMINADO."
+
+#: ../wangguard-admin.php:1383
+#: ../wangguard-admin.php:1418
+#: ../wangguard-admin.php:1453
+msgid "The selected user couldn't be found on the users table."
+msgstr "El usuario seleccionado no puede ser encontrado en la tabla de usuarios."
+
+#: ../wangguard-admin.php:1387
+#: ../wangguard-admin.php:1421
+#: ../wangguard-admin.php:1457
+msgid "Your WangGuard API KEY is invalid."
+msgstr "Su API KEY de WangGuard no es válida."
+
+#: ../wangguard-admin.php:1407
+msgid "Do you confirm to flag this user domain as Splogger? This operation is IRREVERSIBLE and will DELETE the users that shares this domain."
+msgstr "¿Confirmas que quieres marcar a estos usuarios como Splogger? Esta operación es IRREBERSIBLE y los usuarios serán ELIMINADOS."
+
+#: ../wangguard-admin.php:1437
+msgid "There was a problem connecting to your WordPress server."
+msgstr "Hubo un problema conectando con tu servidor de WordPress."
+
+#: ../wangguard-admin.php:1479
+msgid "Do you confirm to delete this question?."
+msgstr "¿Confirmas que quieres eliminar la pregunta?"
+
+#: ../wangguard-admin.php:1537
+msgid "Bulk check Sploggers"
+msgstr "Comprobar Sploggers"
+
+#: ../wangguard-admin.php:1538
+msgid "Bulk report Sploggers"
+msgstr "Reportar como Sploggers"
+
+#: ../wangguard-admin.php:1565
+msgid "Do you confirm to flag the selected users as Sploggers? This operation is IRREVERSIBLE and will DELETE the users."
+msgstr "¿Confirmas que deseas reportar a los usuarios marcados como Sploggers? Esta operación es IRREVERSIBLE y ELIMINARÁ los usuarios."
+
