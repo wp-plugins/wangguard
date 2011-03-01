@@ -41,11 +41,11 @@ Requirements/Restrictions:
 
 == Screenshots ==
 
-1. bannedbywangguard.gif WangGuard banning sploggers on BuddyPress registration page.
+1. **WangGuard on BuddyPress** - WangGuard banning sploggers on BuddyPress registration page.
 
-2. dashboard.gif WangGuard Statistics on WordPress Dashboard.
+2. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
 
-3. users.gif WangGuard Bulk actions and WangGuard status.
+3. **Users** - WangGuard Bulk actions and WangGuard status.
 
 
 == Configuration ==
