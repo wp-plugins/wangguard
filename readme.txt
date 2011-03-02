@@ -1,10 +1,10 @@
 === WangGuard ===
-Contributors: j.conti,maxidirienzo
+Contributors: j.conti,maxidirienzo,InTouchSystem
 Author URI: http://wangguard.com
-Tags: wangguard,wgg,sploggers,user spam,wordpress,buddypress,wpmu,wordpress mu,registration,security questions
+Tags: wangguard,wgg,sploggers,splog,anti-splog,user spam,wordpress,buddypress,wpmu,wordpress mu,registration,security questions
 Requires at least: 2.8
 Tested up to: 3.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2
 
 WangGuard checks your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU and BuddyPress compatible.
@@ -42,9 +42,7 @@ Requirements/Restrictions:
 == Screenshots ==
 
 1. **WangGuard on BuddyPress** - WangGuard banning sploggers on BuddyPress registration page.
-
 2. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
-
 3. **Users** - WangGuard Bulk actions and WangGuard status.
 
 
@@ -111,6 +109,9 @@ There are no updates available yet.
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.1 =
+- (2 Mar 2011) When reporting a user, user's blogs doesn't get flagged as spam because there is a risk of disabling the main blog. Working on a patch for the next release.
+
+= 1.0.0 =
 - (1 Mar 2011) Initial Release
 

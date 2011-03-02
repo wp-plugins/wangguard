@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: Stop Sploggers
-Version: 1.0.0
+Version: 1.0.1
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -27,7 +27,10 @@ License: GPL2
 */
 ?>
 <?php
-define('WANGGUARD_VERSION', '1.0.0');
+define('WANGGUARD_VERSION', '1.0.1');
+
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
 
 include_once 'wangguard-xml.php';
 
@@ -242,14 +245,6 @@ function wangguard_report_users($wpusersRs , $scope="email" , $deleteUser = true
 
 
 			if ($deleteUser) {
-				
-				if (function_exists("get_blogs_of_user") && function_exists("update_blog_status")) {
-					$blogs = @get_blogs_of_user( $spuserID, true );
-					if (is_array($blogs))
-						foreach ( (array) $blogs as $key => $details ) {
-							@update_blog_status( $details->userblog_id, 'spam', '1' );
-						}
-				}
 
 				if (wangguard_is_multisite () && function_exists("wpmu_delete_user"))
 					wpmu_delete_user($spuserID);
