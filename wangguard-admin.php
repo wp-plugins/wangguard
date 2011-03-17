@@ -406,7 +406,7 @@ function wangguard_conf() {
 	<p><?php _e('Security questions are randomly asked on the registration form to prevent automated signups.', 'wangguard')?></p>
 	<p><?php _e('Security questions are optional, it\'s up to you whether to use them or not.', 'wangguard')?></p>
 	<p><?php _e('Create you own security questions from the form below, or delete the questions you don\'t want anymore.', 'wangguard')?></p>
-	<?
+	<?php
 	$table_name = $wpdb->prefix . "wangguardquestions";
 	$wgquestRs = $wpdb->get_results("select * from $table_name order by id");
 
