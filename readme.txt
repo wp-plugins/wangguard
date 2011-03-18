@@ -1,7 +1,7 @@
 === WangGuard ===
 Contributors: j.conti,maxidirienzo,InTouchSystem
 Author URI: http://wangguard.com
-Tags: wangguard,wgg,sploggers,splog,anti-splog,user spam,wordpress,buddypress,wpmu,wordpress mu,registration,security questions,plugin, security, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, permission, secure blog, secure wordpress, secure wp, security, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, bp
+Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, bp
 Requires at least: 2.8
 Tested up to: 3.1
 Stable tag: 1.0.2
