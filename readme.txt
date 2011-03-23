@@ -4,12 +4,14 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, bp
 Requires at least: 2.8
 Tested up to: 3.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2
 
 WangGuard checks your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU and BuddyPress compatible.
 
 == Description ==
+
+WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite and BuddyPress.
 
 Upon user registration, WangGuard will check against a centralized database if the user is a Splogger or spam-user. If WangGuard determines that the user is a Splogger, WangGuard won't allow the registration on your site.
 
@@ -73,6 +75,10 @@ If you flag manually a user as Splogger, the user will be reported to WangGuard 
 
 == Frequently Asked Questions ==
 
+= Can I use WangGuard on non-multisites WordPress Installs (Standard WordPress)? =
+
+Yes, absolutely. Only the WangGuard plugin and its associated web service will help to protect the registration page of your WordPress Standard, WordPress Multisite, or BuddyPress from sploggers and unwanted users.
+
 = Is this plugin available in other languages? =
 
 Yes. The following translations are included in the download zip file:
@@ -103,22 +109,18 @@ If you need another localization, please feel free to [contact us](http://www.wa
 It is free for personal use. If you earn more than $200 with your site or you are a company, you must pay a very small fee. Now WangGuard are Free to everyone for a limited time!. Use this time to perform all the tests you want and determine the effectiveness of WangGuard.
 
 
-== Upgrade Notice ==
-
-There are no updates available yet.
-
 == Changelog ==
 
-= 1.0.2 =
-- 18 Mar 2011
+= 1.0.3 - 23 Mar 2011 =
+* Fixed a bug on the BuddyPress registration process which generated a log entry in apache's error log (duplicated entry on DB insert on table {DB_prefix}_wangguarduserstatus).
+
+= 1.0.2 - 18 Mar 2011 =
 * Disabling the main blog when reporting a user fixed, reported user's blogs gets flagged as spam now.
 * Fixed a "Parser error" on servers which doesn't have "short_open_tag" enabled.
 
-= 1.0.1 =
-- 2 Mar 2011
+= 1.0.1 - 2 Mar 2011 =
 * When reporting a user, user's blogs doesn't get flagged as spam because there is a risk of disabling the main blog. Working on a patch for the next release.
 
-= 1.0.0 =
-- 1 Mar 2011
+= 1.0.0 - 1 Mar 2011 =
 * Initial Release
 

@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: Stop Sploggers
-Version: 1.0.2
+Version: 1.0.3
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -27,7 +27,7 @@ License: GPL2
 */
 ?>
 <?php
-define('WANGGUARD_VERSION', '1.0.2');
+define('WANGGUARD_VERSION', '1.0.3');
 
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
@@ -1198,7 +1198,14 @@ function wangguard_plugin_user_register($userid) {
 
 
 	$table_name = $wpdb->prefix . "wangguarduserstatus";
-	$wpdb->query( $wpdb->prepare("insert into $table_name(ID , user_status , user_ip) values (%d , '%s' , '%s')" , $userid , $wangguard_user_check_status , $_SERVER['REMOTE_ADDR'] ) );
+
+	$user_status = $wpdb->get_var( $wpdb->prepare("select ID from $table_name where ID = %d" , $userid));
+	if ($user_status == null)
+		//insert the new status
+		$wpdb->query( $wpdb->prepare("insert into $table_name(ID , user_status , user_ip) values (%d , '%s' , '%s')" , $userid , $wangguard_user_check_status , $_SERVER['REMOTE_ADDR'] ) );
+	else
+		//update the new status
+		$wpdb->query( $wpdb->prepare("update $table_name set user_status = '%s' where ID = %d" , $wangguard_user_check_status , $userid  ) );
 }
 
 
