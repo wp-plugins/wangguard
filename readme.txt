@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, bp
 Requires at least: 2.8
 Tested up to: 3.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2
 
 WangGuard checks your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU and BuddyPress compatible.
@@ -12,6 +12,15 @@ WangGuard checks your registered users against WangGuard web service to avoid Sp
 == Description ==
 
 WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite and BuddyPress.
+
+
+It is very important to use WangGuard at least for a week, reporting your site's unwanted users as sploggers from the Users panel.
+
+WangGuard will learn at that time to protect your site from sploggers in a much more effective way.
+
+WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard.
+
+The longer you use WangGuard, the more effective it will become.
 
 Upon user registration, WangGuard will check against a centralized database if the user is a Splogger or spam-user. If WangGuard determines that the user is a Splogger, WangGuard won't allow the registration on your site.
 
