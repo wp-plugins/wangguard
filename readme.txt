@@ -120,6 +120,9 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 == Changelog ==
 
+= 1.0.4 - 283 Mar 2011 =
+* Minor tweaks to readme file.
+
 = 1.0.3 - 23 Mar 2011 =
 * Fixed a bug on the BuddyPress registration process which generated a log entry in apache's error log (duplicated entry on DB insert on table {DB_prefix}_wangguarduserstatus).
 
