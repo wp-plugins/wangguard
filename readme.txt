@@ -13,6 +13,8 @@ WangGuard checks your registered users against WangGuard web service to avoid Sp
 
 WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite and BuddyPress.
 
+Free Api Key for personal use
+
 
 It is very important to use WangGuard at least for a week, reporting your site's unwanted users as sploggers from the Users panel.
 
@@ -29,10 +31,21 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 Features:
 --------
+ * Free API key for personal use
+ * Free to everyone for a limited time!
  * Configure from Admin panel
  * Valid HTML
  * I18n language translation support
- * Free for personal use
+ * Security questions
+ * WangGuard find Sploggers, spam-users or unwanted users in your old ones registered users
+ * WangGuard clean your database of Sploggers, spam-users or unwanted users
+ * WangGuard clean your database 
+ * Protec Standart WordPress registration page against Web Service from spam-user or unwanted users
+ * Protec WordPress MU registration page against Web Service from Sploggers, spam-user or unwanted users
+ * Protec WordPress Multisite (WP 3.x) registration page against Web Service from Sploggers, spam-user or unwanted users
+ * Protec BuddyPress registration page against Web Service from Sploggers, spam-user or unwanted users
+ * Anti-splog web servide (free API key for personal use)
+ 
 
 Requirements/Restrictions:
 -------------------------
