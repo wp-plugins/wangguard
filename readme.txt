@@ -9,6 +9,7 @@ License: GPLv2
 
 WangGuard checks your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU and BuddyPress compatible.
 
+
 == Description ==
 
 WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite and BuddyPress.
@@ -16,6 +17,8 @@ WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress
 Free Api Key for personal use
 
 Now Free to everyone for a limited time!
+
+[youtube http://www.youtube.com/watch?v=n7LugiQgwRA&hd=1]
 
 
 It is very important to use WangGuard at least for a week, reporting your site's unwanted users as sploggers from the Users panel.
