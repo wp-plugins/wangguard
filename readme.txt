@@ -14,9 +14,13 @@ WangGuard checks your registered users against WangGuard web service to avoid Sp
 
 WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite and BuddyPress.
 
+If you have registration enabled on your Standard WordPress, WordPress MU, WordPress Multisite or BuddyPress, you need WangGuard and its web service.
+
 Free Api Key for personal use
 
 Now Free to everyone for a limited time!
+
+WangGuard in action video:
 
 [youtube http://www.youtube.com/watch?v=n7LugiQgwRA&hd=1]
 
