@@ -1,7 +1,7 @@
 === WangGuard ===
 Contributors: j.conti,maxidirienzo,InTouchSystem
 Author URI: http://wangguard.com
-Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, bp, captcha, no captcha, recaptcha
+Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog
 Requires at least: 2.8
 Tested up to: 3.1
 Stable tag: 1.0.4
@@ -20,9 +20,9 @@ Free Api Key for personal use
 
 Now Free to everyone for a limited time!
 
-WangGuard in action video:
+= Introduction to WangGuard: =
 
-[youtube http://www.youtube.com/watch?v=n7LugiQgwRA&hd=1]
+[wpvideo RGdn6YSg]
 
 
 It is very important to use WangGuard at least for a week, reporting your site's unwanted users as sploggers from the Users panel.
@@ -38,8 +38,8 @@ Upon user registration, WangGuard will check against a centralized database if t
 No need to put any kind of filter in the user registration page (eg captcha). This is the greatness of WangGuard, not hinder users who wish to register on your site with Captchas and other things that just makes the registration being more difficult and in many cases do not stop Sploggers. But in case you want to put something WangGuard gives you the ability to add one or more security questions from the plugin's administration page, which will be randomly displayed on the registration page.
 
 
-Features:
---------
+= Features =
+
  * Free API key for personal use
  * Free to everyone for a limited time!
  * Configure from Admin panel
@@ -55,35 +55,17 @@ Features:
  * Anti-splog Web Service. Free API key for personal use.
  
 
-Requirements/Restrictions:
--------------------------
+= Requirements/Restrictions =
+
  * Works with Wordpress 2.8+, WPMU 2.8+, and BuddyPress 1.0.3+ (Wordpress 3.1+ is highly recommended)
  * PHP 4.3 or above. (PHP 5+ is highly recommended)
-
-
-== Installation ==
-
-1. Upload the "wangguard" folder to the "/wp-content/plugins/" directory, or download through the "Plugins" menu in WordPress
-
-2. Activate the plugin through the "Plugins" menu in WordPress
-
-3. Updates are automatic. Click on "Upgrade Automatically" if prompted from the admin menu. If you ever have to manually upgrade, simply deactivate, uninstall, and repeat the installation steps with the new version. 
-
-
-
-== Screenshots ==
-
-1. **WangGuard on BuddyPress** - WangGuard banning sploggers on BuddyPress registration page.
-2. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
-3. **Users** - WangGuard Bulk actions and WangGuard status.
-
-
-== Configuration ==
+ 
+= Configuration =
 
 After the plugin is activated, you can configure it by selecting the "WangGuard configuration" tab on the "Admin Plugins" page.
 
 
-== Usage ==
+= Usage =
 
 Obtain a new API KEY for your site from [WangGuard](http://www.wangguard.com/getapikey), then go to "WangGuard configuration" on the "Plugins" tab and paste the provided API KEY to activate WangGuard.
 
@@ -101,6 +83,23 @@ If you flag a user as "spam", from either WordPress or BuddyPress, the user will
 
 If you flag manually a user as Splogger, the user will be reported to WangGuard and also will be deleted from your WordPress, also, when multisite or network are enabled, the user's blogs will be flagged as "spam" blogs.
 
+
+
+== Installation ==
+
+1. Upload the "wangguard" folder to the "/wp-content/plugins/" directory, or download through the "Plugins" menu in WordPress
+
+2. Activate the plugin through the "Plugins" menu in WordPress
+
+3. Updates are automatic. Click on "Upgrade Automatically" if prompted from the admin menu. If you ever have to manually upgrade, simply deactivate, uninstall, and repeat the installation steps with the new version. 
+
+
+
+== Screenshots ==
+
+1. **WangGuard on BuddyPress** - WangGuard banning sploggers on BuddyPress registration page.
+2. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
+3. **Users** - WangGuard Bulk actions and WangGuard status.
 
 
 == Frequently Asked Questions ==
@@ -156,4 +155,3 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 = 1.0.0 - 1 Mar 2011 =
 * Initial Release
-
