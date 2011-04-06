@@ -38,6 +38,18 @@ Upon user registration, WangGuard will check against a centralized database if t
 No need to put any kind of filter in the user registration page (eg captcha). This is the greatness of WangGuard, not hinder users who wish to register on your site with Captchas and other things that just makes the registration being more difficult and in many cases do not stop Sploggers. But in case you want to put something WangGuard gives you the ability to add one or more security questions from the plugin's administration page, which will be randomly displayed on the registration page.
 
 
+= Why use WangGuard? =
+
+ * WangGuard clean your database from sploggers, users spam and unwanted users.
+ * Is very dangerous to have sploggers, users spam or unwanted users, they could hack the site.
+ * The sploggers, users spam or unwanted users use your server resources for their benefit. Can overload your site to their benefit hurting you and your users.
+ * They hurt your position in search engines like Google.
+ * Search engines such as Google can block your site because you are advertising illegal, prohibited or dangerous products.
+ * Sploggers, users spam and unwanted users bother the rest of your users doing your users do not become good.
+ * Do not bother your users with complicated captchas that in most cases do not stop the sploggers, users spam or unwanted users and annoy the good users.
+ * WangGuard fix all these problems and if you're a personal user it does for free.
+
+
 = Features =
 
  * Free API key for personal use
