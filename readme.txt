@@ -40,6 +40,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 = Why use WangGuard? =
 
+
  * WangGuard cleans your database from sploggers, spam users and unwanted users.
  * Is very dangerous to have sploggers, spam users or unwanted users, they could hack the site.
  * The sploggers, spam users  or unwanted users uses your server resources for their benefit. They can overload your site to their benefit hurting you and your users.
@@ -51,6 +52,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 
 = Features =
+
 
  * Free API key for personal use
  * Free to everyone for a limited time!
@@ -70,15 +72,19 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 = Requirements/Restrictions =
 
+
  * Works with Wordpress 2.8+, WPMU 2.8+, and BuddyPress 1.0.3+ (Wordpress 3.1+ is highly recommended)
  * PHP 4.3 or above. (PHP 5+ is highly recommended)
  
+ 
 = Configuration =
+
 
 After the plugin is activated, you can configure it by selecting the "WangGuard configuration" tab on the "Admin Plugins" page.
 
 
 = Usage =
+
 
 Obtain a new API KEY for your site from [WangGuard](http://www.wangguard.com/getapikey), then go to "WangGuard configuration" on the "Plugins" tab and paste the provided API KEY to activate WangGuard.
 
