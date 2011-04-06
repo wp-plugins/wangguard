@@ -64,7 +64,8 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Protect WordPress MU registration page against Web Service from Sploggers, spam-user or unwanted users
  * Protect WordPress Multisite (WP 3.x) registration page against Web Service from Sploggers, spam-user or unwanted users
  * Protect BuddyPress registration page against Web Service from Sploggers, spam-user or unwanted users
- * Anti-splog Web Service. Free API key for personal use.
+ * Anti-splog Web Service.
+ * Free API key for personal use.
  
 
 = Requirements/Restrictions =
