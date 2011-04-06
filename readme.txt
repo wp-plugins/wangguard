@@ -22,7 +22,7 @@ Now Free to everyone for a limited time!
 
 = Introduction to WangGuard: =
 
-[wpvideo RGdn6YSg]
+[youtube http://www.youtube.com/watch?v=n7LugiQgwRA&hd=1]
 
 
 It is very important to use WangGuard at least for a week, reporting your site's unwanted users as sploggers from the Users panel.
