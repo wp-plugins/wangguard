@@ -40,14 +40,14 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 = Why use WangGuard? =
 
- * WangGuard clean your database from sploggers, users spam and unwanted users.
- * Is very dangerous to have sploggers, users spam or unwanted users, they could hack the site.
- * The sploggers, users spam or unwanted users use your server resources for their benefit. Can overload your site to their benefit hurting you and your users.
+ * WangGuard cleans your database from sploggers, spam users and unwanted users.
+ * Is very dangerous to have sploggers, spam users or unwanted users, they could hack the site.
+ * The sploggers, spam users  or unwanted users uses your server resources for their benefit. They can overload your site to their benefit hurting you and your users.
  * They hurt your position in search engines like Google.
- * Search engines such as Google can block your site because you are advertising illegal, prohibited or dangerous products.
- * Sploggers, users spam and unwanted users bother the rest of your users doing your users do not become good.
- * Do not bother your users with complicated captchas that in most cases do not stop the sploggers, users spam or unwanted users and annoy the good users.
- * WangGuard fix all these problems and if you're a personal user it does for free.
+ * Search engines such as Google can block your site because you are advertising illegal, prohibited or dangerous products or content.
+ * Sploggers, spam users and unwanted users, bothers the rest of your users, this may cause them to sign off your site.
+ * Do not bother your new users with complicated captchas that in most cases do not stop the sploggers, spam users or unwanted users.
+ * WangGuard fixes all of these problems, and if you're a personal user, it does it for free.
 
 
 = Features =
