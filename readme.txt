@@ -76,7 +76,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
  * Works with Wordpress 2.8+, WPMU 2.8+, and BuddyPress 1.0.3+ (Wordpress 3.1+ is highly recommended)
  * PHP 4.3 or above. (PHP 5+ is highly recommended)
- * WangGuard NOT protect from bbPress signups.
+ * WangGuard NOT protect bbPress signup page.
  
  
 = Configuration =
