@@ -79,6 +79,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * WangGuard NOT protect bbPress signup page.
  
  
+ 
 = Configuration =
 
 
