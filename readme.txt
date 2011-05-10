@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog
 Requires at least: 2.8
 Tested up to: 3.1
-Stable tag: 1.0.4
+Stable tag: 1.1.0
 License: GPLv2
 
 WangGuard checks your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU and BuddyPress compatible.
@@ -52,7 +52,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * WangGuard fixes all of these problems, and if you're a personal user, it does it for free.
 
 
-= Features =
+= General Features =
 
 
  * Free API key for personal use
@@ -70,6 +70,39 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Anti-splog Web Service.
  * Free API key for personal use.
  
+
+= WordPress Simple Features =
+
+ * NEW Wizrad for detect and eliminate Sploggers
+ * NEW Mark as Splogger from post list
+ 
+= WordPress Mu (WPMU) Features =
+
+ * NEW Wizard for detect and eliminate Sploggers
+ * NEW Mark as Splogger from post list
+ * NEW Protect all registration pages from All blogs (Activated sitewide)
+
+= WordPress Multisite (WP3) Features =
+
+ * NEW Wizard for detect and eliminate Sploggers
+ * NEW Mark as Splogger from post list
+ * NEW Add a "Report blog and author" on every blog
+ * NEW Moderation Queue for repored users and blogs
+ * NEW Protect all registration pages from All blogs (Activated for Network)
+ 
+= BuddyPress 2.x (WordPresss Simple and WordPress Multisite 3.x) Features =
+
+ * NEW Wizard for detect and eliminate Sploggers
+ * NEW Mark as Splogger from post list
+ * NEW Add "Report blog and author" on every blog
+ * NEW Moderation Queue for repored users and blogs
+ * NEW Add report user on every Activity
+ * NEW Add report user on every profile
+ 
+ = NEW bbPress 2.0 Alpha =
+ 
+ * NEW Wizard for detect and eliminate Sploggers
+
 
 = Requirements/Restrictions =
 
@@ -122,6 +155,12 @@ If you flag manually a user as Splogger, the user will be reported to WangGuard 
 1. **WangGuard on BuddyPress** - WangGuard banning sploggers on BuddyPress registration page.
 2. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
 3. **Users** - WangGuard Bulk actions and WangGuard status.
+4. **Report user** - WangGuard report user button on BuddyPress activities
+5. **Report blog and author** - WangGuard Report blog and author link on the Admin bar (also featured on the BuddyPress bar)
+6. **Moderation Queue** - WangGuard Moderation Queue
+7. **Wizard** - WangGuard Wizard
+8. **Report user on profile** - WangGuard Report user button on BuddyPress user profile
+9. **Admin bar** - WangGuard new admin bar group
 
 
 == Frequently Asked Questions ==
@@ -161,6 +200,14 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 
 == Changelog ==
+
+= 1.1.0 - 10 May 2011 =
+* NEW Wizard for detect and eliminate Sploggers
+* NEW Mark as Splogger from post list
+* NEW Add "Report blog and author" on every blog
+* NEW Moderation Queue for repored users and blogs
+* NEW Add report user on every Activity
+* NEW Add report user on every profile
 
 = 1.0.4 - 28 Mar 2011 =
 * Minor tweaks to readme file.
