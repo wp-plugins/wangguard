@@ -201,7 +201,7 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 == Changelog ==
 
-= 1.1.3 - 17 May 2011 =
+= 1.1.3 - 18 May 2011 =
 * Wizard now verifies, report and delete users in small groups in order to avoid timeouts.
 
 = 1.1.2 - 12 May 2011 =
