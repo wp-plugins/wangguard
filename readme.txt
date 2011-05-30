@@ -73,7 +73,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 = WordPress Simple Features =
 
- * NEW Wizrad for detect and eliminate Sploggers
+ * NEW Wizard for detect and eliminate Sploggers
  * NEW Mark as Splogger from post list
  
 = WordPress Mu (WPMU) Features =
