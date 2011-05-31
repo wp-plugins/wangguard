@@ -99,7 +99,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * NEW Add report user on every Activity
  * NEW Add report user on every profile
  
- = NEW bbPress 2.0 Alpha =
+ = NEW bbPress 2.0 Beta 2 =
  
  * NEW Wizard for detect and eliminate Sploggers
 
@@ -107,7 +107,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 = Requirements/Restrictions =
 
 
- * Works with Wordpress 2.8+, WPMU 2.8+, and BuddyPress 1.0.3+ (Wordpress 3.1+ is highly recommended)
+ * Works with Wordpress 2.8+, WPMU 2.8+, BuddyPress 1.0.3+, bbPress 2.0+ (Wordpress 3.1+ is highly recommended)
  * PHP 4.3 or above. (PHP 5+ is highly recommended)
  * WangGuard NOT protect bbPress signup page.
  
@@ -116,7 +116,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 = Configuration =
 
 
-After the plugin is activated, you can configure it by selecting the "WangGuard configuration" tab on the "Admin Plugins" page.
+After the plugin is activated, you can configure it by selecting the "configuration" tab on the "WangGuard" page.
 
 
 = Usage =
@@ -144,7 +144,7 @@ If you flag manually a user as Splogger, the user will be reported to WangGuard 
 
 1. Upload the "wangguard" folder to the "/wp-content/plugins/" directory, or download through the "Plugins" menu in WordPress
 
-2. Activate the plugin through the "Plugins" menu in WordPress
+2. Activate the plugin through the "Plugins" menu in WordPress or Network activate for Multisite
 
 3. Updates are automatic. Click on "Upgrade Automatically" if prompted from the admin menu. If you ever have to manually upgrade, simply deactivate, uninstall, and repeat the installation steps with the new version. 
 
