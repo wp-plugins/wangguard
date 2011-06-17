@@ -12,9 +12,9 @@ WangGuard checks your registered users against WangGuard web service to avoid Sp
 
 == Description ==
 
-WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite and BuddyPress (multisite and non-multisite).
+WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite, BuddyPress (multisite and non-multisite) and bbPress 2.0 Beta3.
 
-If you have signup enabled on your Standard WordPress, WordPress MU, WordPress Multisite or BuddyPress, this is the plugin you were waiting for. There is nothing like it, is a next generation plugin associated a web service and a new concept of active protection from Sploggers, spam users or unwanted users. This is just the beginning.
+If you have signup enabled on your Standard WordPress, WordPress MU, WordPress Multisite, BuddyPress or bbPress 2.0, this is the plugin you were waiting for. There is nothing like it, is a next generation plugin associated a web service and a new concept of active protection from Sploggers, spam users or unwanted users. This is just the beginning.
 
 Free Api Key for personal use
 
@@ -99,7 +99,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * NEW Add report user on every Activity
  * NEW Add report user on every profile
  
- = NEW bbPress 2.0 Beta 2 =
+ = NEW bbPress 2.0 Beta 3 =
  
  * NEW Wizard for detect and eliminate Sploggers
 
@@ -109,8 +109,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
  * Works with Wordpress 2.8+, WPMU 2.8+, BuddyPress 1.0.3+, bbPress 2.0+ (Wordpress 3.1+ is highly recommended)
  * PHP 4.3 or above. (PHP 5+ is highly recommended)
- * WangGuard NOT protect bbPress signup page.
- 
+  
  
  
 = Configuration =
@@ -122,13 +121,13 @@ After the plugin is activated, you can configure it by selecting the "configurat
 = Usage =
 
 
-Obtain a new API KEY for your site from [WangGuard](http://www.wangguard.com/getapikey), then go to "WangGuard configuration" on the "Plugins" tab and paste the provided API KEY to activate WangGuard.
+Obtain a new API KEY for your site from [WangGuard](http://www.wangguard.com/getapikey), then go to "configuration" on the "WangGuard" tab and paste the provided API KEY to activate WangGuard.
 
 This step is not necessary, but if you want anyway, create the security questions that will appear randomly in the user registration page.
 
 You can create or modify security questions and answers from the Admin panel.
 
-Please go to your users page and report all users marked as spam.
+Please go to WangGuard Wizard and use it.
 
 Upon user registration, WangGuard will check against a centralized database if the user is a Splogger or spam-user. If WangGuard determines that the user is a Splogger, WangGuard won't allow the registration on your site.
 
