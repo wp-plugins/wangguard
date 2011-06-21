@@ -57,6 +57,8 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
  * Free API key for personal use
  * Free to everyone for a limited time!
+ * Clean your installation of unwanted users and sploggers.
+ * Centralized database of sploggers.
  * Configure from Admin panel
  * Valid HTML
  * I18n language translation support
