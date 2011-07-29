@@ -84,12 +84,16 @@ a.wangguard-recheck {
 }
 
 #toplevel_page_wangguard-key-config.wp-menu-open div.wp-menu-image ,
-#toplevel_page_wangguard-key-config div.wp-menu-image {
+#toplevel_page_wangguard-key-config div.wp-menu-image ,
+#toplevel_page_wangguard_conf.wp-menu-open div.wp-menu-image ,
+#toplevel_page_wangguard_conf div.wp-menu-image {
 	background: url("wangguardadmin.png") no-repeat scroll 6px -28px transparent;
 }
 
 li#toplevel_page_wangguard-key-config.wp-has-current-submenu div.wp-menu-image,
-#toplevel_page_wangguard-key-config:hover div.wp-menu-image{
+#toplevel_page_wangguard-key-config:hover div.wp-menu-image , 
+li#toplevel_page_wangguard_conf.wp-has-current-submenu div.wp-menu-image,
+#toplevel_page_wangguard_conf:hover div.wp-menu-image{
 	background: url("wangguardadmin.png") no-repeat scroll 6px 0px transparent;
 }
 

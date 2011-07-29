@@ -57,7 +57,7 @@ jQuery(document).ready(function() {
 			<div id="wangguard-visible-step-status">
 				<h3><?php echo __( "Reporting spam users to WangGuard..." , "wangguard"); ?></h3>
 				<?php
-				$usersPerStint = 100;	//how many users to check on each iteration
+				$usersPerStint = 50;	//how many users to check on each iteration
 				
 				$fromUser = (int)$_REQUEST['wangguard_wiz_from'];
 				if ($fromUser<0) $fromUser = 0;
@@ -153,7 +153,7 @@ jQuery(document).ready(function() {
 			<div id="wangguard-visible-step-status">
 				<h3><?php echo __( "Verifying users against the WangGuard service..." , "wangguard"); ?></h3>
 				<?php
-				$usersPerStint = 100;	//how many users to check on each iteration
+				$usersPerStint = 50;	//how many users to check on each iteration
 
 				$fromUser = (int)$_REQUEST['wangguard_wiz_from'];
 				if ($fromUser<0) $fromUser = 0;

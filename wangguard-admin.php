@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.1.4
+Version: 1.1.5
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.1.4');
+define('WANGGUARD_VERSION', '1.1.5');
 
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
@@ -34,7 +34,7 @@ define('WANGGUARD_VERSION', '1.1.4');
 $wuangguard_parent = basename($_SERVER['SCRIPT_NAME']);
 
 
-$wangguard_is_network_admin = function_exists("is_multisite");
+$wangguard_is_network_admin = function_exists("is_multisite") && function_exists( 'is_network_admin' );
 if ($wangguard_is_network_admin)
 	$wangguard_is_network_admin = is_multisite();
 
@@ -295,6 +295,17 @@ function wangguard_is_email_reported_as_sp($email , $clientIP , $callingFromRegu
 
 //Verify the security question, used from the WP, WPMU and BP validation functions
 function wangguard_question_repliedOK() {
+	
+	
+	//WP 3.2.1 multisite introduces a new two step registration, on step 2 we don't have to check the security question as it was checked in the step 1
+	if ($_POST['stage'] == 'validate-blog-signup') {
+		if (!wp_verify_nonce($_POST['_signup_form'] , 'signup_form_' . $_POST['signup_form_id']))
+			return false;
+		else
+			return true;
+	}
+	
+	
 	global $wpdb;
 
 	$table_name = $wpdb->base_prefix . "wangguardquestions";
@@ -1244,11 +1255,11 @@ function wangguard_add_bp_admin_bar_menus() {
 		$showAdmin = current_user_can('level_10');
 
 	
-	$queueEnabled = (wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1);
+	$queueEnabled = ((wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1))  &&   class_exists('WP_List_Table');
 	
 	// This is a blog, render a menu with links to all authors
 	if ($showAdmin) {
-		echo '<li id="wangguard-report-menu"><a href="'. $urlFunc( "admin.php?page=" . ($queueEnabled ? "wangguard_queue" : "wangguard-key-config") ).'">';
+		echo '<li id="wangguard-report-menu"><a href="'. $urlFunc( "admin.php?page=" . ($queueEnabled ? "wangguard_queue" : "wangguard_conf") ).'">';
 		_e('WangGuard', 'wangguard');
 		echo '</a>';
 		echo '<ul class="wangguard-report-menu-list">';
@@ -1276,7 +1287,7 @@ function wangguard_add_bp_admin_bar_menus() {
 		echo '<div class="admin-bar-clear"></div>';
 		echo '</li>';
 		echo '<li>';
-		echo '<a href="'.$urlFunc( "admin.php?page=wangguard-key-config" ).'">';
+		echo '<a href="'.$urlFunc( "admin.php?page=wangguard_conf" ).'">';
 		echo __('Configuration', 'wangguard') . '</a>';
 		echo '<div class="admin-bar-clear"></div>';
 		echo '</li>';
@@ -1318,7 +1329,7 @@ function wangguard_add_wp_admin_bar_menus() {
 	
 	$showReport = !$isMainBlog && (wangguard_get_option ("wangguard-enable-bp-report-blog")==1);
 
-	$queueEnabled = (wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1);
+	$queueEnabled = ((wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1))  &&   class_exists('WP_List_Table');
 	
 	if (function_exists("is_super_admin"))
 		$showAdmin = is_super_admin();
@@ -1326,7 +1337,7 @@ function wangguard_add_wp_admin_bar_menus() {
 		$showAdmin = current_user_can('level_10');
 	
 	if ($showAdmin) {
-		$wp_admin_bar->add_menu( array( 'id' => 'wangguard-admbar-splog', 'title' => __( 'WangGuard', 'wangguard' ), 'href' => $urlFunc( "admin.php?page=" . ($queueEnabled ? "wangguard_queue" : "wangguard-key-config") ) ) );
+		$wp_admin_bar->add_menu( array( 'id' => 'wangguard-admbar-splog', 'title' => __( 'WangGuard', 'wangguard' ), 'href' => $urlFunc( "admin.php?page=" . ($queueEnabled ? "wangguard_queue" : "wangguard_conf") ) ) );
 
 		if ($showReport)
 			$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-report-blog", 'meta'=>array("class"=>"wangguard-blog-report wangguard-blog-report-id-".$current_blog->blog_id ), 'title' => __('Report blog and author', 'wangguard'), 'href' => '#' ) );
@@ -1335,7 +1346,7 @@ function wangguard_add_wp_admin_bar_menus() {
 			$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-queue", 'title' => __('Moderation queue', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_queue" ) ) );
 		
 		$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-wizard", 'title' => __('Wizard', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_wizard" ) ) );
-		$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-settings", 'title' => __('Configuration', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard-key-config" ) ) );
+		$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-settings", 'title' => __('Configuration', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_conf" ) ) );
 	}
 	elseif ($showReport) {
 		$wp_admin_bar->add_menu( array( 'id' => "wangguard-admbar-report-blog", 'meta'=>array("class"=>"wangguard-blog-report wangguard-blog-report-id-".$current_blog->blog_id ), 'title' => __('Report blog and author', 'wangguard'), 'href' => '#' ) );
@@ -1365,7 +1376,7 @@ function wangguard_add_admin_menu() {
 		'page_title' => __( 'WangGuard', 'wangguard' ),
 		'menu_title' => __( 'WangGuard', 'wangguard' ),
 		'access_level' => 10,
-		'file' => 'wangguard-key-config',
+		'file' => 'wangguard_conf',
 		'function' => 'wangguard_conf',
 		'position' => 20
 	);
@@ -1380,11 +1391,12 @@ function wangguard_add_admin_menu() {
 	if (!empty ( $function ) && !empty ( $hookname ))
 		add_action( $hookname, $function );
 
+	$position = 25;
 	do {
 		$position++;
 	} while ( !empty( $menu[$position] ) );
 
-	$menu[$position] = array ( $menu_title, $access_level, $file, $page_title, 'menu-top ' . $hookname, $hookname, $icon_url );
+	$menu[$position] = array ( $menu_title, "level_10", "wangguard_conf", $page_title, 'menu-top ' . $hookname, $hookname, $icon_url );
 
 	$_registered_pages[$hookname] = true;
 
@@ -1395,14 +1407,16 @@ function wangguard_add_admin_menu() {
 		$countSpan = '<span class="update-plugins" ><span class="pending-count">'.$Count[0].'</span></span>';
 	
 	
-	$queueEnabled = (wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1);
+	@include_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 	
-	add_submenu_page( 'wangguard-key-config', __( 'Configuration', 'wangguard'), __( 'Configuration', 'wangguard' ), 'manage_options', 'wangguard-key-config', 'wangguard_conf' );
+	$queueEnabled = ((wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1))  &&   class_exists('WP_List_Table');
+	
+	add_submenu_page( 'wangguard_conf', __( 'Configuration', 'wangguard'), __( 'Configuration', 'wangguard' ), 'manage_options', 'wangguard_conf', 'wangguard_conf' );
 	
 	if ($queueEnabled) 
-		add_submenu_page( 'wangguard-key-config', __( 'Moderation Queue', 'wangguard'), __( 'Moderation Queue', 'wangguard' ) . $countSpan, 'manage_options', 'wangguard_queue', 'wangguard_queue' );
+		add_submenu_page( 'wangguard_conf', __( 'Moderation Queue', 'wangguard'), __( 'Moderation Queue', 'wangguard' ) . $countSpan, 'manage_options', 'wangguard_queue', 'wangguard_queue' );
 	
-	add_submenu_page( 'wangguard-key-config', __( 'Wizard', 'wangguard'), __( 'Wizard', 'wangguard' ), 'manage_options', 'wangguard_wizard', 'wangguard_wizard' );
+	add_submenu_page( 'wangguard_conf', __( 'Wizard', 'wangguard'), __( 'Wizard', 'wangguard' ), 'manage_options', 'wangguard_wizard', 'wangguard_wizard' );
 }
 
 
