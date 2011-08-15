@@ -179,8 +179,14 @@ register_activation_hook(__FILE__,'wangguard_install');
 
 //Add the Settings link on the plugins page
 function wangguard_action_links( $links, $file ) {
+	
+	global $wangguard_is_network_admin;
+	$urlFunc = "admin_url";
+	if ($wangguard_is_network_admin && function_exists("network_admin_url"))
+		$urlFunc = "network_admin_url";
+	
     if ( $file == plugin_basename(__FILE__) )
-		$newlink = array('<a href="' . admin_url( 'plugins.php?page=wangguard-key-config' ) . '">'.esc_html(__('Settings', 'wangguard')).'</a>');
+		$newlink = array('<a href="' . $urlFunc( 'admin.php?page=wangguard_conf' ) . '">'.esc_html(__('Settings', 'wangguard')).'</a>');
 	else
 		$newlink = array();
 
@@ -638,20 +644,39 @@ function wangguard_http_post($request, $op , $ip=null) {
 /********************************************************************/
 //Shows admin warnings if any
 function wangguard_admin_warnings() {
-	global $wangguard_api_key;
-
+	global $wangguard_api_key , $wangguard_is_network_admin;
+	
+	
 	if ( !$wangguard_api_key && !isset($_POST['submit']) ) {
 		function wangguard_warning() {
+
+			global $wangguard_is_network_admin;
+			
+			$urlFunc = "admin_url";
+			if ($wangguard_is_network_admin && function_exists("network_admin_url"))
+				$urlFunc = "network_admin_url";
+
+			$confURL = $urlFunc("admin.php?page=wangguard_conf");
+			
 			echo "
-			<div id='wangguard-warning' class='updated fade'><p><strong>".__('WangGuard is almost ready.', 'wangguard')."</strong> ".sprintf(__('You must <a href="%1$s">enter your WangGuard API key</a> for it to work.', 'wangguard'), "plugins.php?page=wangguard-key-config")."</p></div>
+			<div id='wangguard-warning' class='updated fade'><p><strong>".__('WangGuard is almost ready.', 'wangguard')."</strong> ".sprintf(__('You must <a href="%1$s">enter your WangGuard API key</a> for it to work.', 'wangguard'), $confURL)."</p></div>
 			";
 		}
 		add_action('admin_notices', 'wangguard_warning');
 		return;
 	} elseif ( wangguard_get_option('wangguard_connectivity_time') && empty($_POST) && is_admin() && !wangguard_server_connectivity_ok() ) {
 		function wangguard_warning() {
+			
+			global $wangguard_is_network_admin;
+			
+			$urlFunc = "admin_url";
+			if ($wangguard_is_network_admin && function_exists("network_admin_url"))
+				$urlFunc = "network_admin_url";
+
+			$confURL = $urlFunc("admin.php?page=wangguard_conf");
+
 			echo "
-			<div id='wangguard-warning' class='updated fade'><p><strong>".__('WangGuard has detected a problem.', 'wangguard')."</strong> ".sprintf(__('A server or network problem is preventing WangGuard from working correctly.  <a href="%1$s">Click here for more information</a> about how to fix the problem.', 'wangguard'), "plugins.php?page=wangguard-key-config")."</p></div>
+			<div id='wangguard-warning' class='updated fade'><p><strong>".__('WangGuard has detected a problem.', 'wangguard')."</strong> ".sprintf(__('A server or network problem is preventing WangGuard from working correctly.  <a href="%1$s">Click here for more information</a> about how to fix the problem.', 'wangguard'), $confURL)."</p></div>
 			";
 		}
 		add_action('admin_notices', 'wangguard_warning');
