@@ -110,7 +110,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 = Requirements/Restrictions =
 
 
- * Works with Wordpress 2.8+, WPMU 2.8+, BuddyPress 1.0.3+, bbPress 2.0+ (Wordpress 3.1+ is highly recommended)
+ * Works with Wordpress 2.8+, WPMU 2.8+, BuddyPress 1.0.3+, bbPress 2.0+ (Wordpress 3.2.1+ is highly recommended)
  * PHP 4.3 or above. (PHP 5+ is highly recommended)
   
  
