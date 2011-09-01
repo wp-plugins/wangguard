@@ -12,7 +12,7 @@ WangGuard checks your registered users against WangGuard web service to avoid Sp
 
 == Description ==
 
-WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite, BuddyPress (multisite and non-multisite) and bbPress 2.0 Beta3.
+WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite, BuddyPress (multisite and non-multisite) and bbPress 2.0 RC4.
 
 If you have signup enabled on your Standard WordPress, WordPress MU, WordPress Multisite, BuddyPress or bbPress 2.0, this is the plugin you were waiting for. There is nothing like it, is a next generation plugin associated a web service and a new concept of active protection from Sploggers, spam users, unwanted users and Black Hat SEO. This is just the beginning.
 
@@ -102,7 +102,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * NEW Add report user on every Activity
  * NEW Add report user on every profile
  
- = NEW bbPress 2.0 Beta 3 =
+ = NEW bbPress 2.0 RC4 =
  
  * NEW Wizard for detect and eliminate Sploggers
 
