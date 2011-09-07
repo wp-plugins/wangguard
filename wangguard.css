@@ -31,6 +31,10 @@ a.wangguard-recheck {
 	color: #d54e21;
 }
 
+.wangguard-rollback {
+	color: #d54e21;
+}
+
 .wangguard-status-no-status {
 	color: #d54e21;
 }
@@ -115,4 +119,15 @@ li#toplevel_page_wangguard_conf.wp-has-current-submenu div.wp-menu-image,
 
 li#wangguard-report-menu-noop {
 	background: none !important;
+}
+
+
+#wangguard-stats-container h2 {
+	margin: 40px 0 10px 0;
+}
+#wangguard-stats-container div {
+	border: 1px solid #c3c3c3 !important; 
+	width: 97% !important;; 
+	height: 500px !important;; 
+	margin:0 auto !important;;
 }

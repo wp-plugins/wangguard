@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 1.1.6
+Stable tag: 1.2.0
 License: GPLv2
 
 WangGuard checks your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU and BuddyPress compatible.
@@ -202,6 +202,15 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 
 == Changelog ==
+
+= 1.2.0 - XX Aug 2011 =
+* Added the ability to flag a user as "Not Splogger", overriding WangGuard response or cancelling a false/accidental report sent from your site.
+* Reported users does not get deleted by default, this is a change of behavior from the previous version, if you want WangGuard to delete reported users, as on previous versions, go to Configuration and check the option "Delete users when reporting them to WangGuard".
+* Added a new Statistics page which shows the last 30 days activity and a side by side comparison of the last 6 months activity (queries made to WangGuard / Sploggers blocked / Sploggers reported by you).
+* Added a new dashboard box which shows the last 7 days activity.
+* BuddyPress only, when clicking on "Load more" in the latest activity screen, report buttons now works as expected.
+* BuddyPress only, you can now report users from the view post comments screen.
+* Minor tweaks and bug fixing
 
 = 1.1.6 - 15 Aug 2011 =
 * Fixed minor issues involving the URL for some links to the Configuration screen.

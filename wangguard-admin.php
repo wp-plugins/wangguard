@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.1.6
+Version: 1.2.0
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.1.6');
+define('WANGGUARD_VERSION', '1.2.0');
 
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
@@ -54,6 +54,7 @@ $wangguard_api_key = wangguard_get_option('wangguard_api_key');
 include_once 'wangguard-conf.php';
 include_once 'wangguard-queue.php';
 include_once 'wangguard-wizard.php';
+include_once 'wangguard-stats.php';
 /********************************************************************/
 /*** CONFIG ENDS ***/
 /********************************************************************/
@@ -125,6 +126,10 @@ function wangguard_register_add_question_mu($errors) {
 function wangguard_wpmu_signup_validate_mu($param) {
 	global $wangguard_bp_validated;
 
+	if ( strpos($_SERVER['PHP_SELF'], 'wp-admin') !== false ) {
+		return $param;
+	}
+	
 	//BP1.1+ calls the new BP filter first (wangguard_signup_validate_bp11) and then the legacy MU filters (this one), if the BP new 1.1+ filter has been already called, silently return
 	if ($wangguard_bp_validated)
 		return $param;
@@ -154,6 +159,10 @@ function wangguard_wpmu_signup_validate_mu($param) {
 //Adds a security question if any exists
 function wangguard_register_add_question_bp11(){
 	global $wpdb;
+
+	if ( strpos($_SERVER['PHP_SELF'], 'wp-admin') !== false ) {
+		return $param;
+	}
 
 	$table_name = $wpdb->base_prefix . "wangguardquestions";
 
@@ -362,6 +371,7 @@ add_action('wpmu_activate_user','wangguard_wpmu_activate_user' , 10 , 3);
 add_action('delete_user','wangguard_plugin_user_delete');
 add_action('wpmu_delete_user','wangguard_plugin_user_delete');
 add_action('make_spam_user','wangguard_make_spam_user');
+add_action('make_ham_user','wangguard_make_ham_user');
 add_action('bp_core_action_set_spammer_status','wangguard_bp_core_action_set_spammer_status' , 10 , 2);
 
 
@@ -467,9 +477,22 @@ function wangguard_make_spam_user($userid) {
 	wangguard_report_users($wpusersRs , "email" , false);
 }
 
+//User has been reported as safe, rollback on WangGuard
+function wangguard_make_ham_user($userid) {
+	global $wpdb;
+
+	//flag a user
+	//get the recordset of the user to make as safe
+	$wpusersRs = $wpdb->get_col( $wpdb->prepare("select ID from $wpdb->users where ID = %d" , $userid ) );
+
+	wangguard_rollback_report($wpusersRs);
+}
+
 function wangguard_bp_core_action_set_spammer_status($userid , $is_spam) {
 	if ($is_spam)
 		wangguard_make_spam_user ($userid);
+	else
+		wangguard_make_ham_user ($userid);
 }
 /********************************************************************/
 /*** USER REGISTATION & DELETE FILTERS ENDS ***/
@@ -498,7 +521,7 @@ else if (ajaxurl == undefined)
 	ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
 	
 jQuery(document).ready(function() {
-	jQuery(".wangguard-user-report").click(function() {
+	jQuery(".wangguard-user-report").live('click' , function() {
 		if (!confirm('<?php echo addslashes(__("Do you confirm to report the user?" , "wangguard"))?>')) 
 			return;
 		
@@ -530,7 +553,7 @@ jQuery(document).ready(function() {
 	});
 	
 	
-	jQuery(".wangguard-blog-report").click(function() {
+	jQuery(".wangguard-blog-report").live('click' , function() {
 		if (!confirm('<?php echo addslashes(__("Do you confirm to report the blog and authors?" , "wangguard"))?>')) 
 			return;
 		
@@ -662,6 +685,11 @@ jQuery(document).ready(function($) {
 		wangguard_report(userid , false);
 	});
 
+	jQuery("a.wangguard-rollback").click(function() {
+		var userid = jQuery(this).attr("rel");
+		wangguard_rollback(userid);
+	});
+
 	jQuery("a.wangguard-splogger-blog").click(function() {
 		var blogid = jQuery(this).attr("rel");
 		wangguard_report_blog(blogid , false);
@@ -670,8 +698,14 @@ jQuery(document).ready(function($) {
 	function wangguard_report(userid , frombulk) {
 		var confirmed = true;
 		<?php if (wangguard_get_option ("wangguard-expertmode")!='1') {?>
-			if (!frombulk)
+			if (!frombulk) {
+			<?php if (wangguard_get_option ("wangguard-delete-users-on-report")=='1') {?>
 				confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this user as Splogger? This operation is IRREVERSIBLE and will DELETE the user.', 'wangguard'))?>');
+			<?php }
+			else {?>
+				confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this user as Splogger?', 'wangguard'))?>');
+			<?php }?>
+			}
 		<?php }?>
 
 		if (confirmed) {
@@ -697,7 +731,59 @@ jQuery(document).ready(function($) {
 					document.location = document.location;
 					<?php }
 					else {?>
-					jQuery('td span.wangguardstatus-'+response).parent().parent().fadeOut();
+						<?php if (wangguard_get_option ("wangguard-delete-users-on-report")=='1') {?>
+							jQuery('td span.wangguardstatus-'+response).parent().parent().fadeOut();
+						<?php }
+						else {?>
+							jQuery('td span.wangguardstatus-'+response).removeClass('wangguard-status-checked');
+							jQuery('td span.wangguardstatus-'+response).addClass('wangguard-status-splogguer');
+							jQuery('td span.wangguardstatus-'+response).html('<?php echo __('Reported as Splogger' , 'wangguard')?>');
+							jQuery('a.wangguard-splogger[rel=\''+response+'\']').hide();
+							jQuery('a.wangguard-rollback[rel=\''+response+'\']').show();
+						<?php }?>
+					<?php }?>
+				}
+			});
+		}
+	}
+
+
+
+
+	function wangguard_rollback(userid) {
+		var confirmed = true;
+		<?php if (wangguard_get_option ("wangguard-expertmode")!='1') {?>
+			confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this user as safe?', 'wangguard'))?>');
+		<?php }?>
+
+		if (confirmed) {
+			data = {
+				action	: 'wangguard_ajax_handler',
+				scope	: 'rollback-email',
+				userid	: userid
+			};
+			jQuery.post(ajaxurl, data, function(response) {
+				if (response=='0') {
+					alert('<?php echo addslashes(__('The selected user couldn\'t be found on the users table.', 'wangguard'))?>');
+				}
+				else if (response=='-1') {
+					wangguardBulkOpError = true;
+					alert('<?php echo addslashes(__('Your WangGuard API KEY is invalid.', 'wangguard'))?>');
+				}
+				else if (response=='-2') {
+					wangguardBulkOpError = true;
+					alert('<?php echo addslashes(__('There was a problem connecting to the WangGuard server. Please check your server configuration.', 'wangguard'))?>');
+				}
+				else {
+					<?php if ($wuangguard_parent == 'edit.php') {?>
+					document.location = document.location;
+					<?php }
+					else {?>
+						jQuery('td span.wangguardstatus-'+response).removeClass('wangguard-status-splogguer');
+						jQuery('td span.wangguardstatus-'+response).addClass('wangguard-status-checked');
+						jQuery('td span.wangguardstatus-'+response).html('<?php echo __('Checked (forced)' , 'wangguard')?>');
+						jQuery('a.wangguard-rollback[rel=\''+response+'\']').hide();
+						jQuery('a.wangguard-splogger[rel=\''+response+'\']').show();
 					<?php }?>
 				}
 			});
@@ -711,7 +797,12 @@ jQuery(document).ready(function($) {
 	function wangguard_report_blog(blogid) {
 		var confirmed = true;
 		<?php if (wangguard_get_option ("wangguard-expertmode")!='1') {?>
-			confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this blog\'s author(s) as Splogger(s)? This operation is IRREVERSIBLE and will DELETE the user(s).', 'wangguard'))?>');
+			<?php if (wangguard_get_option ("wangguard-delete-users-on-report")=='1') {?>
+				confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this blog\'s author(s) as Splogger(s)? This operation is IRREVERSIBLE and will DELETE the user(s).', 'wangguard'))?>');
+			<?php }
+			else {?>
+				confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this blog\'s author(s) as Splogger(s)?', 'wangguard'))?>');
+			<?php }?>
 		<?php }?>
 
 		if (confirmed) {
@@ -794,7 +885,12 @@ jQuery(document).ready(function($) {
 
 		var confirmed = true;
 		<?php if (wangguard_get_option ("wangguard-expertmode")!='1') {?>
-			confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this user domain as Splogger? This operation is IRREVERSIBLE and will DELETE the users that shares this domain.', 'wangguard'))?>');
+			<?php if (wangguard_get_option ("wangguard-delete-users-on-report")=='1') {?>
+				confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this user domain as Splogger? This operation is IRREVERSIBLE and will DELETE the users that shares this domain.', 'wangguard'))?>');
+			<?php }
+			else {?>
+				confirmed = confirm('<?php echo addslashes(__('Do you confirm to flag this user domain as Splogger?', 'wangguard'))?>');
+			<?php }?>
 		<?php }?>
 
 		if (confirmed) {
@@ -960,8 +1056,14 @@ jQuery(document).ready(function($) {
 
 		jQuery('input.wangguardbulkreportbutton').live('click' , function () {
 
-			if (!confirm('<?php _e('Do you confirm to flag the selected users as Sploggers? This operation is IRREVERSIBLE and will DELETE the users.' , 'wangguard')?>'))
-				return;
+			<?php if (wangguard_get_option ("wangguard-delete-users-on-report")=='1') {?>
+				if (!confirm('<?php _e('Do you confirm to flag the selected users as Sploggers? This operation is IRREVERSIBLE and will DELETE the users.' , 'wangguard')?>'))
+					return;
+			<?php }
+			else {?>
+				if (!confirm('<?php _e('Do you confirm to flag the selected users as Sploggers?' , 'wangguard')?>'))
+					return;
+			<?php }?>
 
 			var userscheck;
 			userscheck = jQuery('input[name="users[]"]:checked');
@@ -1052,6 +1154,10 @@ function wangguard_ajax_callback() {
 			
 			break;
 		
+		case "rollback-email":
+			$wpusersRs = $wpdb->get_col( $wpdb->prepare("select ID from $wpdb->users where ID = %d" , $userid ) );
+			echo wangguard_rollback_report($wpusersRs);
+			break;
 		
 		default:
 			//flag a user
@@ -1159,6 +1265,20 @@ function wangguard_ajax_recheck_callback() {
 /********************************************************************/
 /*** BP FRONTEND REPORT BUTTONS BEGINS ***/
 /********************************************************************/
+function wangguard_bp_comment_reply_link($link , $args, $comment, $post='') {
+	global $bp , $user_ID;
+	$userid = $comment->user_id;
+
+	if (!$bp) return $link;
+	$user_object = new WP_User($userid);
+	if (empty ($user_object->ID)) return $link;
+	if ($user_ID == $user_object->ID) return $link;
+	if (wangguard_is_admin($user_object)) return $link;
+	
+
+	$link .= '<a href="javascript:void(0)" style="margin-left:10px" class="comment-reply-link wangguard-user-report" rel="'.$userid.'" title="'.__('Report user', 'wangguard').'">'.__('Report user', 'wangguard').'</a>';
+	return $link;
+}
 function wangguard_bp_report_button($id = '', $type = '') {
 
 	if (!is_user_logged_in())
@@ -1170,6 +1290,16 @@ function wangguard_bp_report_button($id = '', $type = '') {
 		$type = 'blogpost';
 
 
+	if (function_exists("is_textdomain_loaded")) {
+		if (!is_textdomain_loaded("wangguard"))
+			load_textdomain ("wangguard", PLUGINDIR . "/wangguard/languages/wangguard-".WPLANG.".mo");
+	}
+	else {
+		global $l10n;
+		if (!isset( $l10n['wangguard']))
+			load_textdomain ("wangguard", PLUGINDIR . " /wangguard/languages/wangguard-".WPLANG.".mo");
+	}
+	
 	if ( $type == 'activity' ) :
 
 		$activity = bp_activity_get_specific( array( 'activity_ids' => bp_get_activity_id() ) );
@@ -1181,7 +1311,7 @@ function wangguard_bp_report_button($id = '', $type = '') {
 			if (!wangguard_is_admin($user_object)) :
 
 				if ( true || !bp_like_is_liked( bp_get_activity_id(), 'activity' ) ) : ?>
-				<a href="javascript:void(0)" class="fav wangguard-user-report" rel="<?php echo $user_object->ID;?>" title="<?php echo __('Report user', 'wangguard'); ?>"><?php echo  __('Report user', 'wangguard');?></a>
+				<a href="javascript:void(0)" class="button wangguard-user-report" rel="<?php echo $user_object->ID;?>" title="<?php echo __('Report user', 'wangguard'); ?>"><?php echo  __('Report user', 'wangguard');?></a>
 				<?php endif;
 			endif;
 		endif;
@@ -1196,7 +1326,7 @@ function wangguard_bp_report_button($id = '', $type = '') {
 		if (!wangguard_is_admin($user_object)) :
 			if (true || !bp_like_is_liked( $id, 'blogpost' ) ) : ?>
 
-				<div class="activity-list"><div class="activity-meta"><a href="javascript:void(0)" class="fav wangguard-user-report" rel="<?php echo $user_object->ID;?>" title="<?php echo __('Report user', 'wangguard'); ?>"><?php echo  __('Report user', 'wangguard');?></a></div></div>
+				<div class="activity-list"><div class="activity-meta"><a href="javascript:void(0)" class="button wangguard-user-report" rel="<?php echo $user_object->ID;?>" title="<?php echo __('Report user', 'wangguard'); ?>"><?php echo  __('Report user', 'wangguard');?></a></div></div>
 
 			<?php endif;
 		endif;
@@ -1206,6 +1336,7 @@ function wangguard_bp_report_button($id = '', $type = '') {
 if (wangguard_get_option ("wangguard-enable-bp-report-btn")==1) {
 	add_filter( 'bp_activity_entry_meta', 'wangguard_bp_report_button' );
 	add_action( 'bp_before_blog_single_post', 'wangguard_bp_report_button' );
+	add_filter( 'comment_reply_link', 'wangguard_bp_comment_reply_link' , 10 , 4);
 }
 
 function wangguard_bp_report_button_header() {
@@ -1214,9 +1345,10 @@ function wangguard_bp_report_button_header() {
 	$user_object = new WP_User($bp->displayed_user->id);
 	if (empty ($user_object->ID)) return;
 	if (wangguard_is_admin($user_object)) return;
+	
 	echo bp_get_button( array(
 		'id'                => 'wangguard_report_user',
-		'component'         => 'wangguard_report_user',
+		'component'         => 'members',
 		'must_be_logged_in' => true,
 		'block_self'        => true,
 		'wrapper_id'        => 'wangguard_report_user-button',
@@ -1226,8 +1358,9 @@ function wangguard_bp_report_button_header() {
 		'link_text'         => __('Report user', 'wangguard')
 	) );
 }
-if (wangguard_get_option ("wangguard-enable-bp-report-btn")==1)
+if (wangguard_get_option ("wangguard-enable-bp-report-btn")==1) {
 	add_action( 'bp_member_header_actions',    'wangguard_bp_report_button_header' , 20 );
+}
 /********************************************************************/
 /*** BP FRONTEND REPORT BUTTONS ENDS ***/
 /********************************************************************/
@@ -1255,7 +1388,11 @@ function wangguard_add_bp_admin_bar_menus() {
 		$showAdmin = current_user_can('level_10');
 
 	
-	$queueEnabled = ((wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1))  &&   class_exists('WP_List_Table');
+	global $wp_version;
+	$cur_wp_version = preg_replace('/-.*$/', '', $wp_version);
+	$WP_List_TableClassSupported = version_compare($cur_wp_version , '3.1.0' , ">=");
+	
+	$queueEnabled = ((wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1))  &&   $WP_List_TableClassSupported;
 	
 	// This is a blog, render a menu with links to all authors
 	if ($showAdmin) {
@@ -1277,7 +1414,7 @@ function wangguard_add_bp_admin_bar_menus() {
 		if ($queueEnabled) {
 			echo '<li>';
 			echo '<a href="'.$urlFunc( "admin.php?page=wangguard_queue" ).'">';
-			echo __('Moderation queue', 'wangguard') . '</a>';
+			echo __('Moderation Queue', 'wangguard') . '</a>';
 			echo '<div class="admin-bar-clear"></div>';
 			echo '</li>';
 		}
@@ -1289,6 +1426,11 @@ function wangguard_add_bp_admin_bar_menus() {
 		echo '<li>';
 		echo '<a href="'.$urlFunc( "admin.php?page=wangguard_conf" ).'">';
 		echo __('Configuration', 'wangguard') . '</a>';
+		echo '<div class="admin-bar-clear"></div>';
+		echo '</li>';
+		echo '<li>';
+		echo '<a href="'.$urlFunc( "admin.php?page=wangguard_stats" ).'">';
+		echo __('Stats', 'wangguard') . '</a>';
 		echo '<div class="admin-bar-clear"></div>';
 		echo '</li>';
 
@@ -1328,8 +1470,14 @@ function wangguard_add_wp_admin_bar_menus() {
 		$isMainBlog = ($current_blog->blog_id == 1);
 	
 	$showReport = !$isMainBlog && (wangguard_get_option ("wangguard-enable-bp-report-blog")==1);
+	
+	
+	global $wp_version;
+	$cur_wp_version = preg_replace('/-.*$/', '', $wp_version);
+	$WP_List_TableClassSupported = version_compare($cur_wp_version , '3.1.0' , ">=");
+	
 
-	$queueEnabled = ((wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1))  &&   class_exists('WP_List_Table');
+	$queueEnabled = ((wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1))  &&   $WP_List_TableClassSupported;
 	
 	if (function_exists("is_super_admin"))
 		$showAdmin = is_super_admin();
@@ -1343,9 +1491,10 @@ function wangguard_add_wp_admin_bar_menus() {
 			$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-report-blog", 'meta'=>array("class"=>"wangguard-blog-report wangguard-blog-report-id-".$current_blog->blog_id ), 'title' => __('Report blog and author', 'wangguard'), 'href' => '#' ) );
 
 		if ($queueEnabled)
-			$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-queue", 'title' => __('Moderation queue', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_queue" ) ) );
+			$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-queue", 'title' => __('Moderation Queue', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_queue" ) ) );
 		
 		$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-wizard", 'title' => __('Wizard', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_wizard" ) ) );
+		$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-stats", 'title' => __('Stats', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_stats" ) ) );
 		$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-settings", 'title' => __('Configuration', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_conf" ) ) );
 	}
 	elseif ($showReport) {
@@ -1417,6 +1566,7 @@ function wangguard_add_admin_menu() {
 		add_submenu_page( 'wangguard_conf', __( 'Moderation Queue', 'wangguard'), __( 'Moderation Queue', 'wangguard' ) . $countSpan, 'manage_options', 'wangguard_queue', 'wangguard_queue' );
 	
 	add_submenu_page( 'wangguard_conf', __( 'Wizard', 'wangguard'), __( 'Wizard', 'wangguard' ), 'manage_options', 'wangguard_wizard', 'wangguard_wizard' );
+	add_submenu_page( 'wangguard_conf', __( 'Stats', 'wangguard'), __( 'Stats', 'wangguard' ), 'manage_options', 'wangguard_stats', 'wangguard_stats' );
 }
 
 
@@ -1426,6 +1576,82 @@ else
 	add_action( 'network_admin_menu', 'wangguard_add_admin_menu' );
 /********************************************************************/
 /*** ADMIN GROUP MENU ENDS ***/
+/********************************************************************/
+
+
+
+
+/********************************************************************/
+/*** DASHBOARD BEGINS ***/
+/********************************************************************/
+function wangguard_dashboard_stats() {
+	if ( !is_super_admin() )
+		return false;
+
+	wp_add_dashboard_widget("wangguard_dashboard_stats", __( 'WangGuard Stats' , 'wangguard' ) . " - " . __( 'Last 7 days' , 'wangguard' ) , "wangguard_dashboard_stats_render");
+	
+	
+	global $wp_meta_boxes;
+	
+
+	if (is_array($wp_meta_boxes['dashboard']['normal']['core'])) {
+		$normal_dashboard = $wp_meta_boxes['dashboard']['normal']['core'];
+		$wangguard_stats_backup = $normal_dashboard['wangguard_dashboard_stats'];
+
+		unset($wp_meta_boxes['dashboard']['normal']['core']['wangguard_dashboard_stats']);
+		$wp_meta_boxes['dashboard']['side']['core']['wangguard_dashboard_stats'] = $wangguard_stats_backup;		
+	}
+	else if (is_array($wp_meta_boxes['dashboard-network']['normal']['core'])) {
+		$normal_dashboard = $wp_meta_boxes['dashboard-network']['normal']['core'];
+		$wangguard_stats_backup = $normal_dashboard['wangguard_dashboard_stats'];
+
+		unset($wp_meta_boxes['dashboard-network']['normal']['core']['wangguard_dashboard_stats']);
+		$wp_meta_boxes['dashboard-network']['side']['core']['wangguard_dashboard_stats'] = $wangguard_stats_backup;		
+	}
+	
+}
+
+function wangguard_dashboard_stats_render() {
+	global $wangguard_api_key , $wangguard_is_network_admin,$wangguard_api_host,$wangguard_rest_path;
+
+	if ( !current_user_can('level_10') )
+		return;
+	
+	$lang = substr(WPLANG, 0,2);
+	?>
+	<script type="text/javascript">
+		var wangguardResizeTimer;
+
+		jQuery(document).ready(function () {
+           var WGstatsURL = "http://<?php echo $wangguard_api_host . $wangguard_rest_path?>get-stat.php?wg="+ encodeURIComponent('<in><apikey><?php echo $wangguard_api_key?></apikey><last7>1</last7><lang><?php echo $lang?></lang></in>');
+		   
+           jQuery.ajax({
+                dataType: "jsonp",
+                url: WGstatsURL,
+                jsonpCallback: "callback",
+                success: createChart
+            });
+
+			function createChart(data) {
+				jQuery("#wangguard-stats-container").wijbarchart(data);
+			}
+		});
+	</script>
+
+	<div id="wangguard-stats-container" class="ui-widget ui-widget-content ui-corner-all" style="width: 98%; height: 300px; margin:0 auto;"></div>
+	<?php
+	$urlFunc = "admin_url";
+	if ($wangguard_is_network_admin && function_exists("network_admin_url"))
+		$urlFunc = "network_admin_url";
+		echo '<div style="text-align:center"><a href="'.$urlFunc( "admin.php?page=wangguard_stats" ).'">'.__( 'Click here to access the WangGuard stats' , 'wangguard' ).'</a></div>';
+}
+
+if ( $wangguard_is_network_admin )
+	add_action( 'wp_network_dashboard_setup', 'wangguard_dashboard_stats' );
+else
+	add_action( 'wp_dashboard_setup', 'wangguard_dashboard_stats' );
+/********************************************************************/
+/*** DASHBOARD ENDS ***/
 /********************************************************************/
 
 ?>

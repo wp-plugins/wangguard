@@ -37,6 +37,11 @@ function wangguard_admin_init() {
 	global $wangguard_db_version;
 	
 	wp_enqueue_style( 'wangguardCSS' );
+
+	wp_enqueue_script("jquery-ui-widget");
+	wp_enqueue_script("raphael" , "/" . PLUGINDIR . '/wangguard/js/raphael.js' , array('jquery-ui-widget'));
+	wp_enqueue_script("wijmo-wijchartcore" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijchartcore.min.js' , array('raphael'));
+	wp_enqueue_script("wijmo.wijbarchart" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijbarchart.min.js' , array('wijmo-wijchartcore'));
 	
 	$version = wangguard_get_option("wangguard_db_version");
 	if (false === $version)
@@ -171,6 +176,11 @@ function wangguard_install($current_version) {
 	if (empty ($tmp))
 	 wangguard_update_option ("wangguard-enable-bp-report-btn", 1);
 
+	//Don't delete users when reporting by default
+	$tmp = wangguard_get_option("wangguard-delete-users-on-report");
+	if (empty ($tmp))
+	 wangguard_update_option ("wangguard-delete-users-on-report", -1);
+
 	//db version
 	wangguard_update_option("wangguard_db_version", $wangguard_db_version);
 }
@@ -268,13 +278,15 @@ function wangguard_report_users($wpusersRs , $scope="email" , $deleteUser = true
 	if (!$wpusersRs) {
 		return "0";
 	}
+	
+	$deleteUser = wangguard_get_option ("wangguard-delete-users-on-report")=='1';
 
 	$usersFlagged = array();
 	foreach ($wpusersRs as $spuserID) {
 		$user_object = new WP_User($spuserID);
 
 
-		if ( current_user_can( 'delete_users' ) && !wangguard_is_admin($user_object) ) {
+		if ( !wangguard_is_admin($user_object) ) {
 			if (!empty ($user_object->user_email)) {
 				//Get the user's client IP from which he signed up
 				$table_name = $wpdb->base_prefix . "wangguarduserstatus";
@@ -287,7 +299,7 @@ function wangguard_report_users($wpusersRs , $scope="email" , $deleteUser = true
 			}
 
 
-			if ($deleteUser) {
+			if ($deleteUser && current_user_can( 'delete_users' )) {
 
 				if (function_exists("get_blogs_of_user") && function_exists("update_blog_status")) {
 
@@ -346,6 +358,53 @@ function wangguard_report_users($wpusersRs , $scope="email" , $deleteUser = true
 
 	if (count($usersFlagged))
 		return implode (",", $usersFlagged);
+	else
+		return "0";
+}
+
+
+
+function wangguard_rollback_report($wpusersRs) {
+	global $wangguard_api_key;
+	global $wpdb;
+
+	$valid = wangguard_verify_key($wangguard_api_key);
+	if ($valid == 'failed') {
+		echo "-2";
+		die();
+	}
+	else if ($valid == 'invalid') {
+		echo "-1";
+		die();
+	}
+
+	if (!$wpusersRs) {
+		return "0";
+	}
+	
+	$usersRolledBack = array();
+	foreach ($wpusersRs as $spuserID) {
+		$user_object = new WP_User($spuserID);
+
+
+		if ( !wangguard_is_admin($user_object) ) {
+			if (!empty ($user_object->user_email)) {
+				//Get the user's client IP from which he signed up
+				$response = wangguard_http_post("wg=<in><apikey>$wangguard_api_key</apikey><email>".$user_object->user_email."</email></in>", 'remove-email.php');
+			}
+
+			global $wpdb;
+
+			//Update the new status
+			$table_name = $wpdb->base_prefix . "wangguarduserstatus";
+			$wpdb->query( $wpdb->prepare("update $table_name set user_status = 'force-checked' where ID = '%d'" , $spuserID ) );
+			
+			$usersRolledBack[] = $spuserID;
+		}
+	}
+
+	if (count($usersRolledBack))
+		return implode (",", $usersRolledBack);
 	else
 		return "0";
 }
@@ -469,7 +528,7 @@ function wangguard_get_key() {
 //Checks the API KEY against wangguard service
 function wangguard_verify_key( $key, $ip = null ) {
 	global $wangguard_api_key;
-	if ( $wangguard_api_key )
+	if ( empty($key) && $wangguard_api_key )
 		$key = $wangguard_api_key;
 
 	$response = wangguard_http_post("wg=<in><apikey>$key</apikey></in>", 'verify-key.php' , $ip);
@@ -769,6 +828,9 @@ function wangguard_user_custom_columns($dummy , $column_name , $userid , $echo =
 		elseif ($status == 'checked') {
 			$html = '<span class="wangguard-status-checked wangguardstatus-'.$userid.'">'. __('Checked', 'wangguard') .'</span>';
 		}
+		elseif ($status == 'force-checked') {
+			$html = '<span class="wangguard-status-checked wangguardstatus-'.$userid.'">'. __('Checked (forced)', 'wangguard') .'</span>';
+		}
 		elseif (substr($status , 0 , 5) == 'error') {
 			$html = '<span class="wangguard-status-error wangguardstatus-'.$userid.'">'. __('Error', 'wangguard') . " - " . substr($status , 6) . '</span>';
 		}
@@ -781,9 +843,21 @@ function wangguard_user_custom_columns($dummy , $column_name , $userid , $echo =
 		$Domain = split("@",$user_object->user_email);
 		$Domain = $Domain[1];
 
+		$deleteUser = wangguard_get_option ("wangguard-delete-users-on-report")=='1';
+
 		$html .= "<br/><div class=\"row-actions\">";
-		if ( current_user_can( 'delete_users' ) && !wangguard_is_admin($user_object) ) {
-			$html .= '<a href="javascript:void(0)" rel="'.$user_object->ID.'" class="wangguard-splogger">'.esc_html(__('Splogger', 'wangguard')).'</a> | ';
+		if ( !wangguard_is_admin($user_object) ) {
+			
+			$rollbackStyle = (($status == 'reported') || ($status == 'autorep')) ? "" : "style='display:none'";
+			$reportStyle = (($status == 'reported') || ($status == 'autorep')) ? "style='display:none'" : "";
+
+			$html .= '<a href="javascript:void(0)" '.$rollbackStyle.' rel="'.$user_object->ID.'" class="wangguard-rollback">'.esc_html(__('Not a Splogger', 'wangguard')).'</a>';
+
+			if (($deleteUser && current_user_can( 'delete_users' )) || !$deleteUser)
+				$html .= '<a href="javascript:void(0)" '.$reportStyle.' rel="'.$user_object->ID.'" class="wangguard-splogger">'.esc_html(__('Splogger', 'wangguard')).'</a>';
+			
+			$html .= " | ";
+			
 			//$html .= '<a href="javascript:void(0)" rel="'.$user_object->ID.'" class="wangguard-domain">'.esc_html(__('Report Domain', 'wangguard')).'</a> | ';
 			$html .= '<a href="javascript:void(0)" rel="'.$user_object->ID.'" class="wangguard-recheck">'.esc_html(__('Recheck', 'wangguard')).'</a> | ';
 			$html .= '<a href="http://'.$Domain.'" target="_new">'.esc_html(__('Open Web', 'wangguard')).'</a>';
@@ -818,7 +892,10 @@ if (wangguard_get_option ("wangguard-report-posts")==1)
 	add_filter('post_row_actions','wangguard_post_row_actions',10,2);
 function wangguard_post_row_actions($actions , $post) {
 	$user_object = new WP_User($post->post_author);
-	if ( current_user_can( 'delete_users' ) && !wangguard_is_admin($user_object) )
+	
+	$deleteUser = wangguard_get_option ("wangguard-delete-users-on-report")=='1';
+	
+	if ( ((current_user_can( 'delete_users' ) && $deleteUser) || !$deleteUser) && !wangguard_is_admin($user_object) )
 		$actions[] = '<a href="javascript:void(0)" rel="'.$post->post_author.'" class="wangguard-splogger">'.esc_html(__('Splogger', 'wangguard')).'</a>';
 	return $actions;
 }

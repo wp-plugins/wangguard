@@ -40,6 +40,8 @@ function wangguard_conf() {
 
 			wangguard_update_option('wangguard-report-posts', $_POST['wangguardreportposts']=='1' ? 1 : 0 );
 
+			wangguard_update_option('wangguard-delete-users-on-report', $_POST['wangguard-delete-users-on-report']=='1' ? 1 : -1 );
+			
 			wangguard_update_option('wangguard-enable-bp-report-btn', $_POST['wangguardenablebpreportbtn']=='1' ? 1 : -1 );
 			
 			wangguard_update_option('wangguard-enable-bp-report-blog', $_POST['wangguardenablebpreportblog']=='1' ? 1 : -1 );
@@ -157,6 +159,10 @@ function wangguard_conf() {
 	<p>
 		<input type="checkbox" name="wangguardreportposts" id="wangguardreportposts" value="1" <?php echo wangguard_get_option("wangguard-report-posts")=='1' ? 'checked' : ''?> />
 		<label for="wangguardreportposts"><?php _e("<strong>Allow reporting users from Posts admin screen.</strong><br/>By checking this option a new link to report a post's author will be added for each post on the <a href=\"edit.php\">Posts admin screen</a>.", 'wangguard') ?></label>
+	</p>
+	<p>
+		<input type="checkbox" name="wangguard-delete-users-on-report" id="wangguard-delete-users-on-report" value="1" <?php echo wangguard_get_option("wangguard-delete-users-on-report")=='1' ? 'checked' : ''?> />
+		<label for="wangguard-delete-users-on-report"><?php _e("<strong>Delete users when reporting them to WangGuard.</strong><br/>By checking this option, the users you report as Sploggers will be deleted from your site.", 'wangguard') ?></label>
 	</p>
 	<p>
 		<input type="checkbox" name="wangguardenablebpreportbtn" id="wangguardenablebpreportbtn" value="1" <?php echo wangguard_get_option("wangguard-enable-bp-report-btn")=='1' ? 'checked' : ''?> />
