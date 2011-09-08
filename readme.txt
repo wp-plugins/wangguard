@@ -203,7 +203,7 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 == Changelog ==
 
-= 1.2.0 - 08 Sep 2011 =
+= 1.2.0 - 07 Sep 2011 =
 * Added the ability to flag a user as "Not Splogger", overriding WangGuard response or cancelling a false/accidental report sent from your site.
 * Reported users does not get deleted by default, this is a change of behavior from the previous version, if you want WangGuard to delete reported users, as on previous versions, go to Configuration and check the option "Delete users when reporting them to WangGuard".
 * Added a new Statistics page which shows the last 30 days activity and a side by side comparison of the last 6 months activity (queries made to WangGuard / Sploggers blocked / Sploggers reported by you).
