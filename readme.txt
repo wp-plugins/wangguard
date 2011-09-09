@@ -58,6 +58,8 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
  * Free API key for personal use
  * Free to everyone for a limited time!
+ * NEW Full Statistics
+ * NEW Added the ability to flag a user as "Not Splogger"
  * Clean your installation of unwanted users and sploggers.
  * Centralized database of sploggers.
  * Configure from Admin panel
@@ -76,35 +78,35 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 = WordPress Simple Features =
 
- * NEW Wizard for detect and eliminate Sploggers
- * NEW Mark as Splogger from post list
+ * Wizard for detect and eliminate Sploggers
+ * Mark as Splogger from post list
  
 = WordPress Mu (WPMU) Features =
 
- * NEW Wizard for detect and eliminate Sploggers
- * NEW Mark as Splogger from post list
- * NEW Protect all registration pages from All blogs (Activated sitewide)
+ * Wizard for detect and eliminate Sploggers
+ * Mark as Splogger from post list
+ * Protect all registration pages from All blogs (Activated sitewide)
 
 = WordPress Multisite (WP3) Features =
 
- * NEW Wizard for detect and eliminate Sploggers
- * NEW Mark as Splogger from post list
- * NEW Add a "Report blog and author" on every blog
- * NEW Moderation Queue for repored users and blogs
- * NEW Protect all registration pages from All blogs (Activated for Network)
+ * Wizard for detect and eliminate Sploggers
+ * Mark as Splogger from post list
+ * Add a "Report blog and author" on every blog
+ * Moderation Queue for repored users and blogs
+ * Protect all registration pages from All blogs (Activated for Network)
  
 = BuddyPress 2.x (WordPresss Simple and WordPress Multisite 3.x) Features =
 
- * NEW Wizard for detect and eliminate Sploggers
- * NEW Mark as Splogger from post list
- * NEW Add "Report blog and author" on every blog
- * NEW Moderation Queue for repored users and blogs
- * NEW Add report user on every Activity
- * NEW Add report user on every profile
+ * Wizard for detect and eliminate Sploggers
+ * Mark as Splogger from post list
+ * Add "Report blog and author" on every blog
+ * Moderation Queue for repored users and blogs
+ * Add report user on every Activity
+ * dd report user on every profile
  
- = NEW bbPress 2.0 RC4 =
+ = bbPress 2.0 RC4 =
  
- * NEW Wizard for detect and eliminate Sploggers
+ * Wizard for detect and eliminate Sploggers
 
 
 = Requirements/Restrictions =
@@ -156,13 +158,14 @@ If you flag manually a user as Splogger, the user will be reported to WangGuard 
 
 1. **WangGuard on BuddyPress** - WangGuard banning sploggers on BuddyPress registration page.
 2. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
-3. **Users** - WangGuard Bulk actions and WangGuard status.
-4. **Report user** - WangGuard report user button on BuddyPress activities
-5. **Report blog and author** - WangGuard Report blog and author link on the Admin bar (also featured on the BuddyPress bar)
-6. **Moderation Queue** - WangGuard Moderation Queue
-7. **Wizard** - WangGuard Wizard
-8. **Report user on profile** - WangGuard Report user button on BuddyPress user profile
-9. **Admin bar** - WangGuard new admin bar group
+3. **WangGuard Statistics** - Full WangGuard Statistics.
+4. **Users** - WangGuard Bulk actions and WangGuard status.
+5. **Report user** - WangGuard report user button on BuddyPress activities
+6. **Report blog and author** - WangGuard Report blog and author link on the Admin bar (also featured on the BuddyPress bar)
+7. **Moderation Queue** - WangGuard Moderation Queue
+8. **Wizard** - WangGuard Wizard
+9. **Report user on profile** - WangGuard Report user button on BuddyPress user profile
+10. **Admin bar** - WangGuard new admin bar group
 
 
 == Frequently Asked Questions ==
