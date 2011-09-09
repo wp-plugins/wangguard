@@ -12,7 +12,12 @@ class WangGuard_Queue_Table extends WP_List_Table {
 
 	function WangGuard_Queue_Table() {
 		
-		if (method_exists(parent,'WP_List_Table' )) {
+		global $wp_version;
+		$cur_wp_version = preg_replace('/-.*$/', '', $wp_version);
+		$callConstructor = version_compare($cur_wp_version , '3.2.0' , ">=");
+		
+		
+		if (!$callConstructor) {
 			parent::WP_List_Table( array(
 				'singular' => 'report',
 				'plural'   => 'reports'
