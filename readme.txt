@@ -207,6 +207,9 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 == Changelog ==
 
+= 1.2.0.2 - 14 Sep 2011 =
+* Adding 2 missing folders, Sorry
+
 = 1.2.0.1 - 14 Sep 2011 =
 * NEW Added Italian Language, Thanks to Arturo
 * Minor bug fixing
