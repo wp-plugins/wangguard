@@ -181,6 +181,11 @@ function wangguard_install($current_version) {
 	if (empty ($tmp))
 	 wangguard_update_option ("wangguard-delete-users-on-report", -1);
 
+	//Don't delete users when reporting by default
+	$tmp = wangguard_get_option("wangguard-verify-gmail");
+	if ($tmp === false)
+	 wangguard_update_option ("wangguard-verify-gmail", 1);
+
 	//db version
 	wangguard_update_option("wangguard_db_version", $wangguard_db_version);
 }
@@ -504,6 +509,38 @@ function wangguard_update_option($option , $newvalue) {
 		return true;
 	else
 		return false;
+}
+
+
+
+// getmxrr() support for Windows by HM2K <php [spat] hm2k.org>
+function win_getmxrr($hostname, &$mxhosts, &$mxweight=false) {
+	//clean the array
+    $mxhosts = array();
+    if (empty($hostname)) return;
+    $exec='nslookup -type=MX '.escapeshellarg($hostname);
+    @exec($exec, $output);
+    if (empty($output)) return;
+    $i=-1;
+    foreach ($output as $line) {
+        $i++;
+        if (preg_match("/^$hostname\tMX preference = ([0-9]+), mail exchanger = (.+)$/i", $line, $parts)) {
+          $mxweight[$i] = trim($parts[1]);
+          $mxhosts[$i] = trim($parts[2]);
+        }
+        if (preg_match('/responsible mail addr = (.+)$/i', $line, $parts)) {
+          $mxweight[$i] = $i;
+          $mxhosts[$i] = trim($parts[1]);
+        }
+    }
+    return ($i!=-1);
+}
+
+if (  (!function_exists('getmxrr')) && (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN')  ) {
+	//define alt getmxrr on windows server
+    function getmxrr($hostname, &$mxhosts, &$mxweight=false) {
+        return win_getmxrr($hostname, $mxhosts, $mxweight);
+    }
 }
 /********************************************************************/
 /*** HELPER FUNCS ENDS ***/

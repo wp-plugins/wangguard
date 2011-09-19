@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.2.0.2
+Version: 1.2.1
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.2.0.2');
+define('WANGGUARD_VERSION', '1.2.1');
 
 //error_reporting(E_ALL);
 //ini_set("display_errors", 1);
@@ -92,6 +92,88 @@ add_action('signup_extra_fields', 'wangguard_register_add_question_mu' );
 add_filter('wpmu_validate_user_signup', 'wangguard_wpmu_signup_validate_mu');
 
 
+
+
+
+
+function wangguard_mx_record_is_ok($email) {
+	//checks if an associated MX record is found on the server's DNS for the email domain
+	
+	//option is activated and getmxrr() function exists?
+	$wangguard_mx_ok = function_exists('getmxrr');
+	if ( !$wangguard_mx_ok || wangguard_get_option("wangguard-verify-dns-mx")!='1')
+		return true;
+	
+
+	$email = explode("@" , $email);
+
+	if( count($email) != 2 )
+		return true;
+	
+	
+	$mxr = array();
+	$ret = getmxrr($email[1] , $mxr);
+	
+	return $ret && count($mxr);
+}
+
+function wangguard_get_clean_gmail_username($email) {
+	//Cleans dots and + from gmail.com and googlemail.com addresses, lowercases the username and returns it. Returns false otherwise.
+	
+	$email = explode("@" , $email);
+
+	if( count($email) != 2 )
+		return false;
+	
+	$email[1] = strtolower($email[1]);
+
+	if ( ($email[1]  ==  "gmail.com") || ($email[1]  ==  "googlemail.com") ) {
+		$email[0] = str_replace(".", "" , $email[0]);
+
+		//if the gmail address has a plus sign, remove from it to the end as gmail ignores that
+		if ( strpos(  $email[0]  ,  "+") !== false) {
+			$email[0] = substr($email[0] , 0 , strpos(  $email[0]  ,  "+"));
+		}
+
+		return strtolower($email[0]);
+		
+	}
+	else
+		return false;
+}
+
+function wangguard_email_aliases_exists($email) {
+	global $wpdb;
+	
+	//option is activated?
+	if ( wangguard_get_option("wangguard-verify-gmail")!='1')  
+		return false;
+	
+	
+	//cleans the email
+	$guser = wangguard_get_clean_gmail_username($email);
+
+	if ($guser !== false) {
+		
+		//if the email already exists, WP catches it, there's no need for WangGuard to check for aliases
+		if (email_exists($email))
+			return false;
+		
+		//get gmail.com and googlemail.com registered users
+		$gmailaddresses = $wpdb->get_results("select user_email from {$wpdb->users} where LOWER(user_email) LIKE '%@gmail.com' OR LOWER(user_email) LIKE '%@googlemail.com'");
+
+		if (!empty ($gmailaddresses)) {
+			foreach ($gmailaddresses as $r) {
+				$existing = wangguard_get_clean_gmail_username($r->user_email);
+				if ($existing == $guser)
+					return true;
+			}
+		}
+	}
+
+	return false;
+}
+
 //*********** WPMU ***********
 //Adds a security question if any exists
 function wangguard_register_add_question_mu($errors) {
@@ -147,6 +229,10 @@ function wangguard_wpmu_signup_validate_mu($param) {
 
 		if ($reported) 
 			$errors->add('user_email',  addslashes( __('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard')));
+		else if (wangguard_email_aliases_exists($param['user_email']))
+			$errors->add('user_email',  addslashes( __('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard')));
+		else if (!wangguard_mx_record_is_ok($param['user_email']))
+			$errors->add('user_email',  addslashes( __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard')));
 	}
 	return $param;
 }
@@ -207,6 +293,10 @@ function wangguard_signup_validate_bp11() {
 
 		if ($reported)
 			$bp->signup->errors['signup_email'] = addslashes (__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
+		else if (wangguard_email_aliases_exists($_REQUEST['signup_email']))
+			$bp->signup->errors['signup_email'] = addslashes (__('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard'));
+		else if (!wangguard_mx_record_is_ok($_REQUEST['signup_email']))
+			$bp->signup->errors['signup_email'] = addslashes( __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard'));
 	}
 }
 //*********** BP1.1+ ***********
@@ -257,6 +347,10 @@ function wangguard_signup_validate($user_name , $user_email,$errors){
 
 		if ($reported)
 			$errors->add('wangguard_error',__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
+		else if (wangguard_email_aliases_exists($_REQUEST['user_email']))
+			$errors->add('wangguard_error',  addslashes( __('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard')));
+		else if (!wangguard_mx_record_is_ok($_REQUEST['user_email']))
+			$errors->add('wangguard_error',  addslashes( __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard')));
 	}
 }
 //*********** WP REGULAR ***********

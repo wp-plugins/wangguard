@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress
 Requires at least: 2.8
 Tested up to: 3.2.1
-Stable tag: 1.2.0.2
+Stable tag: 1.2.1
 License: GPLv2
 
 WangGuard checks your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU and BuddyPress compatible.
@@ -206,6 +206,12 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 
 == Changelog ==
+
+== Changelog ==
+
+= 1.2.1 - 19 Sep 2011 =
+* New gmail.com and googlemail.com duplicated account verifications. As gmail.com and googlemail.com ignore dots on the left side of the @ in an email address, Sploggers uses email variations to create multiple accounts using only one gmail.com account. Also, googlemail.com is an alias of gmail.com. WangGuard now checks for existing accounts having in count these rules in order to prevent fake accounts to be created. You can turn off this feature from the Configuration page.
+* New optional DNS verification of the email domain (right side of the @ in an email address). New account's email domains are checked against your server's DNS for an associated MX record, if the resolution fails, a message is displayed to the user and the sign up process is stopped.
 
 = 1.2.0.2 - 14 Sep 2011 =
 * Adding 2 missing folders, Sorry

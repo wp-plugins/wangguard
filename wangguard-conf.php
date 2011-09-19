@@ -46,10 +46,13 @@ function wangguard_conf() {
 			
 			wangguard_update_option('wangguard-enable-bp-report-blog', $_POST['wangguardenablebpreportblog']=='1' ? 1 : -1 );
 
+			wangguard_update_option('wangguard-verify-gmail', $_POST['wangguard-verify-gmail']=='1' ? 1 : 0 );
+			
+			wangguard_update_option('wangguard-verify-dns-mx', $_POST['wangguard-verify-dns-mx']=='1' ? 1 : 0 );
+
 			echo "<div id='wangguard-warning' class='updated fade'><p><strong>".__('WangGuard settings has been saved.', 'wangguard')."</strong></p></div>";
 
 	}
-
 
 	if ( $key_status != 'valid' ) {
 		$key = wangguard_get_option('wangguard_api_key');
@@ -154,11 +157,17 @@ function wangguard_conf() {
 
 
 
+<?php 
+$wangguard_edit_prefix = "";
+if (function_exists( 'is_network_admin' )) 
+	if (is_network_admin())
+		$wangguard_edit_prefix = "../";
+?>
 <form action="" method="post" id="wangguard-settings" class="wangguard-sep" style="margin:30px auto 0 auto; width: 500px; ">
 	<h3><?php _e("WangGuard settings", 'wangguard') ?></h3>
 	<p>
 		<input type="checkbox" name="wangguardreportposts" id="wangguardreportposts" value="1" <?php echo wangguard_get_option("wangguard-report-posts")=='1' ? 'checked' : ''?> />
-		<label for="wangguardreportposts"><?php _e("<strong>Allow reporting users from Posts admin screen.</strong><br/>By checking this option a new link to report a post's author will be added for each post on the <a href=\"edit.php\">Posts admin screen</a>.", 'wangguard') ?></label>
+		<label for="wangguardreportposts"><?php _e( sprintf("<strong>Allow reporting users from Posts admin screen.</strong><br/>By checking this option a new link to report a post's author will be added for each post on the <a href=\"%s\">Posts admin screen</a>." , $wangguard_edit_prefix . "edit.php"), 'wangguard') ?></label>
 	</p>
 	<p>
 		<input type="checkbox" name="wangguard-delete-users-on-report" id="wangguard-delete-users-on-report" value="1" <?php echo wangguard_get_option("wangguard-delete-users-on-report")=='1' ? 'checked' : ''?> />
@@ -172,6 +181,25 @@ function wangguard_conf() {
 		<input type="checkbox" name="wangguardenablebpreportblog" id="wangguardenablebpreportblog" value="1" <?php echo wangguard_get_option("wangguard-enable-bp-report-blog")=='1' ? 'checked' : ''?> />
 		<label for="wangguardenablebpreportblog"><?php _e("<strong>Show the 'Report blog and author' menu item in the Admin Bar.</strong><br/>BuddyPress only. By checking this option a new menu item on the Admin Bar called 'Report blog and author' will be shown on each blog.", 'wangguard') ?></label>
 	</p>
+	
+	<p>
+		<input type="checkbox" name="wangguard-verify-gmail" id="wangguard-verify-gmail" value="1" <?php echo wangguard_get_option("wangguard-verify-gmail")=='1' ? 'checked' : ''?> />
+		<label for="wangguard-verify-gmail"><?php _e("<strong>Check for duplicated gmail.com and googlemail.com emails on sign up.</strong><br/>Checks that duplicated accounts @gmail.com and @googlemail.com accounts doesn't exists, also takes in count that gMail ignores the dots and what's after a + sign on the left side of the @.", 'wangguard') ?></label>
+	</p>
+	
+	<?php 
+	//verifies if the getmxrr() function is availabe
+	$wangguard_mx_ok = function_exists('getmxrr');?>
+	<p>
+		<input <?php echo (!$wangguard_mx_ok ? "disabled = 'disabled'" : "") ?> type="checkbox" name="wangguard-verify-dns-mx" id="wangguard-verify-dns-mx" value="1" <?php echo $wangguard_mx_ok && wangguard_get_option("wangguard-verify-dns-mx")=='1' ? 'checked' : ''?> />
+		<label for="wangguard-verify-dns-mx"><?php _e("<strong>Check email domains agains the DNS server.</strong><br/>Verifies that an associated Mail eXchange (MX) record exists for the email domain, if the verification fails, the sign up process is stopped. Recommeded for non multi user or BuddyPress WordPress installations. Users may notice a small delay of around 1 or 2 seconds on the sign up process due to the DNS verification.", 'wangguard') ?></label>
+		<?php if (!$wangguard_mx_ok) {
+			echo "<div>";
+			_e("<strong>Warning:</strong> PHP function <strong>getmxrr()</strong> is not available on your server. Contact your server admin to enable it in order to activate this feature." , "wangguard");
+			echo "</div>";
+		} ?>
+	</p>
+	
 	<p>
 		<input type="checkbox" name="wangguardexpertmode" id="wangguardexpertmode" value="1" <?php echo wangguard_get_option("wangguard-expertmode")=='1' ? 'checked' : ''?> />
 		<label for="wangguardexpertmode"><?php _e("<strong>Ninja mode.</strong><br/>By checking this option no confirmation message will be asked for report operations on the Users manager. Just remember that users gets deleted when reported, and when reporting a domain, users whose e-mail matches the reported domain gets deleted as well.", 'wangguard') ?></label>
