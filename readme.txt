@@ -58,8 +58,6 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
  * Free API key for personal use
  * Free to everyone for a limited time!
- * NEW Full Statistics
- * NEW Added the ability to flag a user as "Not Splogger"
  * Clean your installation of unwanted users and sploggers.
  * Centralized database of sploggers.
  * Configure from Admin panel
@@ -78,17 +76,29 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 = WordPress Simple Features =
 
+ * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * NEW Full Statistics
+ * NEW Added the ability to flag a user as "Not Splogger"
  * Wizard for detect and eliminate Sploggers
  * Mark as Splogger from post list
  
 = WordPress Mu (WPMU) Features =
 
+ * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * NEW Full Statistics
+ * NEW Added the ability to flag a user as "Not Splogger"
  * Wizard for detect and eliminate Sploggers
  * Mark as Splogger from post list
  * Protect all registration pages from All blogs (Activated sitewide)
 
 = WordPress Multisite (WP3) Features =
 
+ * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * NEW Full Statistics
+ * NEW Added the ability to flag a user as "Not Splogger"
  * Wizard for detect and eliminate Sploggers
  * Mark as Splogger from post list
  * Add a "Report blog and author" on every blog
@@ -97,7 +107,10 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  
 = BuddyPress 2.x (WordPresss Simple and WordPress Multisite 3.x) Features =
 
- * Wizard for detect and eliminate Sploggers
+ * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * NEW Full Statistics
+ * NEW Added the ability to flag a user as "Not Splogger"
  * Mark as Splogger from post list
  * Add "Report blog and author" on every blog
  * Moderation Queue for repored users and blogs
@@ -106,6 +119,10 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  
  = bbPress 2.0 RC4 =
  
+ * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * NEW Full Statistics
+ * NEW Added the ability to flag a user as "Not Splogger"
  * Wizard for detect and eliminate Sploggers
 
 
