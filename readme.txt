@@ -115,7 +115,8 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Add "Report blog and author" on every blog
  * Moderation Queue for repored users and blogs
  * Add report user on every Activity
- * dd report user on every profile
+ * Add report user on every profile
+ * Wizard for detect and eliminate Sploggers
  
  = bbPress 2.0 RC4 =
  
