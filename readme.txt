@@ -93,7 +93,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Mark as Splogger from post list
  * Protect all registration pages from All blogs (Activated sitewide)
 
-= WordPress Multisite (WP3) Features =
+= WordPress Multisite (WP3.x) Features =
 
  * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
  * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
@@ -105,7 +105,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Moderation Queue for repored users and blogs
  * Protect all registration pages from All blogs (Activated for Network)
  
-= BuddyPress 2.x (WordPresss Simple and WordPress Multisite 3.x) Features =
+= BuddyPress 1.2.x and 1.5 (WordPresss Simple and WordPress Multisite 3.x) Features =
 
  * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
  * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
