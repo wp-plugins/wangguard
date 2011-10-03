@@ -7,7 +7,7 @@ Tested up to: 3.2.1
 Stable tag: 1.2.1
 License: GPLv2
 
-WangGuard checks your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU and BuddyPress compatible.
+Check your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible.
 
 
 == Description ==
@@ -105,7 +105,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Moderation Queue for repored users and blogs
  * Protect all registration pages from All blogs (Activated for Network)
  
-= BuddyPress 1.2.x and 1.5 (WordPresss Simple and WordPress Multisite 3.x) Features =
+= BuddyPress 1.2.x and 1.5 (WordPress Simple and WordPress Multisite 3.x) Features =
 
  * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
  * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
@@ -118,7 +118,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Add report user on every profile
  * Wizard for detect and eliminate Sploggers
  
- = bbPress 2.0 RC4 =
+ = bbPress 2.0 Plugin =
  
  * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
  * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
