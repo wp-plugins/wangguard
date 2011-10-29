@@ -16,7 +16,7 @@ WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress
 
 If you have signup enabled on your Standard WordPress, WordPress MU, WordPress Multisite, BuddyPress or bbPress 2.0, this is the plugin you were waiting for. There is nothing like it, is a next generation plugin associated a web service and a new concept of active protection from Sploggers, spam users, unwanted users and Black Hat SEO. This is just the beginning.
 
-WangGuard not only block sploggers, spam users or unwanted users, WangGuard cleans your database from them. Any plugin or service do it.
+WangGuard not only protect your site from sploggers, spam users or unwanted users, WangGuard cleans your database from them. No plugin or service does this, only with WangGuard you will get this feature.
 
 Free Api Key for personal use
 
