@@ -14,6 +14,8 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 Over 1,010,000 Splogger/unwanted users blocked in just 6 months!
 
+[What WangGuard users and Sploggers are saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
+
 WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite, BuddyPress (multisite and non-multisite) and bbPress 2.0 plugin.
 
 If you have signup enabled on your Standard WordPress, WordPress MU, WordPress Multisite, BuddyPress or bbPress 2.0, this is the plugin you were waiting for. There is nothing like it, is a next generation plugin associated a web service and a new concept of active protection from Sploggers, spam users, unwanted users and Black Hat SEO. This is just the beginning.
