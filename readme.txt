@@ -308,17 +308,17 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 [OrangeCopper Blog](http://orangecopper.com/blog/best-buddypress-plugins-download) Best BuddyPress Plugins download
 
-[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I?m not going to go over this like I usually do, I?ll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
+[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I’m not going to go over this like I usually do, I’ll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
 
 [PracticalWP](http://www.practicalwp.com/wangguard-protect-your-wordpress-site-against-sploggers/) If you are planning to start a membership site or open registrations on your blog, WangGuard can help you deal with sploggers more effectively.
 
-[Kaliseo](http://www.agence-web-seo.com/2011/08/wangguard-lanti-splog/) Simple mais efficace. De quoi mettre des b�tons dans les roues aux d�veloppeurs de Link Farm Evolution et � 68 000 autres personnes.
+[Kaliseo](http://www.agence-web-seo.com/2011/08/wangguard-lanti-splog/) Simple mais efficace. De quoi mettre des bâtons dans les roues aux développeurs de Link Farm Evolution et à 68 000 autres personnes.
 
-[WordPress???????????????28?](http://wp.tekapo.com/2011/08/24/wordpress-security-28-plugins/) ???????????????????????????????WangGuard???????????????
+[WordPressのセキュリティ関連のプラグイン28個](http://wp.tekapo.com/2011/08/24/wordpress-security-28-plugins/) マルチサイトなどでスプロガーやスパマーの登録を防ぐために外部のWangGuardウェブサービスでチェックする。
 
-[AyudaWordpress](http://ayudawordpress.com/wangguard-el-anti-splog-definitivo/) Hace tiempo que Jos� Conti viene luchando contra esa plaga de los blogs spam en instalaciones multisitio y BuddyPress, y parece que por fin ha dado con la soluci�n.
+[AyudaWordpress](http://ayudawordpress.com/wangguard-el-anti-splog-definitivo/) Hace tiempo que José Conti viene luchando contra esa plaga de los blogs spam en instalaciones multisitio y BuddyPress, y parece que por fin ha dado con la solución.
 
-[spammers ?? - Sexeintr�ge (8 ??????)](http://yesbo.de/es/groups/yesbo/forum/topic/spameintraege-sexeintraege/) ????? ?? ? ??? ?? ??? ?? "WangGuard" ?? ?? ??? ???? ???? ????? ???? ????? ??? ???? ??.
+[spammers کو - Sexeinträge (8 جوابات)](http://yesbo.de/es/groups/yesbo/forum/topic/spameintraege-sexeintraege/) اتفاق سے ، میں نے پلگ ان "WangGuard" سب کے لئے فعال سپیم زیادہ مؤثر انداز میں لڑنا ہے.
 
  [Blogurp](http://wordpress.org/support/topic/plugin-wangguard-works-perfect-with-wordpress-321-buddypress-15) Wang Guard works flawlessly on my website with WordPress 3.2.1 and BuddyPress 1.5. Thank You!!!!
  
@@ -330,6 +330,6 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 From Twitter:
 
-* Quelqu'un sait comment peut-on se prot�ger du ban par le service WangGuard? #LFE #splog #WPMU #antispam # antisplog
-* #LFE does not work anymore. WangGuard? piece of shit!!!!!!.
+* Quelqu'un sait comment peut-on se protéger du ban par le service WangGuard? #LFE #splog #WPMU #antispam # antisplog
+* #LFE does not work anymore. WangGuard… piece of shit!!!!!!.
 * Please HELP!!!! WangGuard is deleting all my Backlinks!! #LFE
