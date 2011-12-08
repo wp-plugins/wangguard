@@ -232,8 +232,6 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 == Changelog ==
 
-== Changelog ==
-
 = 1.2.1 - 19 Sep 2011 =
 * New gmail.com and googlemail.com duplicated account verifications. As gmail.com and googlemail.com ignore dots on the left side of the @ in an email address, Sploggers uses email variations to create multiple accounts using only one gmail.com account. Also, googlemail.com is an alias of gmail.com. WangGuard now checks for existing accounts having in count these rules in order to prevent fake accounts to be created. You can turn off this feature from the Configuration page.
 * New optional DNS verification of the email domain (right side of the @ in an email address). New account's email domains are checked against your server's DNS for an associated MX record, if the resolution fails, a message is displayed to the user and the sign up process is stopped.
