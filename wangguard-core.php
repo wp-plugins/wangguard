@@ -270,8 +270,10 @@ function wangguard_stats_update($action) {
  * Reports a single email, the function doesn't look into the accounts, do not delete users nor blogs
  * Used in functions which detect (for sure) sploggers that are attempting to create an account
  * @param string $email 
+ * @param string $clientIP 
+ * @param boolean $isSplogger - send true if the email is a confirmed splogger
  */
-function wangguard_report_email($email , $clientIP) {
+function wangguard_report_email($email , $clientIP , $isSplogger = false) {
 	global $wangguard_api_key;
 
 	//update local stats disregarding the key
@@ -287,7 +289,9 @@ function wangguard_report_email($email , $clientIP) {
 		return;
 	}
 	
-	wangguard_http_post("wg=<in><apikey>$wangguard_api_key</apikey><email>".$email."</email><ip>".$clientIP."</ip></in>", 'add-email.php');
+	$isSploggerParam = $isSplogger ? "1" : "0";
+	
+	wangguard_http_post("wg=<in><apikey>$wangguard_api_key</apikey><email>".$email."</email><ip>".$clientIP."</ip><issplogger>".$isSploggerParam."</issplogger></in>", 'add-email.php');
 }
 
 
