@@ -211,7 +211,7 @@ Yes. The following translations are included in the download zip file:
 
 Of course! It will be very gratefully received.
 
-* Register on [WangGuard Blog](http://http://wangguard.org/wp-signup.php)
+* Register on [WangGuard Blog](http://wangguard.org/wp-signup.php)
 * Login on [Tranlate WangGuard](http://translate.wangguard.org/login)
 * Browse to [your language](http://translate.wangguard.org/projects/wordpress-plugin)
 * Start to translate WangGuard to your language
