@@ -20,7 +20,7 @@ WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
 = ADVICE =
 
-WangGuard protect the standard WordPress, WordPress Multisite, BuddyPress and bbPress 2.0 registration forms. If you use custom registration page, maybe WangGuard will not work. Talk with the plugin developer or with your developer to make it compatible.
+WangGuard protect the standard WordPress, WordPress Multisite, BuddyPress and bbPress 2.0 registration forms. If you use custom registration page, maybe WangGuard will not work. If you use a plugin or custom registration page, once you've installed WangGuard, test if works the registration page of your site. If it don¡t work, talk with the plugin developer or with your developer to make it compatible or use the standard WordPress, WordPress Multisite, BuddyPress or bbPress 2.0 signup form.
 
 WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite, BuddyPress (multisite and non-multisite) and bbPress 2.0 plugin.
 
