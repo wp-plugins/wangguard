@@ -12,7 +12,7 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 == Description ==
 
-Over 1,050,000 Splogger/unwanted users blocked in just 6 months!
+Over 1,060,000 Splogger/unwanted users blocked in just 6 months!
 
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
 
