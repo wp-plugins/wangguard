@@ -993,12 +993,17 @@ function wangguard_user_custom_columns($dummy , $column_name , $userid , $echo =
 			$html .= '<a href="http://'.$Domain.'" target="_new">'.esc_html(__('Open Web', 'wangguard')).'</a>';
 		}
 		$html .= "</div>";
+		
+		if ($echo)
+			echo $html;
+		else
+			return $html;
+		
    	}
+	else {
+		return $dummy;
+	}
 
-	if ($echo)
-		echo $html;
-	else
-		return $html;
 }
 add_filter('manage_users_columns', 'wangguard_add_status_column');
 add_filter('wpmu_users_columns', 'wangguard_add_status_column');
