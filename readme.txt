@@ -14,7 +14,13 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 Over 1,060,000 Splogger/unwanted users blocked in just 6 months!
 
+WangGuard already is blocking 99.90% of sploggers and unwanted users.
+
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
+
+= ADVICE =
+
+WangGuard protect the standard WordPress, WordPress Multisite, BuddyPress and bbPress 2.0 registration forms. If you use custom registration page, maybe WangGuard will not work. Talk with the plugin developer or with your developer to make it compatible.
 
 WangGuard is fully compatible with Standard WordPress (non-multisite), WordPress MU, WordPress Multisite, BuddyPress (multisite and non-multisite) and bbPress 2.0 plugin.
 
