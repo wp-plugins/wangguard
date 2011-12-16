@@ -12,6 +12,8 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 == Description ==
 
+Welcome to WangGuard, Welcome to the revolution
+
 Over 1,070,000 Splogger/unwanted users blocked in just 6 months!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
