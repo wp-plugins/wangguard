@@ -20,7 +20,7 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use.
 
-Over 1,110,000 Splogger/unwanted users blocked in just 7 months!
+Over 1,133,000 Splogger/unwanted users blocked in just 7 months!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
