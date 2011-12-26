@@ -12,7 +12,13 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 == Description ==
 
-Welcome to WangGuard, Welcome to the revolution
+= Welcome to WangGuard, Welcome to the revolution =
+
+[Please, read the WangGuard's philosophy](http://wangguard.org/2011/12/26/welcome-to-wangguard-welcome-to-the-revolution/)
+
+WangGuard works by incorporating an antivirus philosophy.
+
+WangGuard Always will be free for personal use.
 
 Over 1,110,000 Splogger/unwanted users blocked in just 7 months!
 
