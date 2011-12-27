@@ -20,17 +20,20 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use.
 
-Over 1,133,000 Splogger/unwanted users blocked in just 7 months!
+Over 1,135,000 Splogger/unwanted users blocked in just 7 months!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
 
+[Did you find a bug?](http://bugs.wangguard.org)
+[Do you want to translate WangGuard?](http://translate.wangguard.org)
+[Do you have an Idea for WangGuard?](http://feedback.wangguard.org)
+
 
 = Advice =
 
- * WangGuard NOT protect your site from comment spam, WangGuard protect your registration page from sploggers, unwanted users and untrusted users and WangGuard 
-clean your database from them . For comment spam, you have another great plugin, [Akismet](http://wordpress.org/extend/plugins/akismet/).
+ * WangGuard NOT protect your site from comment spam, WangGuard protect your registration page from sploggers, unwanted users and untrusted users and WangGuard clean your database from them . For comment spam, you have another great plugin, [Akismet](http://wordpress.org/extend/plugins/akismet/).
 
  * WangGuard protect the standard WordPress, WordPress Multisite, BuddyPress and bbPress 2.0 registration forms. If you use custom registration page, maybe WangGuard will not work. If you use a plugin or custom registration page, once you've installed WangGuard, test if it works. if it doesn't work, talk with the plugin developer or with your developer to make it compatible or use the standard WordPress, WordPress Multisite, BuddyPress or bbPress 2.0 signup form.
 
@@ -330,11 +333,13 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 = What say users? =
 
+[Verasoul](http://www.verasoul.com/2011/12/como-mantener-wordpress-libre-de-sploggers.html) Como mantener wordpress libre de sploggers.
+
 [Zaddick Blog:](http://zaddick.net/blog/best-spam-free-wordpress-buddypress-plugin/) WangGuard is the best plugin I have found to altogether eliminate spammers and sploggers from your WordPress and BuddyPress site.
 
 [OrangeCopper Blog](http://orangecopper.com/blog/best-buddypress-plugins-download) Best BuddyPress Plugins download
 
-[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I’m not going to go over this like I usually do, I’ll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
+[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I'm not going to go over this like I usually do, I'll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
 
 [PracticalWP](http://www.practicalwp.com/wangguard-protect-your-wordpress-site-against-sploggers/) If you are planning to start a membership site or open registrations on your blog, WangGuard can help you deal with sploggers more effectively.
 
