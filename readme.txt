@@ -331,6 +331,8 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 == What say people? ==
 
+
+
 = What say users? =
 
 [Verasoul](http://www.verasoul.com/2011/12/como-mantener-wordpress-libre-de-sploggers.html) Como mantener wordpress libre de sploggers.
@@ -339,7 +341,7 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 [OrangeCopper Blog](http://orangecopper.com/blog/best-buddypress-plugins-download) Best BuddyPress Plugins download
 
-[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I'm not going to go over this like I usually do, I'll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
+[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I’m not going to go over this like I usually do, I’ll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
 
 [PracticalWP](http://www.practicalwp.com/wangguard-protect-your-wordpress-site-against-sploggers/) If you are planning to start a membership site or open registrations on your blog, WangGuard can help you deal with sploggers more effectively.
 
