@@ -331,6 +331,8 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 
 == What say people? ==
 
+
+
 = What say users? =
 
 [Verasoul](http://www.verasoul.com/2011/12/como-mantener-wordpress-libre-de-sploggers.html) Como mantener wordpress libre de sploggers.
