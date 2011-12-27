@@ -20,11 +20,15 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use.
 
-Over 1,133,000 Splogger/unwanted users blocked in just 7 months!
+Over 1,135,000 Splogger/unwanted users blocked in just 7 months!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
+
+[Did you find a bug?](http://bugs.wangguard.org)
+[Do you want to translate WangGuard?](http://translate.wangguard.org)
+[Do you have an Idea for WangGuard?](http://feedback.wangguard.org)
 
 
 = Advice =
@@ -328,6 +332,8 @@ It is free for personal use. If you earn more than $200 with your site or you ar
 == What say people? ==
 
 = What say users? =
+
+[Verasoul](http://www.verasoul.com/2011/12/como-mantener-wordpress-libre-de-sploggers.html) Como mantener wordpress libre de sploggers.
 
 [Zaddick Blog:](http://zaddick.net/blog/best-spam-free-wordpress-buddypress-plugin/) WangGuard is the best plugin I have found to altogether eliminate spammers and sploggers from your WordPress and BuddyPress site.
 
