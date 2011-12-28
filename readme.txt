@@ -18,9 +18,9 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 WangGuard works by incorporating an antivirus philosophy.
 
-WangGuard Always will be free for personal use.
+WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 1,135,000 Splogger/unwanted users blocked in just 7 months!
+Over 1,140,000 Splogger/unwanted users blocked in just 7 months!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
@@ -45,9 +45,8 @@ If you have signup enabled on your Standard WordPress, WordPress MU, WordPress M
 
 WangGuard not only protect your site from sploggers, spam users or unwanted users, WangGuard cleans your database from them. No plugin or service does this, only with WangGuard you will get this feature.
 
-Free Api Key for personal use
 
-Now Free to everyone for a limited time!
+Now Free to everyone for a limited time!. Who make more than $200/month, need more than 500 API Queries/month or a company they not have to pay anything until at least June 2012, being able to extend until 2013. We will not charge anything until we develop everything that we want to develop and be the best service by far.
 
 
 = Introduction to WangGuard: =
@@ -101,7 +100,6 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Protect BuddyPress registration page against Web Service from Sploggers, spam-user or unwanted users
  * Protect bbPress 2.0 registration page against Web Service from Sploggers, spam-user or unwanted users
  * Anti-splog Web Service.
- * Free API key for personal use.
  
 
 = WordPress Simple Features =
@@ -218,9 +216,27 @@ If you flag manually a user as Splogger, the user will be reported to WangGuard 
 
 == Frequently Asked Questions ==
 
+
+= What do you mean with Personal use? =
+
+This means that whenever you have less than 500 daily registrations, you make less than $200/month or you are not a company, you never have to pay anything for WangGuard.
+
+
+= What do you mean with Limited Time? =
+
+Who make more than $200/month, need more than 500 API Queries/month or is a company they not have to pay anything until at least June 2012, being able to extend until 2013. We will not charge anything until we develop everything that we want to develop and be the best service by far.
+
+
+= If I am a personal user, Why I need an API Key? =
+
+The API is that your site can talk to our server. If you have connected your site with other services like Facebook or Twitter services (also free) you're using API keys also, but they put other names to the API Key. We need to know who is connecting to our server for security reasons.
+
+
+
 = Can I use WangGuard on non-multisites WordPress Installs (Standard WordPress)? =
 
 Yes, absolutely. Only the WangGuard plugin and its associated web service will help to protect the registration page of your WordPress Standard, WordPress Multisite, or BuddyPress from sploggers and unwanted users.
+
 
 = Is this plugin available in other languages? =
 
@@ -248,9 +264,9 @@ Please read [Translating WordPress](http://codex.wordpress.org/Translating_WordP
 If you need another localization, please feel free to [contact us](http://www.wangguard.com/contact)
 
 
-= Is wangguard a free service? =
+= Is WangGuard a free service? =
 
-It is free for personal use. If you earn more than $200 with your site or you are a company, you must pay a very small fee. Now WangGuard are Free to everyone for a limited time!. Use this time to perform all the tests you want and determine the effectiveness of WangGuard.
+It is free for personal use. If you earn more than $200/month with your site or you are a company, you must pay a very small fee. Now WangGuard are Free to everyone for a limited time!. Use this time to perform all the tests you want and determine the effectiveness of WangGuard.
 
 
 == Changelog ==
