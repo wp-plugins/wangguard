@@ -3,7 +3,7 @@ Contributors: j.conti,maxidirienzo,InTouchSystem
 Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users
 Requires at least: 2.8
-Tested up to: 3.3
+Tested up to: 3.3.1
 Stable tag: 1.2.3.2
 License: GPLv2
 
@@ -20,7 +20,7 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 1,140,000 Splogger/unwanted users blocked in just 7 months!
+Over 1,180,000 Splogger/unwanted users blocked in just 7 months!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
@@ -33,6 +33,8 @@ WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
 = Advice =
 
+ * If you are using W3 Total Cache have enabled HTML&XML Minify and you use BuddyPress or a custom registration page. Please, go to Permormance -> Minify -> Advanced -> "Never minify the following pages:" and add you registration page. If you dont do this, you could have some issues.
+ 
  * WangGuard NOT protect your site from comment spam, WangGuard protect your registration page from sploggers, unwanted users and untrusted users and WangGuard clean your database from them . For comment spam, you have another great plugin, [Akismet](http://wordpress.org/extend/plugins/akismet/).
 
  * WangGuard protect the standard WordPress, WordPress Multisite, BuddyPress and bbPress 2.0 registration forms. If you use custom registration page, maybe WangGuard will not work. If you use a plugin or custom registration page, once you've installed WangGuard, test if it works. if it doesn't work, talk with the plugin developer or with your developer to make it compatible or use the standard WordPress, WordPress Multisite, BuddyPress or bbPress 2.0 signup form.
@@ -360,7 +362,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 [OrangeCopper Blog](http://orangecopper.com/blog/best-buddypress-plugins-download) Best BuddyPress Plugins download
 
-[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I’m not going to go over this like I usually do, I’ll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
+[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I'm not going to go over this like I usually do, I'll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
 
 [PracticalWP](http://www.practicalwp.com/wangguard-protect-your-wordpress-site-against-sploggers/) If you are planning to start a membership site or open registrations on your blog, WangGuard can help you deal with sploggers more effectively.
 
