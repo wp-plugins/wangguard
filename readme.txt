@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 1.2.3.2
+Stable tag: 1.2.4
 License: GPLv2
 
 Check your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible.
@@ -27,9 +27,7 @@ WangGuard already is blocking 99.90% of sploggers and unwanted users.
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
 
 [Did you find a bug?](http://bugs.wangguard.org)
-
 [Do you want to translate WangGuard?](http://translate.wangguard.org)
-
 [Do you have an Idea for WangGuard?](http://feedback.wangguard.org)
 
 
@@ -274,6 +272,11 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 
 == Changelog ==
+
+= 1.2.4 - 12 Jan 2011 =
+- Fix minor compatibility issue with BuddyPress 1.5.2 and 1.5.3 on register page.
+- When running on jQuery 1.7.1 (WordPress 3.3+), the plugin doesn't uses the deprecated live() functions, instead it uses the new on() function to hook certain events.
+- Revamped plugin configuration look and feel.
 
 = 1.2.3.2 - 5 Jan 2011 =
 - Fix minor compatibility issue with W3C Total Cache when the HTML output was minified.
