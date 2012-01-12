@@ -20,20 +20,22 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 1,180,000 Splogger/unwanted users blocked in just 7 months!
+Over 1,200,000 Splogger/unwanted users blocked in just 7 months!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
 
 [Did you find a bug?](http://bugs.wangguard.org)
+
 [Do you want to translate WangGuard?](http://translate.wangguard.org)
+
 [Do you have an Idea for WangGuard?](http://feedback.wangguard.org)
 
 
 = Advice =
 
- * If you are using W3 Total Cache have enabled HTML&XML Minify and you use BuddyPress or a custom registration page. Please, go to Permormance -> Minify -> Advanced -> "Never minify the following pages:" and add you registration page. If you dont do this, you could have some issues.
+ * If you are using W3 Total Cache and you have enabled HTML&XML Minify and you use BuddyPress or a custom registration page. Please, go to Performance -> Minify -> Advanced -> "Never minify the following pages:" and add you registration page. If you dont do this, you could have some issues.
  
  * WangGuard NOT protect your site from comment spam, WangGuard protect your registration page from sploggers, unwanted users and untrusted users and WangGuard clean your database from them . For comment spam, you have another great plugin, [Akismet](http://wordpress.org/extend/plugins/akismet/).
 
@@ -362,7 +364,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 [OrangeCopper Blog](http://orangecopper.com/blog/best-buddypress-plugins-download) Best BuddyPress Plugins download
 
-[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I'm not going to go over this like I usually do, I'll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
+[LOJ Tech](http://life.projektdeth.com/2011/07/07/spam-free-wordpress-blog/) Have a self hosted WordPress blog, and receiving an awful amount of spam? I’m not going to go over this like I usually do, I’ll just go over what it does and how great it can be to have on your WordPress Blog. The plugin is called WangGuard.
 
 [PracticalWP](http://www.practicalwp.com/wangguard-protect-your-wordpress-site-against-sploggers/) If you are planning to start a membership site or open registrations on your blog, WangGuard can help you deal with sploggers more effectively.
 
