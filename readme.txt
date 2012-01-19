@@ -32,7 +32,7 @@ WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
 [Do you want to translate WangGuard?](http://translate.wangguard.org)
 
-[Do you have an Idea for WangGuard?](http://feedback.wangguard.org)
+[Have you an Idea for WangGuard?](http://feedback.wangguard.org)
 
 
 = Advice =
@@ -279,7 +279,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 = 1.2.5 - 18 Jan 2011 =
 - Fix minor HTML issue.
-- Fixes a issue where some users could give false positives.
+- Fix an issue where some users could give false positives.
 
 = 1.2.4 - 12 Jan 2011 =
 - Fix minor compatibility issue with BuddyPress 1.5.2 and 1.5.3 on register page.
