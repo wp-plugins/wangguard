@@ -18,6 +18,8 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 WangGuard works by incorporating an antivirus philosophy.
 
+[Follow us on Twitter](http://twitter.com/wangguard)
+
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
 Over 1,200,000 Splogger/unwanted users blocked in just 7 months!
@@ -27,7 +29,9 @@ WangGuard already is blocking 99.90% of sploggers and unwanted users.
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
 
 [Did you find a bug?](http://bugs.wangguard.org)
+
 [Do you want to translate WangGuard?](http://translate.wangguard.org)
+
 [Do you have an Idea for WangGuard?](http://feedback.wangguard.org)
 
 
@@ -275,6 +279,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 = 1.2.5 - 18 Jan 2011 =
 - Fix minor HTML issue.
+- Fixes a issue where some users could give false positives.
 
 = 1.2.4 - 12 Jan 2011 =
 - Fix minor compatibility issue with BuddyPress 1.5.2 and 1.5.3 on register page.
