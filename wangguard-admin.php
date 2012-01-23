@@ -101,7 +101,7 @@ if (defined('BP_VERSION')) {
 		add_action($wangguard_bp_hook,'wangguard_add_hfield_2' , rand(1,10));
 		add_action($wangguard_bp_hook,'wangguard_add_hfield_3' , rand(1,10));
 		add_action($wangguard_bp_hook,'wangguard_add_hfield_4' , rand(1,10));
-		add_action($wangguard_bp_hook, 'wangguard_register_add_question_bp11');
+		add_action('bp_before_registration_submit_buttons', 'wangguard_register_add_question_bp11');
 		add_action('bp_signup_validate', 'wangguard_signup_validate_bp11' );
 	}
 }
@@ -393,7 +393,7 @@ function wangguard_register_add_question_bp11(){
 		$questionID = $qrs->id;
 
 		$html = '
-			<div id="wangguard-bp-register-form" class="register-section">
+		<div class="register-section" style=" width: 200px; clear:left; margin-top:-10px;">
 			<label for="wangguardquestansw">' . $question . '</label>';
 		echo $html;
 
