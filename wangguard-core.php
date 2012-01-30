@@ -135,7 +135,7 @@ function wangguard_install($current_version) {
 		$sql = "CREATE TABLE " . $table_name . " (
 			option_name varchar(64) NOT NULL,
 			option_value longtext NOT NULL,			
-			UNIQUE KEY signup_username (option_name)
+			UNIQUE KEY option_name (option_name)
 		);";
 
 		dbDelta($sql);
@@ -245,7 +245,7 @@ if ( !function_exists('wp_nonce_field') ) {
 
 //Extracts the domain part from an email address
 function wangguard_extract_domain($email) {
-	$emailArr = split("@" , $email);
+	$emailArr = explode("@" , $email);
 	if (!is_array($emailArr)) {
 		return "";
 	}
@@ -747,7 +747,6 @@ function wangguard_http_post($request, $op , $ip=null) {
 	}
 	/*fsock connection*/
 
-
 	$response = str_replace("\r", "", $response);
 	$response = substr($response, strpos($response, "\n\n")+2);
 
@@ -876,6 +875,16 @@ add_action('in_plugin_update_message-' . WANGGUARD_PLUGIN_FILE, 'wangguard_plugi
 
 //dashboard right now activity
 function wangguard_rightnow() {
+
+	if (function_exists('is_multisite')) {
+		if ((is_multisite() && !is_super_admin()) || (!current_user_can('level_10')))
+			return;
+	}
+	else {
+		if (!current_user_can('level_10'))
+			return;
+	}
+	
 	$stats = wangguard_get_option("wangguard_stats");
 	if (!is_array($stats)) {
 		$stats = array("check"=>0 , "detected"=>0);
@@ -970,7 +979,7 @@ function wangguard_user_custom_columns($dummy , $column_name , $userid , $echo =
 
 		$user_object = new WP_User($userid);
 
-		$Domain = split("@",$user_object->user_email);
+		$Domain = explode("@",$user_object->user_email);
 		$Domain = $Domain[1];
 
 		$deleteUser = wangguard_get_option ("wangguard-delete-users-on-report")=='1';

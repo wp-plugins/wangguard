@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 1.2.6
+Stable tag: 1.3
 License: GPLv2
 
 Check your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible.
@@ -18,8 +18,6 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 WangGuard works by incorporating an antivirus philosophy.
 
-[Follow us on Twitter](http://twitter.com/wangguard)
-
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
 Over 1,200,000 Splogger/unwanted users blocked in just 7 months!
@@ -29,10 +27,8 @@ WangGuard already is blocking 99.90% of sploggers and unwanted users.
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
 
 [Did you find a bug?](http://bugs.wangguard.org)
-
 [Do you want to translate WangGuard?](http://translate.wangguard.org)
-
-[Have you an Idea for WangGuard?](http://feedback.wangguard.org)
+[Do you have an Idea for WangGuard?](http://feedback.wangguard.org)
 
 
 = Advice =
@@ -208,17 +204,23 @@ If you flag manually a user as Splogger, the user will be reported to WangGuard 
 
 == Screenshots ==
 
-1. **WangGuard on BuddyPress** - WangGuard banning sploggers on BuddyPress registration page.
-2. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
-3. **WangGuard Statistics** - Full WangGuard Statistics.
-4. **Users** - WangGuard Bulk actions and WangGuard status.
-5. **Report user** - WangGuard report user button on BuddyPress activities
-6. **Report blog and author** - WangGuard Report blog and author link on the Admin bar (also featured on the BuddyPress bar)
-7. **Moderation Queue** - WangGuard Moderation Queue
-8. **Wizard** - WangGuard Wizard
-9. **Report user on profile** - WangGuard Report user button on BuddyPress user profile
-10. **Admin bar** - WangGuard new admin bar group
-
+1. **WangGuard on WordPress** - WangGuard banning an unwanted user on WordPress registration page.
+2. **WangGuard on WordPress Multisite** - WangGuard banning an unwanted user on WordPress Multisite registration page.
+3. **WangGuard on BuddyPress** - WangGuard banning an unwanted user on BuddyPress registration page.
+4. **WangGuard API Key** - WangGuard API key.
+5. **WangGuard Congiguration** - WangGuard configuration page.
+6. **WangGuard Security Questions** - WangGuard Security Questions page.
+7. **WangGuard server status** - WangGuard server status page.
+8. **WangGuard Domain Block** - WangGuard Domain Block page.
+9. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
+10. **WangGuard Statistics** - Full WangGuard Statistics.
+11. **Users** - WangGuard Bulk actions and WangGuard status.
+12. **Report user** - WangGuard report user button on BuddyPress activities
+13. **Report blog and author** - WangGuard Report blog and author link on the Admin bar (also featured on the BuddyPress bar)
+14. **Moderation Queue** - WangGuard Moderation Queue
+15. **Wizard** - WangGuard Wizard
+16. **Report user on profile** - WangGuard Report user button on BuddyPress user profile
+17. **Admin bar** - WangGuard admin bar group
 
 == Frequently Asked Questions ==
 
@@ -277,19 +279,21 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 == Changelog ==
 
-= 1.2.6 - 23 Jan 2011 =
+= 1.3 - 30 Jan 2012 =
+- Added the ability to block users which e-mail addresses belongs to well known domains, the domain's list is maintained by WangGuard. Go to WangGuard Configuration -> Blocked domains to select which domains you'd like to block.
+
+= 1.2.6 - 23 Jan 2012 =
 - Fix minor HTML/CSS issue on BuddyPress registration screen.
 
-= 1.2.5 - 18 Jan 2011 =
+= 1.2.5 - 18 Jan 2012 =
 - Fix minor HTML issue.
-- Fix an issue where some users could give false positives.
 
-= 1.2.4 - 12 Jan 2011 =
+= 1.2.4 - 12 Jan 2012 =
 - Fix minor compatibility issue with BuddyPress 1.5.2 and 1.5.3 on register page.
 - When running on jQuery 1.7.1 (WordPress 3.3+), the plugin doesn't uses the deprecated live() functions, instead it uses the new on() function to hook certain events.
 - Revamped plugin configuration look and feel.
 
-= 1.2.3.2 - 5 Jan 2011 =
+= 1.2.3.2 - 5 Jan 2012 =
 - Fix minor compatibility issue with W3C Total Cache when the HTML output was minified.
 
 = 1.2.3.1 - 13 Dec 2011 =
