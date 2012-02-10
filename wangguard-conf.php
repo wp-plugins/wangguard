@@ -139,7 +139,7 @@ function wangguard_conf() {
 
 			<!--WANGGUARD API KEY-->
 			<div id="wangguard-conf-apikeys">
-					<div class="wangguard-confico"><img src="../<?php echo PLUGINDIR ?>/wangguard/img/apikey.png" alt="<?php echo htmlentities(__('WangGuard API Key', 'wangguard')) ?>" /></div>
+					<div class="wangguard-confico"><img src="<?php echo WP_PLUGIN_URL ?>/wangguard/img/apikey.png" alt="<?php echo htmlentities(__('WangGuard API Key', 'wangguard')) ?>" /></div>
 				<form action="" method="post" id="wangguard-conf" style="margin: auto;">
 					<p><?php printf(__('For many people, <a href="%1$s">WangGuard</a> will greatly reduce or even completely eliminate the Sploggers you get on your site. If one does happen to get through, simply mark it as Splogger on the Users screen. If you don\'t have an API key yet, <a href="%2$s" target="_new">get one here</a>.', 'wangguard'), 'http://wangguard.com/', 'http://wangguard.com/getapikey'); ?></p>
 
@@ -166,7 +166,7 @@ function wangguard_conf() {
 			<!--WANGGUARD QUESTIONS-->
 			<div id="wangguard-conf-questions" style="margin: auto;">
 
-				<div class="wangguard-confico"><img src="../<?php echo PLUGINDIR ?>/wangguard/img/security.png" alt="<?php echo htmlentities(__('Security questions', 'wangguard')) ?>" /></div>
+				<div class="wangguard-confico"><img src="<?php echo WP_PLUGIN_URL ?>/wangguard/img/security.png" alt="<?php echo htmlentities(__('Security questions', 'wangguard')) ?>" /></div>
 				
 				<h3><?php _e('Security questions', 'wangguard'); ?></h3>
 				<p><?php _e('Security questions are randomly asked on the registration form to prevent automated signups.', 'wangguard')?></p>
@@ -206,7 +206,7 @@ function wangguard_conf() {
 			<!--WANGGUARD SETTINGS-->
 			<div id="wangguard-conf-settings" style="margin: auto;">
 				
-				<div class="wangguard-confico"><img src="../<?php echo PLUGINDIR ?>/wangguard/img/settings.png" alt="<?php echo htmlentities(__('WangGuard settings', 'wangguard')) ?>" /></div>
+				<div class="wangguard-confico"><img src="<?php echo WP_PLUGIN_URL ?>/wangguard/img/settings.png" alt="<?php echo htmlentities(__('WangGuard settings', 'wangguard')) ?>" /></div>
 				
 				<?php 
 				$wangguard_edit_prefix = "";
@@ -266,7 +266,7 @@ function wangguard_conf() {
 			<!--WANGGUARD BLOCKED DOMAINS-->
 			<div id="wangguard-conf-domains" style="margin: auto;">
 				
-				<div class="wangguard-confico"><img src="../<?php echo PLUGINDIR ?>/wangguard/img/blocked.png" alt="<?php echo htmlentities(__('Blocked domains', 'wangguard')) ?>" /></div>
+				<div class="wangguard-confico"><img src="<?php echo WP_PLUGIN_URL ?>/wangguard/img/blocked.png" alt="<?php echo htmlentities(__('Blocked domains', 'wangguard')) ?>" /></div>
 				
 				<h3><?php _e('Blocked domains', 'wangguard'); ?></h3>
 				<p><?php _e('Here are different domain lists maintained by WangGuard.', 'wangguard'); ?></p>
@@ -398,7 +398,7 @@ function wangguard_conf() {
 			<!--WANGGUARD SERVERS-->
 			<div id="wangguard-conf-conectivity" style="margin: auto;">
 
-				<div class="wangguard-confico"><img src="../<?php echo PLUGINDIR ?>/wangguard/img/connectivity.png" alt="<?php echo htmlentities(__('Server Connectivity', 'wangguard')) ?>" /></div>
+				<div class="wangguard-confico"><img src="<?php echo WP_PLUGIN_URL ?>/wangguard/img/connectivity.png" alt="<?php echo htmlentities(__('Server Connectivity', 'wangguard')) ?>" /></div>
 			
 				<form action="" method="post" id="wangguard-connectivity" style="margin:0px auto 0 auto;  ">
 
