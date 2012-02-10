@@ -29,7 +29,7 @@ function wangguard_wizard() {
 	?>
 
 <div class="wrap" id="wangguard-wizard-cont">
-	<div class="wangguard-confico"><img src="<?php echo WP_PLUGIN_URL ?>/wangguard/img/wizard.png" alt="<?php echo htmlentities(__('WangGuard Wizard', 'wangguard')) ?>" /></div>
+	<div class="wangguard-confico"><img src="../<?php echo PLUGINDIR ?>/wangguard/img/wizard.png" alt="<?php echo htmlentities(__('WangGuard Wizard', 'wangguard')) ?>" /></div>
 	<div class="icon32" id="icon-wangguard"><br></div>
 	<h2><?php _e('WangGuard Wizard', 'wangguard'); ?></h2>
 	
