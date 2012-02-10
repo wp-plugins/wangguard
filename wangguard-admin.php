@@ -322,7 +322,7 @@ function wangguard_validate_hfields($userEmail) {
 		empty ($_POST[$cNonce]);
 	
 	if (!$validated) {
-		wangguard_report_email($userEmail , wangguard_getRemoteIP() , true);
+		wangguard_report_email($userEmail , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP() , true);
 	}
 	
 	return $validated;
@@ -402,7 +402,7 @@ function wangguard_wpmu_signup_validate_mu($param) {
 			$errors->add('user_email',   __('<strong>ERROR</strong>: Domain not allowed.', 'wangguard'));
 		}
 		else {
-			$reported = wangguard_is_email_reported_as_sp($param['user_email'] , wangguard_getRemoteIP());
+			$reported = wangguard_is_email_reported_as_sp($param['user_email'] , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP());
 
 			if ($reported) 
 				$errors->add('user_email',   __('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
@@ -490,7 +490,7 @@ function wangguard_signup_validate_bp11() {
 			$bp->signup->errors['signup_email'] = addslashes( __("<strong>ERROR</strong>: Domain not allowed.", 'wangguard'));
 		}
 		else {
-			$reported = wangguard_is_email_reported_as_sp($_REQUEST['signup_email'] , wangguard_getRemoteIP());
+			$reported = wangguard_is_email_reported_as_sp($_REQUEST['signup_email'] , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP());
 
 			if ($reported)
 				$bp->signup->errors['signup_email'] = __('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard');
@@ -569,7 +569,7 @@ function wangguard_signup_validate($user_name , $user_email,$errors){
 			$errors->add('wangguard_error',__('<strong>ERROR</strong>: Domain not allowed.', 'wangguard'));
 		}
 		else {
-			$reported = wangguard_is_email_reported_as_sp($_REQUEST['user_email'] , wangguard_getRemoteIP() , true);
+			$reported = wangguard_is_email_reported_as_sp($_REQUEST['user_email'] , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP() , true);
 
 			if ($reported)
 				$errors->add('wangguard_error',__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
@@ -638,7 +638,7 @@ function wangguard_is_domain_blocked($email) {
  * @param type $callingFromRegularWPHook regular WP hook sends true on this param
  * @return boolean 
  */
-function wangguard_is_email_reported_as_sp($email , $clientIP , $callingFromRegularWPHook = false) {
+function wangguard_is_email_reported_as_sp($email , $clientIP , $ProxyIP , $callingFromRegularWPHook = false) {
 	global $wpdb;
 	global $wangguard_api_key;
 	global $wangguard_user_check_status;
@@ -648,7 +648,7 @@ function wangguard_is_email_reported_as_sp($email , $clientIP , $callingFromRegu
 
 	$wangguard_user_check_status = "not-checked";
 
-	$response = wangguard_http_post("wg=<in><apikey>$wangguard_api_key</apikey><email>".$email."</email><ip>".$clientIP."</ip></in>", 'query-email.php');
+	$response = wangguard_http_post("wg=<in><apikey>$wangguard_api_key</apikey><email>".$email."</email><ip>".$clientIP."</ip><proxyip>".$ProxyIP."</proxyip></in>", 'query-email.php');
 	$responseArr = XML_unserialize($response);
 
 	wangguard_stats_update("check");
@@ -766,7 +766,7 @@ function wangguard_plugin_bp_complete_signup() {
 	$wpdb->query( $wpdb->prepare("delete from $table_name where signup_username = '%s'" , $_POST['signup_username']));
 
 	//Insert the new signup record
-	$wpdb->query( $wpdb->prepare("insert into $table_name(signup_username , user_status , user_ip) values ('%s' , '%s' , '%s')" , $_POST['signup_username'] , $wangguard_user_check_status , wangguard_getRemoteIP() ) );
+	$wpdb->query( $wpdb->prepare("insert into $table_name(signup_username , user_status , user_ip , user_proxy_ip) values ('%s' , '%s' , '%s' , '%s')" , $_POST['signup_username'] , $wangguard_user_check_status , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP() ) );
 }
 
 
@@ -839,7 +839,7 @@ function wangguard_plugin_user_register($userid) {
 	$user_status = $wpdb->get_var( $wpdb->prepare("select ID from $table_name where ID = %d" , $userid));
 	if ($user_status == null)
 		//insert the new status
-		$wpdb->query( $wpdb->prepare("insert into $table_name(ID , user_status , user_ip) values (%d , '%s' , '%s')" , $userid , $wangguard_user_check_status , wangguard_getRemoteIP() ) );
+		$wpdb->query( $wpdb->prepare("insert into $table_name(ID , user_status , user_ip , user_proxy_ip) values (%d , '%s' , '%s' , '%s')" , $userid , $wangguard_user_check_status , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP() ) );
 	else
 		//update the new status
 		$wpdb->query( $wpdb->prepare("update $table_name set user_status = '%s' where ID = %d" , $wangguard_user_check_status , $userid  ) );
