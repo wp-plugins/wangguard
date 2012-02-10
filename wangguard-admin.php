@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.3
+Version: 1.3.1
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.3');
+define('WANGGUARD_VERSION', '1.3.1');
 define('WANGGUARD_PLUGIN_FILE', 'wangguard/wangguard-admin.php');
 define('WANGGUARD_README_URL', 'http://plugins.trac.wordpress.org/browser/wangguard/trunk/readme.txt?format=txt');
 
@@ -240,7 +240,7 @@ function wangguard_add_hfield_1() {
 	$nonceAct = $wangguard_NonceHName;
 	$nonceValue = wp_create_nonce( $nonceAct );
 	$fieldID = wangguard_randomstring(mt_rand(6,10));
-	$nonce_field = '<input autocomplete="off" type="hidden" id="' . $fieldID . '" name="' . $wangguard_HPrefix . $nonceValue . '" value="" />';
+	$nonce_field = '<input  type="hidden" id="' . $fieldID . '" name="' . $wangguard_HPrefix . $nonceValue . '" value="" />';
 	echo $nonce_field;
 }
 function wangguard_add_hfield_2() {
@@ -252,7 +252,7 @@ function wangguard_add_hfield_2() {
 	
 	$nonceAct = $wangguard_NonceFName;
 	$nonceValue = wp_create_nonce( $nonceAct );
-	$nonce_field = '<div class="'.$style.'"><input autocomplete="off" type="text" id="' . $fieldID . '" name="' . $wangguard_FPrefix . $nonceValue . '" value="" /></div>';
+	$nonce_field = '<div class="'.$style.'"><input type="text" id="' . $fieldID . '" name="' . $wangguard_FPrefix . $nonceValue . '" value="" /></div>';
 	echo $nonce_field;
 }
 function wangguard_add_hfield_3() {
@@ -264,7 +264,7 @@ function wangguard_add_hfield_3() {
 	
 	$nonceAct = $wangguard_NoncePName;
 	$nonceValue = wp_create_nonce( $nonceAct );
-	$nonce_field = '<div class="'.$style.'"><label for="'.$nonceValue.'">Your name:</label><br/><input tabindex="'.mt_rand(9999,99999).'" type="text" id="' . $fieldID . '" name="' . $nonceValue . '" autocomplete="off" value="" /></div>';
+	$nonce_field = '<div class="'.$style.'"><label for="'.$nonceValue.'">Write down whats your favorite hobby is (required)</label><br/><input tabindex="'.mt_rand(9999,99999).'" type="text" id="' . $fieldID . '" name="' . $nonceValue . '" value="" /></div>';
 	echo $nonce_field;
 }
 function wangguard_add_hfield_4() {
@@ -276,7 +276,7 @@ function wangguard_add_hfield_4() {
 	
 	$nonceAct = $wangguard_NonceCName;
 	$nonceValue = wp_create_nonce( $nonceAct );
-	$nonce_field = '<div class="'.$style.'">Agree? <input type="checkbox" autocomplete="off" value="1" id="' . $fieldID . '" name="' . $nonceValue . '" /></div>';
+	$nonce_field = '<div class="'.$style.'"><input type="checkbox" value="1" id="' . $fieldID . '" name="' . $nonceValue . '" /></div>';
 	echo $nonce_field;
 }
 
@@ -322,7 +322,7 @@ function wangguard_validate_hfields($userEmail) {
 		empty ($_POST[$cNonce]);
 	
 	if (!$validated) {
-		wangguard_report_email($userEmail , $_SERVER['REMOTE_ADDR'] , true);
+		wangguard_report_email($userEmail , wangguard_getRemoteIP() , true);
 	}
 	
 	return $validated;
@@ -402,7 +402,7 @@ function wangguard_wpmu_signup_validate_mu($param) {
 			$errors->add('user_email',   __('<strong>ERROR</strong>: Domain not allowed.', 'wangguard'));
 		}
 		else {
-			$reported = wangguard_is_email_reported_as_sp($param['user_email'] , $_SERVER['REMOTE_ADDR']);
+			$reported = wangguard_is_email_reported_as_sp($param['user_email'] , wangguard_getRemoteIP());
 
 			if ($reported) 
 				$errors->add('user_email',   __('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
@@ -490,7 +490,7 @@ function wangguard_signup_validate_bp11() {
 			$bp->signup->errors['signup_email'] = addslashes( __("<strong>ERROR</strong>: Domain not allowed.", 'wangguard'));
 		}
 		else {
-			$reported = wangguard_is_email_reported_as_sp($_REQUEST['signup_email'] , $_SERVER['REMOTE_ADDR']);
+			$reported = wangguard_is_email_reported_as_sp($_REQUEST['signup_email'] , wangguard_getRemoteIP());
 
 			if ($reported)
 				$bp->signup->errors['signup_email'] = __('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard');
@@ -569,7 +569,7 @@ function wangguard_signup_validate($user_name , $user_email,$errors){
 			$errors->add('wangguard_error',__('<strong>ERROR</strong>: Domain not allowed.', 'wangguard'));
 		}
 		else {
-			$reported = wangguard_is_email_reported_as_sp($_REQUEST['user_email'] , $_SERVER['REMOTE_ADDR'] , true);
+			$reported = wangguard_is_email_reported_as_sp($_REQUEST['user_email'] , wangguard_getRemoteIP() , true);
 
 			if ($reported)
 				$errors->add('wangguard_error',__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
@@ -766,7 +766,7 @@ function wangguard_plugin_bp_complete_signup() {
 	$wpdb->query( $wpdb->prepare("delete from $table_name where signup_username = '%s'" , $_POST['signup_username']));
 
 	//Insert the new signup record
-	$wpdb->query( $wpdb->prepare("insert into $table_name(signup_username , user_status , user_ip) values ('%s' , '%s' , '%s')" , $_POST['signup_username'] , $wangguard_user_check_status , $_SERVER['REMOTE_ADDR'] ) );
+	$wpdb->query( $wpdb->prepare("insert into $table_name(signup_username , user_status , user_ip) values ('%s' , '%s' , '%s')" , $_POST['signup_username'] , $wangguard_user_check_status , wangguard_getRemoteIP() ) );
 }
 
 
@@ -839,7 +839,7 @@ function wangguard_plugin_user_register($userid) {
 	$user_status = $wpdb->get_var( $wpdb->prepare("select ID from $table_name where ID = %d" , $userid));
 	if ($user_status == null)
 		//insert the new status
-		$wpdb->query( $wpdb->prepare("insert into $table_name(ID , user_status , user_ip) values (%d , '%s' , '%s')" , $userid , $wangguard_user_check_status , $_SERVER['REMOTE_ADDR'] ) );
+		$wpdb->query( $wpdb->prepare("insert into $table_name(ID , user_status , user_ip) values (%d , '%s' , '%s')" , $userid , $wangguard_user_check_status , wangguard_getRemoteIP() ) );
 	else
 		//update the new status
 		$wpdb->query( $wpdb->prepare("update $table_name set user_status = '%s' where ID = %d" , $wangguard_user_check_status , $userid  ) );

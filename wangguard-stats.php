@@ -11,7 +11,7 @@ function wangguard_stats() {
 	?>
 
 <div class="wrap" id="wangguard-stats-cont">
-	<div class="wangguard-confico"><img src="../<?php echo PLUGINDIR ?>/wangguard/img/stats.png" alt="<?php echo htmlentities(__('WangGuard Stats', 'wangguard')) ?>" /></div>
+	<div class="wangguard-confico"><img src="<?php echo WP_PLUGIN_URL ?>/wangguard/img/stats.png" alt="<?php echo htmlentities(__('WangGuard Stats', 'wangguard')) ?>" /></div>
 	<div class="icon32" id="icon-wangguard"><br></div>
 	<h2><?php _e('WangGuard Stats', 'wangguard'); ?></h2>
 	

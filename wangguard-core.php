@@ -221,6 +221,27 @@ add_filter('plugin_action_links', 'wangguard_action_links', 10, 2);
 /********************************************************************/
 /*** HELPER FUNCS BEGINS ***/
 /********************************************************************/
+/**
+ * Returns the client IP, having in count the HTTP_X_FORWARDED_FOR header, if present, take its value instead of the REMOTE_ADDR
+ */
+function wangguard_getRemoteIP() {
+	$ipAddress = $_SERVER['REMOTE_ADDR'];
+
+	if ($_SERVER['HTTP_X_FORWARDED_FOR'] != "" ) {
+		$ipAddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
+		if (strpos($ipAddress, ',') !== false) {
+			$ipAddress = explode(',', $ipAddress);
+			$ipAddress = $ipAddress[0];
+		}
+		
+		$test = ip2long($ipAddress);
+		if (($test === FALSE) || ($test === -1))
+			$ipAddress = $_SERVER['REMOTE_ADDR'];
+	}
+	
+	return $ipAddress;
+}
+
 //Is multisite?
 function wangguard_is_multisite() {
 	if (function_exists('is_multisite')) {
