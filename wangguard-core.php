@@ -1,5 +1,5 @@
 <?php
-$wangguard_db_version = 1.3;
+$wangguard_db_version = 1.4;
 
 /********************************************************************/
 /*** INIT & INSTALL BEGINS ***/
@@ -165,29 +165,15 @@ function wangguard_install($current_version) {
 		delete_option("wangguard-enable-bp-report-blog");
 	}
 	
-	if ($current_version < 1.3) {
+	if ($current_version < 1.4) {
 		$table_name = $wpdb->base_prefix . "wangguarduserstatus";
-		$sql = "CREATE TABLE " . $table_name . " (
-			ID BIGINT(20) NOT NULL,
-			user_status VARCHAR(20) NOT NULL,
-			user_ip VARCHAR(15) NOT NULL,
-			user_proxy_ip VARCHAR(15) NOT NULL,
-			UNIQUE KEY ID (ID)
-		);";
-		dbDelta($sql);
+		$sql = "ALTER TABLE " . $table_name . " ADD user_proxy_ip VARCHAR(15) NOT NULL;";
+		@$wpdb->query($sql);
 
 
 		$table_name = $wpdb->base_prefix . "wangguardsignupsstatus";
-		$sql = "CREATE TABLE " . $table_name . " (
-			signup_username VARCHAR(60) NOT NULL,
-			user_status VARCHAR(20) NOT NULL,
-			user_ip VARCHAR(15) NOT NULL,
-			user_proxy_ip VARCHAR(15) NOT NULL,
-			UNIQUE KEY signup_username (signup_username)
-		);";
-
-		dbDelta($sql);
-		
+		$sql = "ALTER TABLE " . $table_name . " ADD user_proxy_ip VARCHAR(15) NOT NULL;";
+		@$wpdb->query($sql);
 	}
 	
 	

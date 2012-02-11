@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 1.3
+Stable tag: 1.3.2
 License: GPLv2
 
 Check your registered users against WangGuard web service to avoid Sploggers, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible.
@@ -278,6 +278,9 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 
 == Changelog ==
+
+= 1.3.2 - 11 Feb 2012 =
+- CRITICAL UPDATE, fixes to the code due to a bug on the dbDelta() WordPress function, only affects to WordPress installations which uses capital letters in the database prefix.
 
 = 1.3.1 - 10 Feb 2012 =
 - Minor tweaks to improve Splogger identification and reporting accurancy
