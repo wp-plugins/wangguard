@@ -18,24 +18,28 @@ Check your registered users against WangGuard web service to avoid Sploggers, is
 
 WangGuard works by incorporating an antivirus philosophy.
 
+[Follow us on Twitter](http://twitter.com/wangguard)
+
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 1,200,000 Splogger/unwanted users blocked in just 7 months!
+Over 1,310,000 Splogger/unwanted users blocked in just 7 months!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
 
 [Did you find a bug?](http://bugs.wangguard.org)
+
 [Do you want to translate WangGuard?](http://translate.wangguard.org)
-[Do you have an Idea for WangGuard?](http://feedback.wangguard.org)
+
+[Have you an Idea for WangGuard?](http://feedback.wangguard.org)
 
 
 = Advice =
 
  * If you are using W3 Total Cache and you have enabled HTML&XML Minify and you use BuddyPress or a custom registration page. Please, go to Performance -> Minify -> Advanced -> "Never minify the following pages:" and add you registration page. If you dont do this, you could have some issues.
  
- * WangGuard NOT protect your site from comment spam, WangGuard protect your registration page from sploggers, unwanted users and untrusted users and WangGuard clean your database from them . For comment spam, you have another great plugin, [Akismet](http://wordpress.org/extend/plugins/akismet/).
+ * WangGuard NOT protect your site from comment spam, WangGuard protect your registration page from sploggers, unwanted users and untrusted users and WangGuard clean your database from them. For comment spam, you have another great plugin, [Akismet](http://wordpress.org/extend/plugins/akismet/).
 
  * WangGuard protect the standard WordPress, WordPress Multisite, BuddyPress and bbPress 2.0 registration forms. If you use custom registration page, maybe WangGuard will not work. If you use a plugin or custom registration page, once you've installed WangGuard, test if it works. if it doesn't work, talk with the plugin developer or with your developer to make it compatible or use the standard WordPress, WordPress Multisite, BuddyPress or bbPress 2.0 signup form.
 
@@ -90,6 +94,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Free to everyone for a limited time!
  * Clean your installation of unwanted users and sploggers.
  * Centralized database of sploggers.
+ * Block users emails by domains.
  * Configure from Admin panel
  * Valid HTML
  * I18n language translation support
@@ -106,29 +111,29 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
 = WordPress Simple Features =
 
- * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
- * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
- * NEW Full Statistics
- * NEW Added the ability to flag a user as "Not Splogger"
+ * gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * Optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * Full Statistics
+ * Added the ability to flag a user as "Not Splogger"
  * Wizard for detect and eliminate Sploggers
  * Mark as Splogger from post list
  
 = WordPress Mu (WPMU) Features =
 
- * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
- * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
- * NEW Full Statistics
- * NEW Added the ability to flag a user as "Not Splogger"
+ * gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * Optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * Full Statistics
+ * Added the ability to flag a user as "Not Splogger"
  * Wizard for detect and eliminate Sploggers
  * Mark as Splogger from post list
  * Protect all registration pages from All blogs (Activated sitewide)
 
 = WordPress Multisite (WP3.x) Features =
 
- * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
- * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
- * NEW Full Statistics
- * NEW Added the ability to flag a user as "Not Splogger"
+ * gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * Optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * Full Statistics
+ * Added the ability to flag a user as "Not Splogger"
  * Wizard for detect and eliminate Sploggers
  * Mark as Splogger from post list
  * Add a "Report blog and author" on every blog
@@ -137,10 +142,10 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  
 = BuddyPress 1.2.x and 1.5 (WordPress Simple and WordPress Multisite 3.x) Features =
 
- * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
- * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
- * NEW Full Statistics
- * NEW Added the ability to flag a user as "Not Splogger"
+ * gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * Optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * Full Statistics
+ * Added the ability to flag a user as "Not Splogger"
  * Mark as Splogger from post list
  * Add "Report blog and author" on every blog
  * Moderation Queue for repored users and blogs
@@ -150,10 +155,10 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  
  = bbPress 2.0 Plugin =
  
- * NEW gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
- * New optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
- * NEW Full Statistics
- * NEW Added the ability to flag a user as "Not Splogger"
+ * gmail.com and googlemail.com duplicated account verifications (activate on WangGuard Configuration)
+ * Optional DNS verification of the email domain (right side of the @ in an email address) (activate on WangGuard Configuration)
+ * Full Statistics
+ * Added the ability to flag a user as "Not Splogger"
  * Wizard for detect and eliminate Sploggers
 
 
@@ -293,6 +298,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 = 1.2.5 - 18 Jan 2012 =
 - Fix minor HTML issue.
+- Fix an issue where some users could give false positives.
 
 = 1.2.4 - 12 Jan 2012 =
 - Fix minor compatibility issue with BuddyPress 1.5.2 and 1.5.3 on register page.
