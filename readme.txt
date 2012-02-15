@@ -94,7 +94,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Free to everyone for a limited time!
  * Clean your installation of unwanted users and sploggers.
  * Centralized database of sploggers.
- * Block users emails by domains.
+ * NEW Block users emails by domains.
  * Configure from Admin panel
  * Valid HTML
  * I18n language translation support
@@ -291,7 +291,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 - Minor tweaks to improve Splogger identification and reporting accurancy
 
 = 1.3 - 30 Jan 2012 =
-- Added the ability to block users which e-mail addresses belongs to well known domains, the domain's list is maintained by WangGuard. Go to WangGuard Configuration -> Blocked domains to select which domains you'd like to block.
+- NEW Added the ability to block users which e-mail addresses belongs to well known domains, the domain's list is maintained by WangGuard. Go to WangGuard Configuration -> Blocked domains to select which domains you'd like to block.
 
 = 1.2.6 - 23 Jan 2012 =
 - Fix minor HTML/CSS issue on BuddyPress registration screen.
