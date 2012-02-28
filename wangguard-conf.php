@@ -149,7 +149,7 @@ function wangguard_conf() {
 					<?php endforeach; ?>
 					<p><input id="key" name="key" type="text" size="35" maxlength="32" value="<?php echo wangguard_get_option('wangguard_api_key'); ?>" style="font-family: 'Courier New', Courier, mono; font-size: 1.5em;" /> (<?php _e('<a href="http://wangguard.com/faq" target="_new">What is this?</a>', 'wangguard'); ?>)</p>
 
-					<?php if ( $invalid_key ) { ?>
+					<?php if ( $key_status == 'invalid' ) { ?>
 						<h3><?php _e('Why might my key be invalid?', 'wangguard'); ?></h3>
 						<p><?php _e('This can mean one of two things, either you copied the key wrong or that the plugin is unable to reach the WangGuard servers, which is most often caused by an issue with your web host around firewalls or similar.', 'wangguard'); ?></p>
 					<?php } ?>

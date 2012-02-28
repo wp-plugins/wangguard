@@ -1,8 +1,12 @@
 <?php
 //WangGuard Wizard
 function wangguard_wizard() {
-	global $wpdb,$wangguard_nonce, $wangguard_api_key;
+	global $wpdb,$wangguard_nonce, $wangguard_api_key , $wangguard_is_network_admin;
 
+	$urlFunc = "admin_url";
+	if ($wangguard_is_network_admin && function_exists("network_admin_url"))
+		$urlFunc = "network_admin_url";
+	
 	if (wangguard_is_multisite()) {
 		$spamFieldName = "spam";
 		$sqlSpamWhere = "spam = 1";
@@ -20,12 +24,14 @@ function wangguard_wizard() {
 		die(__('Cheatin&#8217; uh?', 'wangguard'));
 	
 	
-	if ( isset($_POST['submit']) ) {
+	$step = 0;
+	if (isset($_REQUEST['wangguard_step']))
+		$step = (int)$_REQUEST['wangguard_step'];
+	
+	if ( isset($_POST['submit']) || !empty($step) ) {
 		check_admin_referer( $wangguard_nonce );
 	} 	
 	
-	
-	$step = (int)$_REQUEST['wangguard_step'];
 	?>
 
 <div class="wrap" id="wangguard-wizard-cont">
@@ -49,6 +55,7 @@ function wangguard_wizard() {
 
 	<form action="admin.php" method="get" id="wangguardWizardForm" name="wangguardWizardForm" onsubmit="return wangguard_progress()">
 		<input type="hidden" name="page" value="wangguard_wizard" />
+		<?php echo wp_nonce_field($wangguard_nonce)  ?>
 
 		<?php
 		switch ($step) {
@@ -59,7 +66,8 @@ function wangguard_wizard() {
 					<?php
 					$usersPerStint = 50;	//how many users to check on each iteration
 
-					$fromUser = (int)$_REQUEST['wangguard_wiz_from'];
+					$fromUser = isset($_REQUEST['wangguard_wiz_from']) ? (int)$_REQUEST['wangguard_wiz_from'] : 0;
+					
 					if ($fromUser<0) $fromUser = 0;
 
 					$spamUsersTotal = $wpdb->get_col("select count(*) from $wpdb->users where $sqlSpamWhere");
@@ -82,8 +90,8 @@ function wangguard_wizard() {
 						}
 						else {?>
 							<p><img id="wangguard-progress-wait" style="vertical-align: middle; margin-right: 8px;" src="<?php echo esc_url( admin_url( 'images/wpspin_light.gif' ) ); ?>" alt="..." /><?php echo sprintf(__("The WangGuard wizard is reporting %d of %d spam users as Sploggers.", "wangguard") , $reportingUserFrom , $spamUsersTotal); ?></p>
-							<?php flush(); ?>
-							<?php ob_flush(); ?>
+							<?php @flush(); ?>
+							<?php @ob_flush(); ?>
 
 							<?php 
 							$progress = 0;
@@ -111,7 +119,7 @@ function wangguard_wizard() {
 							<script type="text/javascript">
 								document.getElementById('wangguardWizardForm').onsubmit='';
 								jQuery(document).ready(function() {
-									location.href='admin.php?page=wangguard_wizard&wangguard_step=1&wangguard_wiz_from=<?php echo $fromUser + $usersPerStint?>';
+									location.href='admin.php?page=wangguard_wizard&wangguard_step=1&wangguard_wiz_from=<?php echo $fromUser + $usersPerStint?>&_wpnonce=<?php echo wp_create_nonce( $wangguard_nonce )?>';
 								});
 							</script>
 							<input type="hidden" name="wangguard_step" value="1" />
@@ -162,7 +170,7 @@ function wangguard_wizard() {
 					<?php
 					$usersPerStint = 50;	//how many users to check on each iteration
 
-					$fromUser = (int)$_REQUEST['wangguard_wiz_from'];
+					$fromUser = isset($_REQUEST['wangguard_wiz_from']) ? (int)$_REQUEST['wangguard_wiz_from'] : 0;
 					if ($fromUser<0) $fromUser = 0;
 
 					$goodUsersTotal = $wpdb->get_col("select count(*) from $wpdb->users where $sqlNoSpamWhere");
@@ -170,7 +178,7 @@ function wangguard_wizard() {
 
 					$step2Finished = ($fromUser>0) && ($fromUser >= $goodUsersTotal);
 
-					$reported = (int) $_REQUEST['reported'];
+					$reported = isset($_REQUEST['reported']) ? (int) $_REQUEST['reported'] : 0;
 
 					$noUsersToCheck = false;
 
@@ -190,8 +198,8 @@ function wangguard_wizard() {
 						}
 						else {?>
 							<p><img id="wangguard-progress-wait" style="vertical-align: middle; margin-right: 8px;" src="<?php echo esc_url( admin_url( 'images/wpspin_light.gif' ) ); ?>" alt="..." /><?php echo sprintf(__("The WangGuard wizard is verifying %d of %d users against the WangGuard service.", "wangguard") , $reportingUserFrom , $goodUsersTotal); ?></p>
-							<?php flush(); ?>
-							<?php ob_flush(); ?>
+							<?php @flush(); ?>
+							<?php @ob_flush(); ?>
 
 							<?php 
 							$progress = 0;
@@ -229,7 +237,7 @@ function wangguard_wizard() {
 							<script type="text/javascript">
 								document.getElementById('wangguardWizardForm').onsubmit='';
 								jQuery(document).ready(function() {
-									location.href='admin.php?page=wangguard_wizard&wangguard_step=2&reported=<?php echo $reported;?>&wangguard_wiz_from=<?php echo $fromUser + $usersPerStint?>';
+									location.href='admin.php?page=wangguard_wizard&wangguard_step=2&reported=<?php echo $reported;?>&wangguard_wiz_from=<?php echo $fromUser + $usersPerStint?>&_wpnonce=<?php echo wp_create_nonce( $wangguard_nonce )?>';
 								});
 							</script>
 							<input type="hidden" name="wangguard_step" value="2" />
@@ -241,7 +249,7 @@ function wangguard_wizard() {
 
 					if ($step2Finished) {
 						$table_name = $wpdb->base_prefix . "wangguarduserstatus";
-						$reportedUsers = $wpdb->get_col("select count(*) from $table_name where user_status = 'reported'");
+						$reportedUsers = $wpdb->get_col("select count(*) from $table_name where user_status IN ( 'reported', 'autorep' )");
 						$reportedUsersCount = $reportedUsers[0];
 
 						if (!$noUsersToCheck) {?>
@@ -279,15 +287,15 @@ function wangguard_wizard() {
 
 			case "3":
 
-				if ($_REQUEST['wangguard_delete_splogguers'] == 1) { 
+				if (@$_REQUEST['wangguard_delete_splogguers'] == 1) { 
 					$usersPerStint = 10;	//how many users to check on each iteration
 
 					$table_name = $wpdb->base_prefix . "wangguarduserstatus";
-					$reportedUsers = $wpdb->get_col("select ID from $table_name where user_status = 'reported' LIMIT 0 , $usersPerStint");
+					$reportedUsers = $wpdb->get_col("select ID from $table_name where user_status IN ( 'reported', 'autorep' ) LIMIT 0 , $usersPerStint");
 					$reportedUsersCount = count($reportedUsers);
 
-					$reportedUsersTotal = (int)$_REQUEST['wangguard_splogcnt'];
-					$reportingUserFrom = (int)$_REQUEST['wangguard_wiz_from'];
+					$reportedUsersTotal = (int)@$_REQUEST['wangguard_splogcnt'];
+					$reportingUserFrom = (int)@$_REQUEST['wangguard_wiz_from'];
 					$reportingUserFrom = ($reportingUserFrom > $reportedUsersTotal) ? $reportedUsersTotal : $reportingUserFrom;
 
 					$step3Finished = ($reportedUsersCount==0);
@@ -297,8 +305,8 @@ function wangguard_wizard() {
 						?>
 						<h3><?php echo __( "Deleting Splogguers from your site..." , "wangguard"); ?></h3>
 						<p><img id="wangguard-progress-wait" style="vertical-align: middle; margin-right: 8px;" src="<?php echo esc_url( admin_url( 'images/wpspin_light.gif' ) ); ?>" alt="..." /><?php echo sprintf(__("The WangGuard wizard is deleting %d of %d Splogguers from your site.", "wangguard") , $reportingUserFrom , $reportedUsersTotal); ?></p>
-						<?php flush(); ?>
-						<?php ob_flush(); ?>
+						<?php @flush(); ?>
+						<?php @ob_flush(); ?>
 						<?php
 
 						foreach ($reportedUsers as $userid) {
@@ -352,7 +360,7 @@ function wangguard_wizard() {
 						<script type="text/javascript">
 							document.getElementById('wangguardWizardForm').onsubmit='';
 							jQuery(document).ready(function() {
-								location.href='admin.php?page=wangguard_wizard&wangguard_step=3&wangguard_delete_splogguers=1&wangguard_splogcnt=<?php echo $reportedUsersTotal;?>&wangguard_wiz_from=<?php echo $reportingUserFrom + $usersPerStint?>';
+								location.href='admin.php?page=wangguard_wizard&wangguard_step=3&wangguard_delete_splogguers=1&wangguard_splogcnt=<?php echo $reportedUsersTotal;?>&wangguard_wiz_from=<?php echo $reportingUserFrom + $usersPerStint?>&_wpnonce=<?php echo wp_create_nonce( $wangguard_nonce )?>';
 							});
 						</script>
 						<?php
@@ -361,12 +369,14 @@ function wangguard_wizard() {
 					?>
 						<h3><?php echo __( "The WangGuard Wizard has finished" , "wangguard") ?></h3>
 						<p><?php echo sprintf(__("%d sploggers users has been deleted from your site.", "wangguard") , $reportedUsersTotal); ?></p>
+						<p><a href="<?php echo $urlFunc( 'admin.php?page=wangguard_users') ?>"><?php echo __('Click here to manage your Users','wangguard') ?></a></p>
 				<?php }
 				}
 
 				else {?>
 
 					<h3><?php echo __( "The WangGuard Wizard has finished" , "wangguard") ?></h3>
+					<p><a href="<?php echo $urlFunc( 'admin.php?page=wangguard_users') ?>"><?php echo __('Click here to manage your Users','wangguard') ?></a></p>
 
 				<?php
 				}

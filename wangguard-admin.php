@@ -57,6 +57,7 @@ include_once 'wangguard-conf.php';
 include_once 'wangguard-queue.php';
 include_once 'wangguard-wizard.php';
 include_once 'wangguard-stats.php';
+include_once 'wangguard-users.php';
 /********************************************************************/
 /*** CONFIG ENDS ***/
 /********************************************************************/
@@ -472,7 +473,7 @@ function wangguard_signup_validate_bp11() {
 
 	
 	if (!wangguard_validate_hfields($_POST['signup_email'])) {
-		$bp->signup->errors['signup_email'] = __('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard');
+		$bp->signup->errors['signup_email'] = addslashes (__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
 		return;
 	}
 	
@@ -493,7 +494,7 @@ function wangguard_signup_validate_bp11() {
 			$reported = wangguard_is_email_reported_as_sp($_REQUEST['signup_email'] , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP());
 
 			if ($reported)
-				$bp->signup->errors['signup_email'] = __('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard');
+				$bp->signup->errors['signup_email'] = addslashes (__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
 			else if (wangguard_email_aliases_exists($_REQUEST['signup_email']))
 				$bp->signup->errors['signup_email'] = addslashes (__('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard'));
 			else if (!wangguard_mx_record_is_ok($_REQUEST['signup_email']))
@@ -949,7 +950,6 @@ function wangguard_isjQuery17()	 {
 	var ret = ( (parseInt(jQueryVersion[0])==1) && (parseInt(jQueryVersion[1])>=7) ) || ( parseInt(jQueryVersion[0])>1 );
 	return ret;
 }
-	
 
 if (typeof ajaxurl == 'undefined')
 	ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
@@ -1149,6 +1149,7 @@ add_action('wp_ajax_wangguard_ajax_handler', 'wangguard_ajax_callback');
 add_action('wp_ajax_wangguard_ajax_recheck', 'wangguard_ajax_recheck_callback');
 add_action('wp_ajax_wangguard_ajax_questionadd', 'wangguard_ajax_questionadd');
 add_action('wp_ajax_wangguard_ajax_questiondelete', 'wangguard_ajax_questiondelete');
+add_action('wp_ajax_wangguard_ajax_ip_info', 'wangguard_ajax_ip_info');
 
 /**
  * Admin side AJAX functions
@@ -1165,6 +1166,8 @@ function wangguard_ajax_setup() {
 
 <script type="text/javascript" >
 var wangguardBulkOpError = false;
+
+var wangguard_JSadminurl = "<?php echo admin_url(); ?>";
 
 function wangguard_isjQuery17()	 {
 	var jQueryVersion = jQuery.fn.jquery.split('.');
@@ -1759,6 +1762,7 @@ function wangguard_ajax_questiondelete() {
 	die();
 }
 
+
 /**
  * Recheck user on WangGuard handler
  * 
@@ -1808,6 +1812,25 @@ function wangguard_ajax_recheck_callback() {
 	else
 		return '<span class="wangguard-status-not-checked">'. __('Not checked', 'wangguard') .'</span>';
 
+	die();
+}
+
+
+/**
+ * Get an IP information from WG server
+ * @global type $wangguard_api_key 
+ */
+function wangguard_ajax_ip_info() {
+	global $wangguard_api_key;
+	
+	if (!current_user_can('level_10')) die();
+	$ip = $_POST['ip'];
+
+	$lang = substr(WPLANG, 0,2);
+	
+	$response = wangguard_http_post("wg=<in><apikey>$wangguard_api_key</apikey><ip>".$ip."</ip><lang>".$lang."</lang></in>", 'get-ip-info.php');
+
+	echo $response;
 	die();
 }
 /********************************************************************/
@@ -1997,6 +2020,11 @@ function wangguard_add_bp_admin_bar_menus() {
 			}
 		}
 
+		echo '<li>';
+		echo '<a href="'.$urlFunc( "admin.php?page=wangguard_users" ).'">';
+		echo __('Users', 'wangguard') . '</a>';
+		echo '<div class="admin-bar-clear"></div>';
+		echo '</li>';
 		
 		if ($queueEnabled) {
 			echo '<li>';
@@ -2011,13 +2039,13 @@ function wangguard_add_bp_admin_bar_menus() {
 		echo '<div class="admin-bar-clear"></div>';
 		echo '</li>';
 		echo '<li>';
-		echo '<a href="'.$urlFunc( "admin.php?page=wangguard_conf" ).'">';
-		echo __('Configuration', 'wangguard') . '</a>';
+		echo '<a href="'.$urlFunc( "admin.php?page=wangguard_stats" ).'">';
+		echo __('Stats', 'wangguard') . '</a>';
 		echo '<div class="admin-bar-clear"></div>';
 		echo '</li>';
 		echo '<li>';
-		echo '<a href="'.$urlFunc( "admin.php?page=wangguard_stats" ).'">';
-		echo __('Stats', 'wangguard') . '</a>';
+		echo '<a href="'.$urlFunc( "admin.php?page=wangguard_conf" ).'">';
+		echo __('Configuration', 'wangguard') . '</a>';
 		echo '<div class="admin-bar-clear"></div>';
 		echo '</li>';
 
@@ -2063,7 +2091,7 @@ function wangguard_add_wp_admin_bar_menus() {
 		$isMainBlog = ( 1 == $current_blog->blog_id || BP_ROOT_BLOG == $current_blog->blog_id );
 	}
 	else
-		$isMainBlog = ($current_blog->blog_id == 1);
+		$isMainBlog = (@$current_blog->blog_id == 1);
 	
 	$showReport = !$isMainBlog && (wangguard_get_option ("wangguard-enable-bp-report-blog")==1);
 	
@@ -2086,6 +2114,8 @@ function wangguard_add_wp_admin_bar_menus() {
 		if ($showReport)
 			$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-report-blog", 'meta'=>array("class"=>"wangguard-blog-report wangguard-blog-report-id-".$current_blog->blog_id ), 'title' => __('Report blog and author', 'wangguard'), 'href' => '#' ) );
 
+		$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-users", 'title' => __('Users', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_users" ) ) );
+		
 		if ($queueEnabled)
 			$wp_admin_bar->add_menu( array( 'parent' => 'wangguard-admbar-splog', 'id' => "wangguard-admbar-queue", 'title' => __('Moderation Queue', 'wangguard'), 'href' => $urlFunc( "admin.php?page=wangguard_queue" ) ) );
 		
@@ -2167,8 +2197,10 @@ function wangguard_add_admin_menu() {
 	@include_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 	
 	$queueEnabled = ((wangguard_get_option("wangguard-enable-bp-report-blog") == 1) || (wangguard_get_option ("wangguard-enable-bp-report-btn")==1))  &&   class_exists('WP_List_Table');
-	
+
 	add_submenu_page( 'wangguard_conf', __( 'Configuration', 'wangguard'), __( 'Configuration', 'wangguard' ), 'manage_options', 'wangguard_conf', 'wangguard_conf' );
+	
+	add_submenu_page( 'wangguard_conf', __( 'Users', 'wangguard'), __( 'Users', 'wangguard' ), 'manage_options', 'wangguard_users', 'wangguard_users' );
 	
 	if ($queueEnabled) 
 		add_submenu_page( 'wangguard_conf', __( 'Moderation Queue', 'wangguard'), __( 'Moderation Queue', 'wangguard' ) . $countSpan, 'manage_options', 'wangguard_queue', 'wangguard_queue' );

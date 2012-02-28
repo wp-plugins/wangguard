@@ -20,10 +20,6 @@ function wangguard_init() {
 		load_plugin_textdomain('wangguard', false, $plugin_dir . "/languages/" );
 	}
 
-	wp_register_style( 'wangguardCSS', "/" . PLUGINDIR . '/wangguard/wangguard.css' );
-
-	wp_enqueue_style('wangguard', "/" . PLUGINDIR . '/wangguard/wangguard.css');
-
 	wp_enqueue_script("jquery");
 
 	wangguard_admin_warnings();
@@ -36,12 +32,13 @@ add_action('init', 'wangguard_init');
 function wangguard_admin_init() {
 	global $wangguard_db_version;
 	
-	wp_enqueue_style( 'wangguardCSS' );
+	wp_enqueue_style( 'wangguardCSS', "/" . PLUGINDIR . '/wangguard/wangguard.css' );
 
 	wp_enqueue_script("jquery-ui-widget");
 	wp_enqueue_script("raphael" , "/" . PLUGINDIR . '/wangguard/js/raphael.js' , array('jquery-ui-widget'));
 	wp_enqueue_script("wijmo-wijchartcore" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijchartcore.min.js' , array('raphael'));
 	wp_enqueue_script("wijmo.wijbarchart" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijbarchart.min.js' , array('wijmo-wijchartcore'));
+	wp_enqueue_script("wangguard-admin" , "/" . PLUGINDIR . '/wangguard/js/wangguard-admin.js');
 	
 	$version = wangguard_get_option("wangguard_db_version");
 	if (false === $version)
@@ -459,6 +456,7 @@ function wangguard_rollback_report($wpusersRs) {
 		return "0";
 	}
 	
+
 	$usersRolledBack = array();
 	foreach ($wpusersRs as $spuserID) {
 		$user_object = new WP_User($spuserID);
@@ -976,6 +974,39 @@ add_filter("manage_wangguard_page_wangguard_queue-network_columns", "wangguard_p
 
 
 
+
+
+
+/********************************************************************/
+/*** USERS COLUMNS DEF BEGINS ***/
+/********************************************************************/
+function wangguard_page_wangguard_users_headers($v) {
+	$cols = array(
+			'cb'			=> '<input type="checkbox" />',
+			'username'		=> __( 'Username' ),
+			'name'			=> __( 'Name' ),
+			'email'			=> __( 'E-mail' ),
+			'user_registered'=> __( 'Signed up on' , 'wangguard' ),
+			'from_ip'=>		__( 'User IP' , 'wangguard' ),
+			'posts'			=> __( 'Posts' ),
+			'blogs'			=> __( 'Sites' ),
+			'wgstatus'		=> __( 'WangGuard Status' , 'wangguard' )
+		);
+	
+	if (! wangguard_is_multisite())
+		unset($cols['blogs']);
+	
+	return $cols;
+}
+add_filter("manage_wangguard_page_wangguard_users_columns", "wangguard_page_wangguard_users_headers" );
+add_filter("manage_wangguard_page_wangguard_users-network_columns", "wangguard_page_wangguard_users_headers" );
+/********************************************************************/
+/*** USERS COLUMNS DEF ENDS ***/
+/********************************************************************/
+
+
+
+
 /********************************************************************/
 /*** USER SCREEN ACTION & COLS BEGINS ***/
 /********************************************************************/
@@ -1043,7 +1074,7 @@ function wangguard_user_custom_columns($dummy , $column_name , $userid , $echo =
 			
 			//$html .= '<a href="javascript:void(0)" rel="'.$user_object->ID.'" class="wangguard-domain">'.esc_html(__('Report Domain', 'wangguard')).'</a> | ';
 			$html .= '<a href="javascript:void(0)" rel="'.$user_object->ID.'" class="wangguard-recheck">'.esc_html(__('Recheck', 'wangguard')).'</a> | ';
-			$html .= '<a href="http://'.$Domain.'" target="_new">'.esc_html(__('Open Web', 'wangguard')).'</a>';
+			$html .= '<a href="http://'.$Domain.'" class="wangguard-open-web" id="wangguard-open-web-'.$userid.'" title="'.htmlentities($Domain).'" target="_new">'.esc_html(__('Open Web', 'wangguard')).'</a>';
 		}
 		$html .= "</div>";
 		
