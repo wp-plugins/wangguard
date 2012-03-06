@@ -38,7 +38,7 @@ class WangGuard_Users_Table extends WP_List_Table {
 		
 		$usertype = isset( $_REQUEST['type'] ) ? $_REQUEST['type'] : '';
 
-		$users_per_page = $this->get_items_per_page( "users_per_page" );
+		$users_per_page = $this->get_items_per_page( "wangguard_page_wangguard_users_network_per_page" );
 
 		$paged = $this->get_pagenum();
 
@@ -70,7 +70,7 @@ class WangGuard_Users_Table extends WP_List_Table {
 	}
 
 	function no_items() {
-		_e( 'No reported users or blogs were found.' , 'wangguard' );
+		_e( 'No users were found.' , 'wangguard' );
 	}
 
 	function get_views() {

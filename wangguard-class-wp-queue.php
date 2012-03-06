@@ -36,7 +36,7 @@ class WangGuard_Queue_Table extends WP_List_Table {
 
 		$usersearch = isset( $_REQUEST['s'] ) ? $_REQUEST['s'] : '';
 
-		$users_per_page = $this->get_items_per_page( "users_per_page" );
+		$users_per_page = $this->get_items_per_page( "wangguard_page_wangguard_queue_network_per_page" );
 
 		$paged = $this->get_pagenum();
 

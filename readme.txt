@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users, ip, ip information, user admin, user management, advanced user management, ip info
 Requires at least: 2.8
 Tested up to: 3.3.1
-Stable tag: 1.3.2
+Stable tag: 1.4
 License: GPLv2
 
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
@@ -218,8 +218,8 @@ If you flag manually a user as Splogger, the user will be reported to WangGuard 
 6. **WangGuard Security Questions** - WangGuard Security Questions page.
 7. **WangGuard server status** - WangGuard server status page.
 8. **WangGuard Domain Block** - WangGuard Domain Block page.
-9. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
-10. **Advanced user Management** - Advanced User Management
+9. **Advanced user Management** - Advanced User Management
+10. **Dashboard** - WangGuard Statistics on WordPress Dashboard.
 11. **WangGuard Statistics** - Full WangGuard Statistics.
 12. **Users** - WangGuard Bulk actions and WangGuard status.
 13. **Report user** - WangGuard report user button on BuddyPress activities
@@ -286,8 +286,8 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 == Changelog ==
 
-= 1.4 - ? =
-- Added Advanced User Managemet.
+= 1.4 - 6 Mar 2012 =
+- Added Advanced User Management.
 - Fix minor issue where WangGuard CSS load on frontend.
 - Revamped wizard. Now ask you for the advanced User Management.
 

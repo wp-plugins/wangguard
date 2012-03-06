@@ -253,19 +253,40 @@ function wangguard_wizard() {
 						$reportedUsersCount = $reportedUsers[0];
 
 						if (!$noUsersToCheck) {?>
-						<p><?php echo sprintf(__( "The WangGuard wizard has finished verifying your users and found <strong>%d</strong> Sploggers." , "wangguard") , $reported) ?></p>
+							<p><?php echo sprintf(__( "The WangGuard wizard has finished verifying your users and found <strong>%d</strong> Sploggers." , "wangguard") , $reported) ?></p>
 						<?php }?>
 
 						<input type="hidden" name="wangguard_step" value="3" />
 						<input type="hidden" name="wangguard_splogcnt" value="<?php echo $reportedUsersCount ?>" />
-						<p>&nbsp;</p>
-						<h3><?php echo __("Please tell WangGuard wizard what to do with the garbage and click the Finish button", "wangguard"); ?></h3>
+						
+						<?php if ($reportedUsersCount) {?>
+							<p><?php echo sprintf(__("There are <strong>%d</strong> users identified as Sploggers, you can delete them or manage them by clicking the buttons below.", "wangguard") , $reportedUsersCount); ?></p>
+						<?php }?>
 
 						<div id="wangguard-visible-step-status">
-							<p><input type="checkbox" value="1" name="wangguard_delete_splogguers" id="wangguard_delete_splogguers" /> <label for="wangguard_delete_splogguers"><?php echo __( "Delete the users marked as Sploggers from my site." , "wangguard") ?></label</p>
-							<p class="submit"><input type="submit" name="submit" class="button-primary" value="<?php _e('Finish', 'wangguard'); ?>" /></p>
+							<input type="hidden" value="" name="wangguard_delete_splogguers" id="wangguard_delete_splogguers" />
+							<p class="submit">
+								<?php if ($reportedUsersCount) {?>
+									<input type="submit" name="do_wangguard_delete_splogguers" class="button-primary" id="do_wangguard_delete_splogguers" value="<?php _e('Delete all Sploggers', 'wangguard'); ?>" />
+									<input type="button" name="button" class="button-primary" onclick="document.location='admin.php?page=wangguard_users&type=spam'" value="<?php _e('Manage Sploggers', 'wangguard'); ?>" />
+								<?php }?>
+								<input type="submit" name="submit" class="button-primary" value="<?php _e('Finish', 'wangguard'); ?>" />
+							</p>
 						</div>
 
+						<script type="text/javascript">
+							jQuery(document).ready(function() {
+								jQuery("#do_wangguard_delete_splogguers").click(function() {
+									if (confirm('<?php echo addslashes(__('Do you confirm to delete all Sploggers?', 'wangguard')); ?>')) {
+										jQuery('#wangguard_delete_splogguers').val('1');
+										return true;
+									}
+									else
+										return false;
+								});
+							});
+						</script>			
+						
 						<div id="wangguard-hidden-step-status" style="display: none">
 							<p><img id="wangguard-progress-wait" style="vertical-align: middle; margin-right: 8px;" src="<?php echo esc_url( admin_url( 'images/wpspin_light.gif' ) ); ?>" alt="..." /></p>
 						</div>
@@ -369,14 +390,14 @@ function wangguard_wizard() {
 					?>
 						<h3><?php echo __( "The WangGuard Wizard has finished" , "wangguard") ?></h3>
 						<p><?php echo sprintf(__("%d sploggers users has been deleted from your site.", "wangguard") , $reportedUsersTotal); ?></p>
-						<p><a href="<?php echo $urlFunc( 'admin.php?page=wangguard_users') ?>"><?php echo __('Click here to manage your Users','wangguard') ?></a></p>
+						<p><a class="button-primary" href="<?php echo $urlFunc( 'admin.php?page=wangguard_users') ?>"><?php echo __('Click here to manage your Users','wangguard') ?></a></p>
 				<?php }
 				}
 
 				else {?>
 
 					<h3><?php echo __( "The WangGuard Wizard has finished" , "wangguard") ?></h3>
-					<p><a href="<?php echo $urlFunc( 'admin.php?page=wangguard_users') ?>"><?php echo __('Click here to manage your Users','wangguard') ?></a></p>
+					<p><a class="button-primary" href="<?php echo $urlFunc( 'admin.php?page=wangguard_users') ?>"><?php echo __('Click here to manage your Users','wangguard') ?></a></p>
 
 				<?php
 				}
@@ -435,6 +456,7 @@ function wangguard_wizard() {
 		?>
 
 	</form>
+
 </div>
 <?php
 }

@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.4 RC1
+Version: 1.4
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.4RC1');
+define('WANGGUARD_VERSION', '1.4');
 define('WANGGUARD_PLUGIN_FILE', 'wangguard/wangguard-admin.php');
 define('WANGGUARD_README_URL', 'http://plugins.trac.wordpress.org/browser/wangguard/trunk/readme.txt?format=txt');
 
@@ -394,7 +394,7 @@ function wangguard_wpmu_signup_validate_mu($param) {
 
 	//If at least a question exists on the questions table, then check the provided answer
 	if (!$answerOK)
-	    $errors->add('wangguardquestansw', addslashes( __('<strong>ERROR</strong>: The answer to the security question is invalid.', 'wangguard')));
+	    $errors->add('wangguardquestansw',  __('<strong>ERROR</strong>: The answer to the security question is invalid.', 'wangguard'));
 	else {
 
 		//check domain against the list of selected blocked domains
@@ -408,9 +408,9 @@ function wangguard_wpmu_signup_validate_mu($param) {
 			if ($reported) 
 				$errors->add('user_email',   __('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
 			else if (wangguard_email_aliases_exists($param['user_email']))
-				$errors->add('user_email',  addslashes( __('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard')));
+				$errors->add('user_email',   __('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard'));
 			else if (!wangguard_mx_record_is_ok($param['user_email']))
-				$errors->add('user_email',  addslashes( __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard')));
+				$errors->add('user_email',   __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard'));
 		}
 	}
 	return $param;
@@ -459,6 +459,17 @@ function wangguard_register_add_question_bp11(){
 	}
 }
 
+function wangguard_fix_bp_slashes_maybe($str) {
+	if (defined('BP_VERSION')) {
+		if ( version_compare(BP_VERSION, '1.5.5') < 0 )
+			$str = addslashes($str);
+		
+		return $str;
+	}
+	else
+		return $str;
+}
+
 /**
  * Validates security question
  * 
@@ -471,9 +482,9 @@ function wangguard_signup_validate_bp11() {
 
 	$wangguard_bp_validated = true;
 
-	
+
 	if (!wangguard_validate_hfields($_POST['signup_email'])) {
-		$bp->signup->errors['signup_email'] = addslashes (__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
+		$bp->signup->errors['signup_email'] = wangguard_fix_bp_slashes_maybe (__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
 		return;
 	}
 	
@@ -482,28 +493,28 @@ function wangguard_signup_validate_bp11() {
 
 	//If at least a question exists on the questions table, then check the provided answer
 	if (!$answerOK)
-		$bp->signup->errors['wangguardquestansw'] = addslashes (__('<strong>ERROR</strong>: The answer to the security question is invalid.', 'wangguard'));
+		$bp->signup->errors['wangguardquestansw'] = wangguard_fix_bp_slashes_maybe (__('<strong>ERROR</strong>: The answer to the security question is invalid.', 'wangguard'));
 	else {
 
 		//check domain against the list of selected blocked domains
 		$blocked = wangguard_is_domain_blocked($_REQUEST['signup_email']);
 		if ($blocked) {
-			$bp->signup->errors['signup_email'] = addslashes( __("<strong>ERROR</strong>: Domain not allowed.", 'wangguard'));
+			$bp->signup->errors['signup_email'] = wangguard_fix_bp_slashes_maybe( __("<strong>ERROR</strong>: Domain not allowed.", 'wangguard'));
 		}
 		else {
 			$reported = wangguard_is_email_reported_as_sp($_REQUEST['signup_email'] , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP());
 
 			if ($reported)
-				$bp->signup->errors['signup_email'] = addslashes (__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
+				$bp->signup->errors['signup_email'] = wangguard_fix_bp_slashes_maybe (__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
 			else if (wangguard_email_aliases_exists($_REQUEST['signup_email']))
-				$bp->signup->errors['signup_email'] = addslashes (__('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard'));
+				$bp->signup->errors['signup_email'] = wangguard_fix_bp_slashes_maybe (__('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard'));
 			else if (!wangguard_mx_record_is_ok($_REQUEST['signup_email']))
-				$bp->signup->errors['signup_email'] = addslashes( __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard'));
+				$bp->signup->errors['signup_email'] = wangguard_fix_bp_slashes_maybe( __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard'));
 		}
 	}
 	
 	if (isset ($bp->signup->errors['signup_email']))
-		$bp->signup->errors['signup_email'] = addslashes($bp->signup->errors['signup_email']);
+		$bp->signup->errors['signup_email'] = wangguard_fix_bp_slashes_maybe($bp->signup->errors['signup_email']);
 }
 //*********** BP1.1+ ***********
 
@@ -575,9 +586,9 @@ function wangguard_signup_validate($user_name , $user_email,$errors){
 			if ($reported)
 				$errors->add('wangguard_error',__('<strong>ERROR</strong>: Banned by WangGuard <a href="http://www.wangguard.com/faq" target="_new">Is a mistake?</a>.', 'wangguard'));
 			else if (wangguard_email_aliases_exists($_REQUEST['user_email']))
-				$errors->add('wangguard_error',  addslashes( __('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard')));
+				$errors->add('wangguard_error',   __('<strong>ERROR</strong>: Duplicate alias email found by WangGuard.', 'wangguard'));
 			else if (!wangguard_mx_record_is_ok($_REQUEST['user_email']))
-				$errors->add('wangguard_error',  addslashes( __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard')));
+				$errors->add('wangguard_error',   __("<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain.", 'wangguard'));
 		}
 	}
 }
@@ -2200,14 +2211,39 @@ function wangguard_add_admin_menu() {
 
 	add_submenu_page( 'wangguard_conf', __( 'Configuration', 'wangguard'), __( 'Configuration', 'wangguard' ), 'manage_options', 'wangguard_conf', 'wangguard_conf' );
 	
-	add_submenu_page( 'wangguard_conf', __( 'Users', 'wangguard'), __( 'Users', 'wangguard' ), 'manage_options', 'wangguard_users', 'wangguard_users' );
-	
-	if ($queueEnabled) 
-		add_submenu_page( 'wangguard_conf', __( 'Moderation Queue', 'wangguard'), __( 'Moderation Queue', 'wangguard' ) . $countSpan, 'manage_options', 'wangguard_queue', 'wangguard_queue' );
+	$usersHook = add_submenu_page( 'wangguard_conf', __( 'Users', 'wangguard'), __( 'Users', 'wangguard' ), 'manage_options', 'wangguard_users', 'wangguard_users' );
+	add_action("load-$usersHook", 'wangguard_users_screen_options');
+
+	if ($queueEnabled) {
+		$queueHook = add_submenu_page( 'wangguard_conf', __( 'Moderation Queue', 'wangguard'), __( 'Moderation Queue', 'wangguard' ) . $countSpan, 'manage_options', 'wangguard_queue', 'wangguard_queue' );
+		add_action("load-$queueHook", 'wangguard_users_screen_options');
+	}
 	
 	add_submenu_page( 'wangguard_conf', __( 'Wizard', 'wangguard'), __( 'Wizard', 'wangguard' ), 'manage_options', 'wangguard_wizard', 'wangguard_wizard' );
 	add_submenu_page( 'wangguard_conf', __( 'Stats', 'wangguard'), __( 'Stats', 'wangguard' ), 'manage_options', 'wangguard_stats', 'wangguard_stats' );
 }
+
+/**
+ * Adds the users per page options to users and queue screens
+ */
+function wangguard_users_screen_options() {
+	add_screen_option( 'per_page', array('label' => _x( 'Users', 'users per page (screen options)' )) );
+}
+
+/**
+ * Stores the users per page value
+ * @global type $wangguard_users_per_page
+ * @param type $status
+ * @param type $option
+ * @param type $value
+ * @return type 
+ */
+function wangguard_set_users_screen_option($status, $option, $value) {
+	if ( ($option == 'wangguard_page_wangguard_users_network_per_page') || ($option == 'wangguard_page_wangguard_queue_network_per_page') ) {
+		return $value;
+	}
+}
+add_filter('set-screen-option', 'wangguard_set_users_screen_option', 10, 3);
 
 
 if (!$wangguard_is_network_admin)
