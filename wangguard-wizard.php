@@ -268,7 +268,7 @@ function wangguard_wizard() {
 							<p class="submit">
 								<?php if ($reportedUsersCount) {?>
 									<input type="submit" name="do_wangguard_delete_splogguers" class="button-primary" id="do_wangguard_delete_splogguers" value="<?php _e('Delete all Sploggers', 'wangguard'); ?>" />
-									<input type="button" name="button" class="button-primary" onclick="document.location='admin.php?page=wangguard_users&type=spam'" value="<?php _e('Manage Sploggers', 'wangguard'); ?>" />
+									<input type="button" name="button" class="button-primary" onclick="document.location='admin.php?page=wangguard_users&type=spl'" value="<?php _e('Manage Sploggers', 'wangguard'); ?>" />
 								<?php }?>
 								<input type="submit" name="submit" class="button-primary" value="<?php _e('Finish', 'wangguard'); ?>" />
 							</p>

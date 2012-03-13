@@ -20,7 +20,10 @@ function wangguard_init() {
 		load_plugin_textdomain('wangguard', false, $plugin_dir . "/languages/" );
 	}
 
-	wp_enqueue_script("jquery");
+	if (defined('BP_VERSION')) {
+		if (wangguard_get_option ("wangguard-enable-bp-report-btn")==1)
+			wp_enqueue_script("jquery");
+	}
 
 	wangguard_admin_warnings();
 }
@@ -34,6 +37,7 @@ function wangguard_admin_init() {
 	
 	wp_enqueue_style( 'wangguardCSS', "/" . PLUGINDIR . '/wangguard/wangguard.css' );
 
+	wp_enqueue_script("jquery");
 	wp_enqueue_script("jquery-ui-widget");
 	wp_enqueue_script("raphael" , "/" . PLUGINDIR . '/wangguard/js/raphael.js' , array('jquery-ui-widget'));
 	wp_enqueue_script("wijmo-wijchartcore" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijchartcore.min.js' , array('raphael'));
