@@ -277,7 +277,7 @@ function wangguard_add_hfield_4() {
 	
 	$nonceAct = $wangguard_NonceCName;
 	$nonceValue = wp_create_nonce( $nonceAct );
-	$nonce_field = '<div class="'.$style.'"><input type="checkbox" value="1" id="' . $fieldID . '" name="' . $nonceValue . '" /></div>';
+	$nonce_field = '<div class="'.$style.'"><input type="text" value="" id="' . $fieldID . '" name="' . $nonceValue . '" /></div>';
 	echo $nonce_field;
 }
 
