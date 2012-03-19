@@ -241,7 +241,7 @@ function wangguard_add_hfield_1() {
 	$nonceAct = $wangguard_NonceHName;
 	$nonceValue = wp_create_nonce( $nonceAct );
 	$fieldID = wangguard_randomstring(mt_rand(6,10));
-	$nonce_field = '<input  type="hidden" id="' . $fieldID . '" name="' . $wangguard_HPrefix . $nonceValue . '" value="" />';
+	$nonce_field = '<![if !IE]><input  type="hidden" id="' . $fieldID . '" name="' . $wangguard_HPrefix . $nonceValue . '" value="" /><![endif]>';
 	echo $nonce_field;
 }
 function wangguard_add_hfield_2() {
@@ -249,11 +249,11 @@ function wangguard_add_hfield_2() {
 	
 	$style = wangguard_randomstring(mt_rand(6,10));
 	$fieldID = wangguard_randomstring(mt_rand(6,10));
-	echo '<style type="text/css">.'.$style.' {display:none; visibility:hidden}</style>';
+	echo '<![if !IE]><style type="text/css">.'.$style.' {display:none; visibility:hidden}</style>';
 	
 	$nonceAct = $wangguard_NonceFName;
 	$nonceValue = wp_create_nonce( $nonceAct );
-	$nonce_field = '<div class="'.$style.'"><input type="text" id="' . $fieldID . '" name="' . $wangguard_FPrefix . $nonceValue . '" value="" /></div>';
+	$nonce_field = '<div class="'.$style.'"><input type="text" id="' . $fieldID . '" name="' . $wangguard_FPrefix . $nonceValue . '" value="" /></div><![endif]>';
 	echo $nonce_field;
 }
 function wangguard_add_hfield_3() {
@@ -261,11 +261,11 @@ function wangguard_add_hfield_3() {
 	
 	$style = wangguard_randomstring(mt_rand(6,10));
 	$fieldID = wangguard_randomstring(mt_rand(6,10));
-	echo '<style type="text/css">.'.$style.' {position:absolute; top:-'.mt_rand(1000 , 2000).'px}</style>';
+	echo '<![if !IE]><style type="text/css">.'.$style.' {position:absolute; top:-'.mt_rand(1000 , 2000).'px}</style>';
 	
 	$nonceAct = $wangguard_NoncePName;
 	$nonceValue = wp_create_nonce( $nonceAct );
-	$nonce_field = '<div class="'.$style.'"><label for="'.$nonceValue.'">Write down whats your favorite hobby is (required)</label><br/><input tabindex="'.mt_rand(9999,99999).'" type="text" id="' . $fieldID . '" name="' . $nonceValue . '" value="" /></div>';
+	$nonce_field = '<div class="'.$style.'"><label for="'.$nonceValue.'">Write down whats your favorite hobby is (required)</label><br/><input tabindex="'.mt_rand(9999,99999).'" type="text" id="' . $fieldID . '" name="' . $nonceValue . '" value="" /></div><![endif]>';
 	echo $nonce_field;
 }
 function wangguard_add_hfield_4() {
@@ -273,11 +273,11 @@ function wangguard_add_hfield_4() {
 	
 	$style = wangguard_randomstring(mt_rand(6,10));
 	$fieldID = wangguard_randomstring(mt_rand(6,10));
-	echo '<style type="text/css">.'.$style.' {display:none; visibility:hidden}</style>';
+	echo '<![if !IE]><style type="text/css">.'.$style.' {display:none; visibility:hidden}</style>';
 	
 	$nonceAct = $wangguard_NonceCName;
 	$nonceValue = wp_create_nonce( $nonceAct );
-	$nonce_field = '<div class="'.$style.'"><input type="text" value="" id="' . $fieldID . '" name="' . $nonceValue . '" /></div>';
+	$nonce_field = '<div class="'.$style.'"><input type="text" value="" id="' . $fieldID . '" name="' . $nonceValue . '" /></div><![endif]>';
 	echo $nonce_field;
 }
 
