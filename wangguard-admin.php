@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.4.2
+Version: 1.4.3
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.4.2');
+define('WANGGUARD_VERSION', '1.4.3');
 define('WANGGUARD_PLUGIN_FILE', 'wangguard/wangguard-admin.php');
 define('WANGGUARD_README_URL', 'http://plugins.trac.wordpress.org/browser/wangguard/trunk/readme.txt?format=txt');
 
@@ -286,7 +286,7 @@ function wangguard_add_hfield_4() {
  */
 function wangguard_get_nonce_value($action) {
 	$user = wp_get_current_user();
-	$uid = (int) $user->id;
+	$uid = (int) $user->ID;
 
 	$i = wp_nonce_tick();
 
@@ -694,7 +694,7 @@ function wangguard_question_repliedOK() {
 	
 	
 	//WP 3.2.1 multisite introduces a new two step registration, on step 2 we don't have to check the security question as it was checked in the step 1
-	if ($_POST['stage'] == 'validate-blog-signup') {
+	if (@$_POST['stage'] == 'validate-blog-signup') {
 		if (!wp_verify_nonce($_POST['_signup_form'] , 'signup_form_' . $_POST['signup_form_id']))
 			return false;
 		else
@@ -1956,6 +1956,7 @@ if (wangguard_get_option ("wangguard-enable-bp-report-btn")==1) {
 function wangguard_bp_report_button_header() {
 	global $bp;
 	if (!$bp) return;
+
 	$user_object = new WP_User($bp->displayed_user->id);
 	if (empty ($user_object->ID)) return;
 	if (wangguard_is_admin($user_object)) return;

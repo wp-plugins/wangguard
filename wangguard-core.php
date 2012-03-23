@@ -248,6 +248,9 @@ function wangguard_getRemoteIP() {
  */
 function wangguard_getRemoteProxyIP() {
 	$ipAddress = '';
+	if (!isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+		return $ipAddress;
+	
 	if ($_SERVER['HTTP_X_FORWARDED_FOR'] != "" ) {
 		$ipAddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
 		if (strpos($ipAddress, ',') !== false) {
