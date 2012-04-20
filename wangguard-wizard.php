@@ -227,7 +227,7 @@ function wangguard_wizard() {
 									if (function_exists("update_user_status"))
 										update_user_status($userid, $spamFieldName, 1);	//when flagging the user as spam, the wangguard hook is called to report the user
 									else
-										$wpdb->query( $wpdb->prepare("udpate $wpdb->users set $spamFieldName = 1 where ID = %d" , $userid ) );
+										$wpdb->query( $wpdb->prepare("update $wpdb->users set $spamFieldName = 1 where ID = %d" , $userid ) );
 								}
 
 								$verified++;

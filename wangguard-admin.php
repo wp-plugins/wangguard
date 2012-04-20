@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.4.4
+Version: 1.4.5
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.4.4');
+define('WANGGUARD_VERSION', '1.4.5');
 define('WANGGUARD_PLUGIN_FILE', 'wangguard/wangguard-admin.php');
 define('WANGGUARD_README_URL', 'http://plugins.trac.wordpress.org/browser/wangguard/trunk/readme.txt?format=txt');
 
@@ -552,17 +552,22 @@ function wangguard_register_add_question(){
 		echo $html;}
 		
 		else {
+		
+		
+		
+		 $AppthemeName = get_theme_data( get_template_directory() . '/style.css' );
+       	
 			
-			$SQ4AppTheme = get_current_theme();
+	
 			
-			if ('JobRoller' == $SQ4AppTheme){
+			if ('JobRoller' == $AppthemeName['Title']){
 			$html = '
 			<p>
 				<label>' . $question . '</label><br />
 				<input type="text" name="wangguardquestansw" id="wangguardquestansw" class="input wpreg-wangguardquestansw text" value="" tabindex="26" />
 				<input type="hidden" name="wangguardquest" value="'.$questionID.'" />
 			</p>
-		';} elseif (('ClassiPress' == $SQ4AppTheme) | ('Clipper' == $SQ4AppTheme)) {
+		';} elseif (('ClassiPress' == $AppthemeName['Title']) | ('Clipper' == $AppthemeName['Title'])) {
 			
 			$html = '
 			<p>
@@ -570,7 +575,7 @@ function wangguard_register_add_question(){
 				<input type="text" name="wangguardquestansw" id="wangguardquestansw" class="input wpreg-wangguardquestansw text" value="" tabindex="26" />
 				<input type="hidden" name="wangguardquest" value="'.$questionID.'" />
 			</p>
-		';}  elseif (('Quality Control' == $SQ4AppTheme) | ('Vantage' == $SQ4AppTheme) ){
+		';}  elseif (('Quality Control' == $AppthemeName['Title']) | ('Vantage' == $AppthemeName['Title']) ){
 			
 			$html = '
 			<p>
