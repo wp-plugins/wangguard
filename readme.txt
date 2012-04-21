@@ -290,7 +290,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 = 1.4.5 - 19 Apr 2012 =
 - This is a recommended update
 - Fix a bug in WangGuard wizard (Typo error). Thank to Paul Newsome of [www.nufcblog.org](http://www.nufcblog.org/) for report it.
-- Now Security questions work whit AppThemes Child Themes
+- Now Security questions work with AppThemes Child Themes
 
 = 1.4.4 - 13 Apr 2012 =
 - Fix an issue with all AppThemes, now the WangGuard Security Question are well formatted.
