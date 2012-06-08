@@ -356,7 +356,7 @@ function wangguard_wizard() {
 											$authorcaps = $wpdb->get_var( sprintf("SELECT meta_value as caps FROM $wpdb->users u, $wpdb->usermeta um WHERE u.ID = %d and u.ID = um.user_id AND meta_key = '{$blog_prefix}capabilities'" , $spuserID ));
 
 											$caps = maybe_unserialize( $authorcaps );
-											$userIsAuthor = ( !isset( $caps['subscriber'] ) && !isset( $caps['contributor'] ) );
+											$userIsAuthor = ( isset( $caps['administrator'] ) );
 										}
 
 										//Update blog to spam if the user is the author and its not the main blog

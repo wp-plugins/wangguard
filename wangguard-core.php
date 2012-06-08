@@ -20,10 +20,9 @@ function wangguard_init() {
 		load_plugin_textdomain('wangguard', false, $plugin_dir . "/languages/" );
 	}
 
-	if (defined('BP_VERSION')) {
-		if (wangguard_get_option ("wangguard-enable-bp-report-btn")==1)
-			wp_enqueue_script("jquery");
-	}
+	if ((wangguard_get_option ("wangguard-enable-bp-report-btn")==1) || (wangguard_get_option ("wangguard-enable-bp-report-blog")==1))
+		wp_enqueue_script("jquery");
+
 
 	wangguard_admin_warnings();
 }
@@ -39,8 +38,10 @@ function wangguard_admin_init() {
 
 	wp_enqueue_script("jquery");
 	wp_enqueue_script("jquery-ui-widget");
-	wp_enqueue_script("raphael" , "/" . PLUGINDIR . '/wangguard/js/raphael.js' , array('jquery-ui-widget'));
-	wp_enqueue_script("wijmo-wijchartcore" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijchartcore.min.js' , array('raphael'));
+	wp_enqueue_script("raphael" , "/" . PLUGINDIR . '/wangguard/js/raphael-min.js' , array('jquery-ui-widget'));
+	wp_enqueue_script("globalize" , "/" . PLUGINDIR . '/wangguard/js/globalize.min.js' , array('jquery-ui-widget' , 'raphael'));
+	wp_enqueue_script("wijmo-wijraphael" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.raphael.min.js' , array('raphael' , 'jquery'));
+	wp_enqueue_script("wijmo-wijchartcore" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijchartcore.min.js' , array('raphael' , 'wijmo-wijraphael'));
 	wp_enqueue_script("wijmo.wijbarchart" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijbarchart.min.js' , array('wijmo-wijchartcore'));
 	wp_enqueue_script("wangguard-admin" , "/" . PLUGINDIR . '/wangguard/js/wangguard-admin.js');
 	
@@ -406,7 +407,7 @@ function wangguard_report_users($wpusersRs , $scope="email" , $deleteUser = true
 									$authorcaps = $wpdb->get_var( sprintf("SELECT meta_value as caps FROM $wpdb->users u, $wpdb->usermeta um WHERE u.ID = %d and u.ID = um.user_id AND meta_key = '{$blog_prefix}capabilities'" , $spuserID ));
 									
 									$caps = maybe_unserialize( $authorcaps );
-									$userIsAuthor = ( !isset( $caps['subscriber'] ) && !isset( $caps['contributor'] ) );
+									$userIsAuthor = ( isset( $caps['administrator'] ) );
 								}
 							}
 							
@@ -429,11 +430,35 @@ function wangguard_report_users($wpusersRs , $scope="email" , $deleteUser = true
 			else {
 				global $wpdb;
 
-				//Update the new status
 				$table_name = $wpdb->base_prefix . "wangguarduserstatus";
-				$wpdb->query( $wpdb->prepare("update $table_name set user_status = 'reported' where ID = '%d'" , $spuserID ) );
+				$recordExists = $wpdb->get_var( $wpdb->prepare("select ID from $table_name where ID = %d" , $spuserID) );
+				
+				if ($recordExists) {
+					//Update the new status
+					$table_name = $wpdb->base_prefix . "wangguarduserstatus";
+					$wpdb->query( $wpdb->prepare("update $table_name set user_status = 'reported' where ID = '%d'" , $spuserID ) );
+				}
+				else {
+					//if for some reason user status record doesn't exists, create it
+					
+					//Try to get the user's client IP from which he signed up
+					$table_name = $wpdb->base_prefix . "wangguardsignupsstatus";
+					$clientIP = $wpdb->get_var( $wpdb->prepare("select user_ip from $table_name where signup_username = %s" , $user_object->user_login) );
+					$clientIP = (is_null($clientIP) ? '' : $clientIP);
+					
+					$ProxyIP = $wpdb->get_var( $wpdb->prepare("select user_proxy_ip from $table_name where signup_username = %s" , $user_object->user_login) );
+					$ProxyIP = (is_null($ProxyIP) ? '' : $ProxyIP);
+					
+					//create the record
+					$table_name = $wpdb->base_prefix . "wangguarduserstatus";
+					$wpdb->query( $wpdb->prepare("insert into $table_name(ID , user_status , user_ip , user_proxy_ip) values (%d , 'reported' , '%s' , '%s')" , $spuserID , $clientIP , $ProxyIP ) );
+				}
 			}
 			$usersFlagged[] = $spuserID;
+		}
+		else {
+			//-Admin user-
+			//do nothing
 		}
 	}
 

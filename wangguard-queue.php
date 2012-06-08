@@ -69,7 +69,7 @@ function wangguard_queue() {
 				foreach( (array)$authors as $author ) {
 				
 					$caps = maybe_unserialize( $author->caps );
-					if ( isset( $caps['subscriber'] ) || isset( $caps['contributor'] ) ) continue;
+					if ( !isset( $caps['administrator'] ) ) continue;
 					
 					$authors_ids[] = $author->user_id;
 				}

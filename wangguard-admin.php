@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.4.5
+Version: 1.4.6
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.4.5');
+define('WANGGUARD_VERSION', '1.4.6');
 define('WANGGUARD_PLUGIN_FILE', 'wangguard/wangguard-admin.php');
 define('WANGGUARD_README_URL', 'http://plugins.trac.wordpress.org/browser/wangguard/trunk/readme.txt?format=txt');
 
@@ -1734,8 +1734,8 @@ function wangguard_ajax_callback() {
 			$authorsArray = array();
 			foreach( (array)$authors as $author ) {
 				$caps = maybe_unserialize( $author->caps );
-				if ( isset( $caps['subscriber'] ) || isset( $caps['contributor'] ) ) continue;
-				
+				if ( !isset( $caps['administrator'] ) ) continue;
+
 				$authorsArray[] = $author->user_id;
 			}
 			
@@ -1992,7 +1992,6 @@ if (wangguard_get_option ("wangguard-enable-bp-report-btn")==1) {
 function wangguard_bp_report_button_header() {
 	global $bp;
 	if (!$bp) return;
-
 	$user_object = new WP_User($bp->displayed_user->id);
 	if (empty ($user_object->ID)) return;
 	if (wangguard_is_admin($user_object)) return;
@@ -2103,7 +2102,7 @@ function wangguard_add_bp_admin_bar_menus() {
 	else {
 		if ( $current_blog && (wangguard_get_option("wangguard-enable-bp-report-blog") == 1) ) {
 			if (BP_ROOT_BLOG != $current_blog->blog_id) {
-				echo '<li id="wangguard-report-menu-noop">';
+				echo '<li id="wangguard-report-menu-noop" class="no-arrow">';
 				echo '<a href="javascript:void(0)" class="wangguard-blog-report" rel="'.$current_blog->blog_id.'">';
 				echo __('Report blog and author', 'wangguard') . '</a>';
 				echo '</a>';

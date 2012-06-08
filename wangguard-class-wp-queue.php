@@ -219,7 +219,7 @@ class WangGuard_Queue_Table extends WP_List_Table {
 				
 				$caps = maybe_unserialize( $author->caps );
 
-				if ( isset( $caps['subscriber'] ) || isset( $caps['contributor'] ) ) continue;
+				if ( !isset( $caps['administrator'] ) ) continue;
 				
 				$editauthor_link = esc_url( add_query_arg( 'wp_http_referer', urlencode( stripslashes( $_SERVER['REQUEST_URI'] ) ), "user-edit.php?user_id=" . $author->user_id ) );
 				$authors_links[] = "<a target=\"_blank\" href=\"$editauthor_link\">{$author->user_login}</a>";

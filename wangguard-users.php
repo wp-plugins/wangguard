@@ -75,8 +75,41 @@ function wangguard_users() {
 				if (function_exists('get_blogs_of_user') && function_exists('update_blog_status')) {
 					$blogs = get_blogs_of_user( $spuserID, true );
 					foreach ( (array) $blogs as $key => $details ) {
-						if ( $details->userblog_id != $current_site->blog_id ) // main blog not a spam !
-							update_blog_status( $details->userblog_id, 'spam', '1' );
+						
+						
+//						if ( $details->userblog_id != $current_site->blog_id ) // main blog not a spam !
+//							update_blog_status( $details->userblog_id, 'spam', '1' );
+						$isMainBlog = false;
+						if (isset ($current_site)) {
+							$isMainBlog = ($details->userblog_id != $current_site->blog_id); // main blog not a spam !
+						}
+						elseif (defined("BP_ROOT_BLOG")) {
+							$isMainBlog = ( 1 == $details->userblog_id || BP_ROOT_BLOG == $details->userblog_id );
+						}
+						else
+							$isMainBlog = ($details->userblog_id == 1);
+
+						$userIsAuthor = false;
+						if (!$isMainBlog) {
+							//Only works on WP 3+
+							$blog_prefix = $wpdb->get_blog_prefix( $details->userblog_id );
+							$authorcaps = $wpdb->get_var( sprintf("SELECT meta_value as caps FROM $wpdb->users u, $wpdb->usermeta um WHERE u.ID = %d and u.ID = um.user_id AND meta_key = '{$blog_prefix}capabilities'" , $spuserID ));
+
+							$caps = maybe_unserialize( $authorcaps );
+							$userIsAuthor = ( isset( $caps['administrator'] ) );
+						}
+
+						//Update blog to spam if the user is the author and its not the main blog
+						if ((!$isMainBlog) && $userIsAuthor) {
+							@update_blog_status( $details->userblog_id, 'spam', '1' );
+
+							//remove blog from queue
+							$table_name = $wpdb->base_prefix . "wangguardreportqueue";
+							$wpdb->query( $wpdb->prepare("delete from $table_name where blog_id = '%d'" , $details->userblog_id ) );
+						}
+
+						
+						
 					}
 				}
 				if (function_exists('update_user_status'))

@@ -3,8 +3,8 @@ Contributors: j.conti,maxidirienzo,InTouchSystem
 Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users, ip, ip information, user admin, user management, advanced user management, ip info, appthemes
 Requires at least: 2.8
-Tested up to: 3.3.2
-Stable tag: 1.4.5
+Tested up to: 3.4
+Stable tag: 1.4.6
 License: GPLv2
 
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
@@ -286,6 +286,11 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 
 == Changelog ==
+
+= 1.4.6 - 8 Jun 2012 =
+- Added compatibility for WordPress 3.4.
+- Fixed Report blog and author functionality for WP Multisite menu bar
+- Avoid flagging as spam main the main blog (when using the WANGGUARD USERS SCREEN ONLY), it also flag as spam only the blogs for which the spam user is author or admin (previous version also flagged a blog as spam if the user was only a suscriber).
 
 = 1.4.5 - 19 Apr 2012 =
 - This is a recommended update
