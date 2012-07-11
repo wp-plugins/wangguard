@@ -1,5 +1,5 @@
 <?php
-$wangguard_db_version = 1.4;
+$wangguard_db_version = 1.6;
 
 /********************************************************************/
 /*** INIT & INSTALL BEGINS ***/
@@ -36,15 +36,6 @@ function wangguard_admin_init() {
 	
 	wp_enqueue_style( 'wangguardCSS', "/" . PLUGINDIR . '/wangguard/wangguard.css' );
 
-	wp_enqueue_script("jquery");
-	wp_enqueue_script("jquery-ui-widget");
-	wp_enqueue_script("raphael" , "/" . PLUGINDIR . '/wangguard/js/raphael-min.js' , array('jquery-ui-widget'));
-	wp_enqueue_script("globalize" , "/" . PLUGINDIR . '/wangguard/js/globalize.min.js' , array('jquery-ui-widget' , 'raphael'));
-	wp_enqueue_script("wijmo-wijraphael" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.raphael.min.js' , array('raphael' , 'jquery'));
-	wp_enqueue_script("wijmo-wijchartcore" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijchartcore.min.js' , array('raphael' , 'wijmo-wijraphael'));
-	wp_enqueue_script("wijmo.wijbarchart" , "/" . PLUGINDIR . '/wangguard/js/jquery.wijmo.wijbarchart.min.js' , array('wijmo-wijchartcore'));
-	wp_enqueue_script("wangguard-admin" , "/" . PLUGINDIR . '/wangguard/js/wangguard-admin.js');
-	
 	$version = wangguard_get_option("wangguard_db_version");
 	if (false === $version)
 		$version = get_option("wangguard_db_version");
@@ -67,6 +58,15 @@ function wangguard_install($current_version) {
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
+	
+	$charset_collate = '';
+
+	if ( ! empty($wpdb->charset) )
+		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
+	if ( ! empty($wpdb->collate) )
+		$charset_collate .= " COLLATE $wpdb->collate";
+	
+	
 	$table_name = $wpdb->base_prefix . "wangguardquestions";
 	if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
 
@@ -77,7 +77,7 @@ function wangguard_install($current_version) {
 			RepliedOK INT(11) DEFAULT 0 NOT NULL,
 			RepliedWRONG INT(11) DEFAULT 0 NOT NULL,
 			UNIQUE KEY id (id)
-		);";
+		) $charset_collate;";
 
 		dbDelta($sql);
 	}
@@ -91,7 +91,7 @@ function wangguard_install($current_version) {
 			user_ip VARCHAR(15) NOT NULL,
 			user_proxy_ip VARCHAR(15) NOT NULL,
 			UNIQUE KEY ID (ID)
-		);";
+		) $charset_collate;";
 
 		dbDelta($sql);
 	}
@@ -110,7 +110,7 @@ function wangguard_install($current_version) {
 			KEY ID (ID),
 			KEY blog_id (blog_id),
 			UNIQUE KEY ID_blog (ID , blog_id)
-		);";
+		) $charset_collate;";
 
 		dbDelta($sql);
 	}
@@ -127,7 +127,7 @@ function wangguard_install($current_version) {
 			user_ip VARCHAR(15) NOT NULL,
 			user_proxy_ip VARCHAR(15) NOT NULL,
 			UNIQUE KEY signup_username (signup_username)
-		);";
+		) $charset_collate;";
 
 		dbDelta($sql);
 	}
@@ -140,7 +140,7 @@ function wangguard_install($current_version) {
 			option_name varchar(64) NOT NULL,
 			option_value longtext NOT NULL,			
 			UNIQUE KEY option_name (option_name)
-		);";
+		) $charset_collate;";
 
 		dbDelta($sql);
 	}
@@ -179,6 +179,25 @@ function wangguard_install($current_version) {
 	}
 	
 	
+	if ($current_version < 1.6) {
+		$table_name = $wpdb->base_prefix . "wangguardcronjobs";
+		if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+
+			$sql = "CREATE TABLE " . $table_name . " (
+				id mediumint(9) NOT NULL AUTO_INCREMENT,
+				RunOn VARCHAR(20) NOT NULL,
+				RunAt VARCHAR(5) NOT NULL,
+				Action VARCHAR(1) NOT NULL,
+				UsersTF VARCHAR(1) NOT NULL,
+				LastRun TIMESTAMP NULL,
+				UNIQUE KEY id (id)
+			) $charset_collate;";
+
+			dbDelta($sql);
+		}
+	}
+	
+	
 	//stats array
 	$stats = wangguard_get_option("wangguard_stats");
 	if (!is_array($stats)) {
@@ -196,8 +215,8 @@ function wangguard_install($current_version) {
 	$tmp = wangguard_get_option("wangguard-delete-users-on-report");
 	if (empty ($tmp))
 	 wangguard_update_option ("wangguard-delete-users-on-report", -1);
-
-	//Don't delete users when reporting by default
+	
+	//Verify gmail
 	$tmp = wangguard_get_option("wangguard-verify-gmail");
 	if ($tmp === false)
 	 wangguard_update_option ("wangguard-verify-gmail", 1);
@@ -383,49 +402,8 @@ function wangguard_report_users($wpusersRs , $scope="email" , $deleteUser = true
 
 			if ($deleteUser && current_user_can( 'delete_users' )) {
 
-				if (function_exists("get_blogs_of_user") && function_exists("update_blog_status")) {
-
-					$blogs = @get_blogs_of_user( $spuserID, true );
-					if (is_array($blogs))
-						foreach ( (array) $blogs as $key => $details ) {
-
-							$isMainBlog = false;
-							if (isset ($current_site)) {
-								$isMainBlog = ($details->userblog_id != $current_site->blog_id); // main blog not a spam !
-							}
-							elseif (defined("BP_ROOT_BLOG")) {
-								$isMainBlog = ( 1 == $details->userblog_id || BP_ROOT_BLOG == $details->userblog_id );
-							}
-							else
-								$isMainBlog = ($details->userblog_id == 1);
-							
-							$userIsAuthor = false;
-							if (!$isMainBlog) {
-								//Only works on WP 3+
-								if (method_exists ($wpdb , 'get_blog_prefix')) {
-									$blog_prefix = $wpdb->get_blog_prefix( $details->userblog_id );
-									$authorcaps = $wpdb->get_var( sprintf("SELECT meta_value as caps FROM $wpdb->users u, $wpdb->usermeta um WHERE u.ID = %d and u.ID = um.user_id AND meta_key = '{$blog_prefix}capabilities'" , $spuserID ));
-									
-									$caps = maybe_unserialize( $authorcaps );
-									$userIsAuthor = ( isset( $caps['administrator'] ) );
-								}
-							}
-							
-							//Update blog to spam if the user is the author and its not the main blog
-							if ((!$isMainBlog) && $userIsAuthor) {
-								@update_blog_status( $details->userblog_id, 'spam', '1' );
-								
-								//remove blog from queue
-								$table_name = $wpdb->base_prefix . "wangguardreportqueue";
-								$wpdb->query( $wpdb->prepare("delete from $table_name where blog_id = '%d'" , $details->userblog_id ) );
-							}
-						}
-				}
-
-				if (wangguard_is_multisite () && function_exists("wpmu_delete_user"))
-					wpmu_delete_user($spuserID);
-				else
-					wp_delete_user($spuserID);
+				wangguard_delete_user_and_blogs($spuserID);
+				
 			}
 			else {
 				global $wpdb;
@@ -679,7 +657,7 @@ function wangguard_verify_key( $key, $ip = null ) {
 
 	if ( !is_array($responseArr))
 		return 'failed';
-	elseif ($responseArr['out']['cod'] != '0')
+	elseif (@$responseArr['out']['cod'] != '0')
 		return 'invalid';
 	else
 		return "valid";

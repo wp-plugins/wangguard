@@ -16,7 +16,7 @@ a.wangguard-recheck {
 	font-weight:normal;
 }
 
-.wangguard-delete-question {
+.wangguard-delete-question , .wangguard-delete-cronjob {
 	color: #BC0B0B;
 	font-weight:normal;
 	font-size: 11px;
@@ -39,14 +39,14 @@ a.wangguard-recheck {
 	color: #d54e21;
 }
 
-.wangguard-question {
+.wangguard-question , .wangguard-cronjob {
 	padding: 15px 10px;
 	margin-bottom: 15px;
 	border: 1px solid #d0d0d0;
 	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-#wangguardnewquestionerror {
+#wangguardnewquestionerror , #wangguardnewconjoberror {
 	margin: 15px 0;
 	padding: 10px;
 	font-size: 11px;
@@ -292,9 +292,15 @@ wangguard-confico img {
 	background: url('img/security-bg.png') bottom right no-repeat;
 	padding: 10px 20px 30px;
 }
-#wangguard-conf-settings {
+#wangguard-conf-settings, #wangguard-conf-cron {
 	background: url('img/settings-bg.png') bottom right no-repeat;
 	padding: 10px 20px 70px;
+}
+#wangguard-conf-questions h4 , #wangguard-conf-cron h4 {
+	padding-bottom: 3px;
+	border-bottom: 1px solid #c0c0c0;
+	margin-top: 25px;
+	margin-bottom: 10px;
 }
 #wangguard-conf-domains {
 	background: url('img/blocked-bg.png') bottom right no-repeat;
@@ -412,4 +418,8 @@ wangguard-confico img {
 div.wangguard-user-ip span.wangguard-user-ip-bb {
 	border-bottom: 1px dashed #555555;
 	cursor: pointer;
+}
+.wangguard_select option {
+	padding-left: 4px !important;
+	padding-right: 4px !important;
 }

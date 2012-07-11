@@ -333,48 +333,8 @@ function wangguard_wizard() {
 						foreach ($reportedUsers as $userid) {
 
 							set_time_limit(15);
-
-							if ((function_exists("get_blogs_of_user")) && (method_exists ($wpdb , 'get_blog_prefix'))) {
-								$blogs = get_blogs_of_user( $userid, true );
-								if (is_array($blogs))
-									foreach ( (array) $blogs as $key => $details ) {
-
-										$isMainBlog = false;
-										if (isset ($current_site)) {
-											$isMainBlog = ($details->userblog_id != $current_site->blog_id); // main blog not a spam !
-										}
-										elseif (defined("BP_ROOT_BLOG")) {
-											$isMainBlog = ( 1 == $details->userblog_id || BP_ROOT_BLOG == $details->userblog_id );
-										}
-										else
-											$isMainBlog = ($details->userblog_id == 1);
-
-										$userIsAuthor = false;
-										if (!$isMainBlog) {
-											//Only works on WP 3+
-											$blog_prefix = $wpdb->get_blog_prefix( $details->userblog_id );
-											$authorcaps = $wpdb->get_var( sprintf("SELECT meta_value as caps FROM $wpdb->users u, $wpdb->usermeta um WHERE u.ID = %d and u.ID = um.user_id AND meta_key = '{$blog_prefix}capabilities'" , $spuserID ));
-
-											$caps = maybe_unserialize( $authorcaps );
-											$userIsAuthor = ( isset( $caps['administrator'] ) );
-										}
-
-										//Update blog to spam if the user is the author and its not the main blog
-										if ((!$isMainBlog) && $userIsAuthor) {
-											@update_blog_status( $details->userblog_id, 'spam', '1' );
-
-											//remove blog from queue
-											$table_name = $wpdb->base_prefix . "wangguardreportqueue";
-											$wpdb->query( $wpdb->prepare("delete from $table_name where blog_id = '%d'" , $details->userblog_id ) );
-										}
-									}
-							}
-
-
-							if (wangguard_is_multisite () && function_exists("wpmu_delete_user"))
-								wpmu_delete_user($userid);
-							else
-								wp_delete_user($userid);
+							
+							wangguard_delete_user_and_blogs($userid);
 						}
 
 						?>

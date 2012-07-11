@@ -97,7 +97,7 @@ function wangguard_conf() {
 			$ms[] = 'key_failed';
 		}
 	}
-
+	
 
 	$messages = array(
 		'new_key_empty' => array('class' => 'wangguard-info', 'text' => __('Your key has been cleared.', 'wangguard')),
@@ -175,9 +175,13 @@ function wangguard_conf() {
 				<?php
 				$table_name = $wpdb->base_prefix . "wangguardquestions";
 				$wgquestRs = $wpdb->get_results("select * from $table_name order by id");
-
-				if (!empty ($wgquestRs)) {
-					?><h4><?php _e('Existing security questions', 'wangguard')?></h4><?php
+				?>
+				
+				<h4><?php _e('Existing security questions', 'wangguard')?></h4>				
+				
+				<?php
+				if (empty ($wgquestRs)) {
+					?><div id="wangguard-question-noquestion"><?php _e('No security questions created yet','wangguard')?></div><?php
 				}
 				foreach ($wgquestRs as $question) {?>
 					<div class="wangguard-question" id="wangguard-question-<?php echo $question->id?>">
@@ -201,6 +205,8 @@ function wangguard_conf() {
 			</div>
 
 
+			
+			
 
 
 			<!--WANGGUARD SETTINGS-->
@@ -266,6 +272,11 @@ function wangguard_conf() {
 				</form>
 			</div>
 
+			
+
+
+			
+			
 			
 
 			<!--WANGGUARD BLOCKED DOMAINS-->
