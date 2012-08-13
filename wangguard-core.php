@@ -221,6 +221,11 @@ function wangguard_install($current_version) {
 	if ($tmp === false)
 	 wangguard_update_option ("wangguard-verify-gmail", 1);
 
+	//Do not check client IP addr
+	$tmp = wangguard_get_option("wangguard-do-not-check-client-ip");
+	if ($tmp === false)
+	 wangguard_update_option ("wangguard-do-not-check-client-ip", 0);
+
 	//db version
 	wangguard_update_option("wangguard_db_version", $wangguard_db_version);
 }
@@ -521,8 +526,15 @@ function wangguard_verify_user($user_object) {
 
 	//Get the user's client IP from which he signed up
 	$table_name = $wpdb->base_prefix . "wangguarduserstatus";
-	$clientIP = $wpdb->get_var( $wpdb->prepare("select user_ip from $table_name where ID = %d" , $user_object->ID) );
-	$ProxyIP = $wpdb->get_var( $wpdb->prepare("select user_proxy_ip from $table_name where ID = %d" , $user_object->ID) );
+	
+	if ( wangguard_get_option("wangguard-do-not-check-client-ip")=='1') {
+		$clientIP = '';
+		$ProxyIP = '';
+	}
+	else {
+		$clientIP = $wpdb->get_var( $wpdb->prepare("select user_ip from $table_name where ID = %d" , $user_object->ID) );
+		$ProxyIP = $wpdb->get_var( $wpdb->prepare("select user_proxy_ip from $table_name where ID = %d" , $user_object->ID) );
+	}
 
 	//Rechecks the user agains WangGuard service
 	$response = wangguard_http_post("wg=<in><apikey>$wangguard_api_key</apikey><email>".$user_object->user_email."</email><ip>".$clientIP."</ip><proxyip>".$ProxyIP."</proxyip></in>", 'query-email.php');

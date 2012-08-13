@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users, ip, ip information, user admin, user management, advanced user management, ip info, appthemes
 Requires at least: 2.8
 Tested up to: 3.4
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv2
 
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
@@ -287,10 +287,12 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 == Changelog ==
 
+= 1.5.1 - 9 Aug 2012 =
+- Added the ability to avoid checking the IP address of the users when verifying them against WangGuard service, this option reduces WangGuard effectiveness, but if your new accounts come mostly from the same IP, in the case of colleges, universities or other large institutions, this would prevent WangGuard from flagging the IP address as suspicious.
+
 = 1.5.0 - 11 Jul 2012 =
 - Added WangGuard Cron Jobs to automatically verify your users against WangGuard, and flag or delete users that may not be identified as Sploggers at time they signup and catched later by WangGuard.
 - Tweaked the stats barchar javascript files to include these only in the Dashboard and WangGuard Stats pages in order to avoid collision with other plugins / custom themes.
-
 
 = 1.4.6.1 - 8 Jun 2012 =
 - Added 3 missing JS files.

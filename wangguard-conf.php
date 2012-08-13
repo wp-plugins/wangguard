@@ -55,19 +55,21 @@ function wangguard_conf() {
 
 	} elseif ( isset($_POST['optssave']) ) {
 
-			wangguard_update_option('wangguard-expertmode', $_POST['wangguardexpertmode']=='1' ? 1 : 0 );
+			wangguard_update_option('wangguard-expertmode', @$_POST['wangguardexpertmode']=='1' ? 1 : 0 );
 
-			wangguard_update_option('wangguard-report-posts', $_POST['wangguardreportposts']=='1' ? 1 : 0 );
+			wangguard_update_option('wangguard-report-posts', @$_POST['wangguardreportposts']=='1' ? 1 : 0 );
 
-			wangguard_update_option('wangguard-delete-users-on-report', $_POST['wangguard-delete-users-on-report']=='1' ? 1 : -1 );
+			wangguard_update_option('wangguard-delete-users-on-report', @$_POST['wangguard-delete-users-on-report']=='1' ? 1 : -1 );
 			
-			wangguard_update_option('wangguard-enable-bp-report-btn', $_POST['wangguardenablebpreportbtn']=='1' ? 1 : -1 );
+			wangguard_update_option('wangguard-enable-bp-report-btn', @$_POST['wangguardenablebpreportbtn']=='1' ? 1 : -1 );
 			
-			wangguard_update_option('wangguard-enable-bp-report-blog', $_POST['wangguardenablebpreportblog']=='1' ? 1 : -1 );
+			wangguard_update_option('wangguard-enable-bp-report-blog', @$_POST['wangguardenablebpreportblog']=='1' ? 1 : -1 );
 
-			wangguard_update_option('wangguard-verify-gmail', $_POST['wangguard-verify-gmail']=='1' ? 1 : 0 );
+			wangguard_update_option('wangguard-verify-gmail', @$_POST['wangguard-verify-gmail']=='1' ? 1 : 0 );
 			
-			wangguard_update_option('wangguard-verify-dns-mx', $_POST['wangguard-verify-dns-mx']=='1' ? 1 : 0 );
+			wangguard_update_option('wangguard-verify-dns-mx', @$_POST['wangguard-verify-dns-mx']=='1' ? 1 : 0 );
+
+			wangguard_update_option('wangguard-do-not-check-client-ip', @$_POST['wangguard-do-not-check-client-ip']=='1' ? 1 : 0 );
 
 			$selectedTab = 2;
 			
@@ -260,6 +262,11 @@ function wangguard_conf() {
 							_e("<strong>Warning:</strong> PHP function <strong>getmxrr()</strong> is not available on your server. Contact your server admin to enable it in order to activate this feature." , "wangguard");
 							echo "</div>";
 						} ?>
+					</p>
+
+					<p>
+						<input type="checkbox" name="wangguard-do-not-check-client-ip" id="wangguard-do-not-check-client-ip" value="1" <?php echo wangguard_get_option("wangguard-do-not-check-client-ip")=='1' ? 'checked' : ''?> />
+						<label for="wangguard-do-not-check-client-ip"><?php _e("<strong>Do NOT verify client IP address.</strong><br/>By checking this option, when checking a user, the IP address of the user will not be sent along with the e-mail address to the WangGuard service. Selecting this option reduces WangGuard effectiveness, but if your new accounts come mostly from the same IP, in the case of colleges, universities or other large institutions, this would prevent WangGuard from flagging the IP address as suspicious.", 'wangguard') ?></label>
 					</p>
 
 					<p>

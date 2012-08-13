@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WangGuard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-03 16:32-0300\n"
-"PO-Revision-Date: 2012-07-03 16:40-0300\n"
+"POT-Creation-Date: 2012-08-09 09:54-0300\n"
+"PO-Revision-Date: 2012-08-09 09:56-0300\n"
 "Last-Translator: \n"
 "Language-Team: WangGuard <info@wangguard.com>\n"
 "MIME-Version: 1.0\n"
@@ -25,22 +25,22 @@ msgid "Once a day"
 msgstr "Una vez al día"
 
 #: ../wangguard-admin.php:51
-#: ../wangguard-admin.php:2121
+#: ../wangguard-admin.php:2126
 msgid "Every 3 days"
 msgstr "Cada 3 días"
 
 #: ../wangguard-admin.php:52
-#: ../wangguard-admin.php:2125
+#: ../wangguard-admin.php:2130
 msgid "Every 5 days"
 msgstr "Cada 5 días"
 
 #: ../wangguard-admin.php:53
-#: ../wangguard-admin.php:2129
+#: ../wangguard-admin.php:2134
 msgid "Weekly"
 msgstr "Semanalmente"
 
 #: ../wangguard-admin.php:54
-#: ../wangguard-admin.php:2133
+#: ../wangguard-admin.php:2138
 msgid "Two Weeks"
 msgstr "Dos semanas"
 
@@ -101,301 +101,301 @@ msgstr "<strong>ERROR</strong>: Un alias del email fue encontrado registrado por
 msgid "<strong>ERROR</strong>: WangGuard couldn't find an MX record associated with your email domain."
 msgstr "<strong>ERROR</strong>: WangGuard no ha podido encontrar un registro MX asociado con el dominio de su cuenta de email."
 
-#: ../wangguard-admin.php:733
-#: ../wangguard-admin.php:1289
-#: ../wangguard-admin.php:1337
-#: ../wangguard-admin.php:1386
-#: ../wangguard-admin.php:1473
-#: ../wangguard-admin.php:1513
-#: ../wangguard-admin.php:1954
+#: ../wangguard-admin.php:738
+#: ../wangguard-admin.php:1294
+#: ../wangguard-admin.php:1342
+#: ../wangguard-admin.php:1391
+#: ../wangguard-admin.php:1478
+#: ../wangguard-admin.php:1518
+#: ../wangguard-admin.php:1959
 #: ../wangguard-wizard.php:384
 msgid "Your WangGuard API KEY is invalid."
 msgstr "Su API KEY de WangGuard no es válida."
 
-#: ../wangguard-admin.php:1040
+#: ../wangguard-admin.php:1045
 msgid "Do you confirm to report the user?"
 msgstr "Confirma reportar el usuario?"
 
-#: ../wangguard-admin.php:1063
+#: ../wangguard-admin.php:1068
 msgid "The user was reported."
 msgstr "El usuario ha sido reportado."
 
-#: ../wangguard-admin.php:1083
+#: ../wangguard-admin.php:1088
 msgid "Do you confirm to report the blog and authors?"
 msgstr "Confirma reportar el blog y sus autores?"
 
-#: ../wangguard-admin.php:1106
+#: ../wangguard-admin.php:1111
 msgid "The blog was reported."
 msgstr "El blog ha sido reportado."
 
-#: ../wangguard-admin.php:1269
+#: ../wangguard-admin.php:1274
 msgid "Do you confirm to flag this user as Splogger? This operation is IRREVERSIBLE and will DELETE the user."
 msgstr "¿Confirmas que quieres marcar a este usuario como Splogger? Esta operación es IRREVERSIBLE y el usuario será ELIMINADO."
 
-#: ../wangguard-admin.php:1272
+#: ../wangguard-admin.php:1277
 msgid "Do you confirm to flag this user as Splogger?"
 msgstr "¿Confirmas que quieres marcar a este usuario como Splogger?"
 
-#: ../wangguard-admin.php:1285
-#: ../wangguard-admin.php:1333
-#: ../wangguard-admin.php:1470
-#: ../wangguard-admin.php:1509
+#: ../wangguard-admin.php:1290
+#: ../wangguard-admin.php:1338
+#: ../wangguard-admin.php:1475
+#: ../wangguard-admin.php:1514
 msgid "The selected user couldn't be found on the users table."
 msgstr "El usuario seleccionado no puede ser encontrado en la tabla de usuarios."
 
-#: ../wangguard-admin.php:1293
-#: ../wangguard-admin.php:1341
-#: ../wangguard-admin.php:1390
-#: ../wangguard-admin.php:1476
-#: ../wangguard-admin.php:1517
-#: ../wangguard-conf.php:107
+#: ../wangguard-admin.php:1298
+#: ../wangguard-admin.php:1346
+#: ../wangguard-admin.php:1395
+#: ../wangguard-admin.php:1481
+#: ../wangguard-admin.php:1522
+#: ../wangguard-conf.php:109
 msgid "There was a problem connecting to the WangGuard server. Please check your server configuration."
 msgstr "Hubo un problema conectando con el servidor de WangGuard. Por favor, comprueba la configuración de tu servidor."
 
-#: ../wangguard-admin.php:1306
-#: ../wangguard-admin.php:2298
-#: ../wangguard-core.php:1050
+#: ../wangguard-admin.php:1311
+#: ../wangguard-admin.php:2303
+#: ../wangguard-core.php:1062
 msgid "Reported as Splogger"
 msgstr "Reportado como Splogger"
 
-#: ../wangguard-admin.php:1322
+#: ../wangguard-admin.php:1327
 msgid "Do you confirm to flag this user as safe?"
 msgstr "¿Confirmas que quieres marcar a este usuario como seguro?"
 
-#: ../wangguard-admin.php:1350
-#: ../wangguard-core.php:1059
+#: ../wangguard-admin.php:1355
+#: ../wangguard-core.php:1071
 #: ../wangguard-cronjobs.php:37
 #: ../wangguard-wizard.php:379
 msgid "Checked (forced)"
 msgstr "Verificado (forzado)"
 
-#: ../wangguard-admin.php:1367
+#: ../wangguard-admin.php:1372
 msgid "Do you confirm to flag this blog's author(s) as Splogger(s)? This operation is IRREVERSIBLE and will DELETE the user(s)."
 msgstr "Confirma reportar el blog y sus autores Sploggers? Esta operación es IRREVERSIBLE y los usuarios serán ELIMINADOS."
 
-#: ../wangguard-admin.php:1370
+#: ../wangguard-admin.php:1375
 msgid "Do you confirm to flag this blog's author(s) as Splogger(s)?"
 msgstr "Confirma reportar el blog y sus autores Sploggers?"
 
-#: ../wangguard-admin.php:1382
+#: ../wangguard-admin.php:1387
 msgid "The selected blog couldn't be found."
 msgstr "El blog seleccionado no ha sido encontrado."
 
-#: ../wangguard-admin.php:1406
+#: ../wangguard-admin.php:1411
 msgid "Do you confirm to remove the blog from the Moderation Queue?"
 msgstr "Confirma remover el blog de la cola de moderación?"
 
-#: ../wangguard-admin.php:1427
+#: ../wangguard-admin.php:1432
 msgid "Do you confirm to remove the user from the Moderation Queue?"
 msgstr "Confirma remover el usuario de la cola de moderación?"
 
-#: ../wangguard-admin.php:1455
+#: ../wangguard-admin.php:1460
 msgid "Do you confirm to flag this user domain as Splogger? This operation is IRREVERSIBLE and will DELETE the users that shares this domain."
 msgstr "¿Confirmas que quieres marcar a estos usuarios como Splogger? Esta operación es IRREVERSIBLE y los usuarios serán ELIMINADOS."
 
-#: ../wangguard-admin.php:1458
+#: ../wangguard-admin.php:1463
 msgid "Do you confirm to flag this user domain as Splogger?"
 msgstr "Confirma reportar el dominio como Splogger?"
 
-#: ../wangguard-admin.php:1491
+#: ../wangguard-admin.php:1496
 msgid "There was a problem connecting to your WordPress server."
 msgstr "Hubo un problema conectando con tu servidor de WordPress."
 
-#: ../wangguard-admin.php:1547
+#: ../wangguard-admin.php:1552
 msgid "Do you confirm to delete this question?."
 msgstr "¿Confirmas que quieres eliminar la pregunta?"
 
-#: ../wangguard-admin.php:1587
-#: ../wangguard-conf.php:188
-#: ../wangguard-conf.php:198
+#: ../wangguard-admin.php:1592
+#: ../wangguard-conf.php:190
+#: ../wangguard-conf.php:200
 msgid "Question"
 msgstr "Pregunta"
 
-#: ../wangguard-admin.php:1588
-#: ../wangguard-conf.php:189
-#: ../wangguard-conf.php:200
+#: ../wangguard-admin.php:1593
+#: ../wangguard-conf.php:191
+#: ../wangguard-conf.php:202
 msgid "Answer"
 msgstr "Respuesta"
 
-#: ../wangguard-admin.php:1589
-#: ../wangguard-conf.php:191
+#: ../wangguard-admin.php:1594
+#: ../wangguard-conf.php:193
 msgid "delete question"
 msgstr "eliminar pregunta"
 
-#: ../wangguard-admin.php:1624
+#: ../wangguard-admin.php:1629
 msgid "Do you confirm to delete this cron job?."
 msgstr "¿Confirmas que quieres eliminar la tarea programada?"
 
-#: ../wangguard-admin.php:1680
+#: ../wangguard-admin.php:1685
 msgid "Bulk check Sploggers"
 msgstr "Comprobar Sploggers"
 
-#: ../wangguard-admin.php:1681
+#: ../wangguard-admin.php:1686
 msgid "Bulk report Sploggers"
 msgstr "Reportar como Sploggers"
 
-#: ../wangguard-admin.php:1739
+#: ../wangguard-admin.php:1744
 msgid "Do you confirm to flag the selected users as Sploggers? This operation is IRREVERSIBLE and will DELETE the users."
 msgstr "¿Confirmas que deseas reportar a los usuarios marcados como Sploggers? Esta operación es IRREVERSIBLE y ELIMINARÁ los usuarios."
 
-#: ../wangguard-admin.php:1743
+#: ../wangguard-admin.php:1748
 msgid "Do you confirm to flag the selected users as Sploggers?"
 msgstr "¿Confirmas que deseas reportar a los usuarios marcados como Sploggers?"
 
-#: ../wangguard-admin.php:1959
-#: ../wangguard-admin.php:2190
+#: ../wangguard-admin.php:1964
+#: ../wangguard-admin.php:2195
 #: ../wangguard-cronjobs.php:58
 #: ../wangguard-cronjobs.php:85
 msgid "Action"
 msgstr "Acción"
 
-#: ../wangguard-admin.php:1968
+#: ../wangguard-admin.php:1973
 #, php-format
 msgid "Verifying %d new users since"
 msgstr "Verificando %d nuevos usuarios desde el"
 
-#: ../wangguard-admin.php:2021
+#: ../wangguard-admin.php:2026
 msgid "--- Verified Users ---"
 msgstr "--- Usuarios verificados ---"
 
-#: ../wangguard-admin.php:2024
+#: ../wangguard-admin.php:2029
 msgid "--- Detected Sploggers ---"
 msgstr "--- Sploggers detectados ---"
 
-#: ../wangguard-admin.php:2029
+#: ../wangguard-admin.php:2034
 msgid "No new users to verify since "
 msgstr "No hay nuevos usuarios para verificar desde el"
 
-#: ../wangguard-admin.php:2040
+#: ../wangguard-admin.php:2045
 msgid "Click here to manage users: "
 msgstr "Click aquí para administrar usuarios:"
 
-#: ../wangguard-admin.php:2060
+#: ../wangguard-admin.php:2065
 #, php-format
 msgid "Verified: %d - Sploggers: %d"
 msgstr "Verificados: %d - Sploggers: %d"
 
-#: ../wangguard-admin.php:2188
+#: ../wangguard-admin.php:2193
 #: ../wangguard-cronjobs.php:56
 msgid "Cron Job Code"
 msgstr "Tarea programada núm."
 
-#: ../wangguard-admin.php:2189
+#: ../wangguard-admin.php:2194
 #: ../wangguard-cronjobs.php:57
 #: ../wangguard-cronjobs.php:72
 msgid "Run"
 msgstr "Ejecutar"
 
-#: ../wangguard-admin.php:2191
+#: ../wangguard-admin.php:2196
 #: ../wangguard-cronjobs.php:59
 #: ../wangguard-cronjobs.php:93
 msgid "Check users registered in the last"
 msgstr "Controlar usuarios registrados en la última/los últimos"
 
-#: ../wangguard-admin.php:2192
+#: ../wangguard-admin.php:2197
 #: ../wangguard-cronjobs.php:60
 msgid "Last run"
 msgstr "Última ejecución"
 
-#: ../wangguard-admin.php:2193
+#: ../wangguard-admin.php:2198
 #: ../wangguard-cronjobs.php:61
 msgid "Next run"
 msgstr "Próxima ejecución"
 
-#: ../wangguard-admin.php:2194
+#: ../wangguard-admin.php:2199
 #: ../wangguard-cronjobs.php:62
 msgid "delete cron job"
 msgstr "eliminar tarea programada"
 
-#: ../wangguard-admin.php:2291
-#: ../wangguard-core.php:1044
+#: ../wangguard-admin.php:2296
+#: ../wangguard-core.php:1056
 msgid "No status"
 msgstr "Sin estado"
 
-#: ../wangguard-admin.php:2301
-#: ../wangguard-core.php:1056
+#: ../wangguard-admin.php:2306
+#: ../wangguard-core.php:1068
 msgid "Checked"
 msgstr "Verificado"
 
-#: ../wangguard-admin.php:2304
-#: ../wangguard-core.php:1062
+#: ../wangguard-admin.php:2309
+#: ../wangguard-core.php:1074
 msgid "Error"
 msgstr "Error"
 
-#: ../wangguard-admin.php:2307
-#: ../wangguard-core.php:1047
+#: ../wangguard-admin.php:2312
+#: ../wangguard-core.php:1059
 msgid "Not checked"
 msgstr "No comprobado"
 
-#: ../wangguard-admin.php:2362
-#: ../wangguard-admin.php:2406
-#: ../wangguard-admin.php:2421
-#: ../wangguard-admin.php:2454
-#: ../wangguard-admin.php:2455
+#: ../wangguard-admin.php:2367
+#: ../wangguard-admin.php:2411
+#: ../wangguard-admin.php:2426
+#: ../wangguard-admin.php:2459
+#: ../wangguard-admin.php:2460
 msgid "Report user"
 msgstr "Reportar usuario"
 
-#: ../wangguard-admin.php:2504
-#: ../wangguard-admin.php:2611
-#: ../wangguard-admin.php:2660
-#: ../wangguard-admin.php:2661
+#: ../wangguard-admin.php:2509
+#: ../wangguard-admin.php:2616
+#: ../wangguard-admin.php:2665
+#: ../wangguard-admin.php:2666
 msgid "WangGuard"
 msgstr "WangGuard"
 
-#: ../wangguard-admin.php:2512
-#: ../wangguard-admin.php:2559
-#: ../wangguard-admin.php:2614
-#: ../wangguard-admin.php:2627
+#: ../wangguard-admin.php:2517
+#: ../wangguard-admin.php:2564
+#: ../wangguard-admin.php:2619
+#: ../wangguard-admin.php:2632
 msgid "Report blog and author"
 msgstr "Reportar el blog y autores"
 
-#: ../wangguard-admin.php:2519
-#: ../wangguard-admin.php:2616
-#: ../wangguard-admin.php:2704
+#: ../wangguard-admin.php:2524
+#: ../wangguard-admin.php:2621
+#: ../wangguard-admin.php:2709
 msgid "Users"
 msgstr "Usuarios"
 
-#: ../wangguard-admin.php:2526
-#: ../wangguard-admin.php:2619
-#: ../wangguard-admin.php:2709
+#: ../wangguard-admin.php:2531
+#: ../wangguard-admin.php:2624
+#: ../wangguard-admin.php:2714
 msgid "Moderation Queue"
 msgstr "Cola de moderación"
 
-#: ../wangguard-admin.php:2532
-#: ../wangguard-admin.php:2621
-#: ../wangguard-admin.php:2714
+#: ../wangguard-admin.php:2537
+#: ../wangguard-admin.php:2626
+#: ../wangguard-admin.php:2719
 msgid "Wizard"
 msgstr "Asistente"
 
-#: ../wangguard-admin.php:2537
-#: ../wangguard-admin.php:2622
-#: ../wangguard-admin.php:2717
+#: ../wangguard-admin.php:2542
+#: ../wangguard-admin.php:2627
+#: ../wangguard-admin.php:2722
 msgid "Cron Jobs"
 msgstr "Tareas programadas"
 
-#: ../wangguard-admin.php:2542
-#: ../wangguard-admin.php:2623
-#: ../wangguard-admin.php:2720
+#: ../wangguard-admin.php:2547
+#: ../wangguard-admin.php:2628
+#: ../wangguard-admin.php:2725
 msgid "Stats"
 msgstr "Estadísticas"
 
-#: ../wangguard-admin.php:2547
-#: ../wangguard-admin.php:2624
-#: ../wangguard-admin.php:2701
+#: ../wangguard-admin.php:2552
+#: ../wangguard-admin.php:2629
+#: ../wangguard-admin.php:2706
 msgid "Configuration"
 msgstr "Configuración"
 
-#: ../wangguard-admin.php:2796
+#: ../wangguard-admin.php:2801
 #: ../wangguard-stats.php:14
 #: ../wangguard-stats.php:16
 msgid "WangGuard Stats"
 msgstr "Estadísticas de WangGuard"
 
-#: ../wangguard-admin.php:2796
+#: ../wangguard-admin.php:2801
 msgid "Last 7 days"
 msgstr "Últimos 7 días"
 
-#: ../wangguard-admin.php:2859
+#: ../wangguard-admin.php:2864
 msgid "Click here to access the WangGuard stats"
 msgstr "Click aquí para ver las Estadísticas de WangGuard"
 
@@ -431,30 +431,30 @@ msgstr "Reportar como Splogger"
 
 #: ../wangguard-class-wp-queue.php:125
 #: ../wangguard-class-wp-users.php:158
-#: ../wangguard-core.php:973
-#: ../wangguard-core.php:999
+#: ../wangguard-core.php:985
+#: ../wangguard-core.php:1011
 msgid "Username"
 msgstr "Nombre de usuario"
 
 #: ../wangguard-class-wp-queue.php:126
-#: ../wangguard-core.php:974
+#: ../wangguard-core.php:986
 msgid "Type"
 msgstr "Tipo"
 
 #: ../wangguard-class-wp-queue.php:127
 #: ../wangguard-class-wp-users.php:159
-#: ../wangguard-core.php:975
-#: ../wangguard-core.php:1001
+#: ../wangguard-core.php:987
+#: ../wangguard-core.php:1013
 msgid "E-mail"
 msgstr "E-mail"
 
 #: ../wangguard-class-wp-queue.php:128
-#: ../wangguard-core.php:976
+#: ../wangguard-core.php:988
 msgid "Reported by"
 msgstr "Reportado por"
 
 #: ../wangguard-class-wp-queue.php:129
-#: ../wangguard-core.php:977
+#: ../wangguard-core.php:989
 msgid "Reported on"
 msgstr "Reportado el"
 
@@ -523,17 +523,17 @@ msgid "Delete Users"
 msgstr "Eliminar Usuarios"
 
 #: ../wangguard-class-wp-users.php:160
-#: ../wangguard-core.php:1002
+#: ../wangguard-core.php:1014
 msgid "Signed up on"
 msgstr "Registrado el"
 
 #: ../wangguard-class-wp-users.php:161
-#: ../wangguard-core.php:1003
+#: ../wangguard-core.php:1015
 msgid "User IP"
 msgstr "IP del Usuario"
 
 #: ../wangguard-class-wp-users.php:162
-#: ../wangguard-core.php:1004
+#: ../wangguard-core.php:1016
 msgid "Posts"
 msgstr "Entradas"
 
@@ -562,327 +562,331 @@ msgstr "¿Haciendo trampa?"
 msgid "Blocked domains has been saved."
 msgstr "Los dominios bloqueados han sido guardados."
 
-#: ../wangguard-conf.php:74
+#: ../wangguard-conf.php:76
 msgid "WangGuard settings has been saved."
 msgstr "Las opciones de WangGuard han sido guardadas."
 
-#: ../wangguard-conf.php:103
+#: ../wangguard-conf.php:105
 msgid "Your key has been cleared."
 msgstr "Su API Key ha sido borrada."
 
-#: ../wangguard-conf.php:104
+#: ../wangguard-conf.php:106
 msgid "Your key has been verified!"
 msgstr "Su API Key ha sido verificada!"
 
-#: ../wangguard-conf.php:105
+#: ../wangguard-conf.php:107
 msgid "The key you entered is invalid. Please double-check it."
 msgstr "La API Key ingresada no es válida. Por favor verifíquela."
 
-#: ../wangguard-conf.php:106
+#: ../wangguard-conf.php:108
 msgid "The key you entered could not be verified because a connection to wangguard.com could not be established. Please check your server configuration."
 msgstr "La API Key ingresada no puede ser verificada ya que no es posible establecer una conexión con WangGuard. Por favor, comprueba la configuración de tu servidor."
 
-#: ../wangguard-conf.php:108
+#: ../wangguard-conf.php:110
 #, php-format
 msgid "Please enter an API key. (<a href=\"%s\" style=\"color:#fff\">Get your key here.</a>)"
 msgstr "Por favor, introduce la API Key. (<a href=\"%s\" style=\"color:#fff\">Consigue la API key aquí.</a>)"
 
-#: ../wangguard-conf.php:109
+#: ../wangguard-conf.php:111
 msgid "This key is valid."
 msgstr "Su API Key es válida."
 
-#: ../wangguard-conf.php:110
+#: ../wangguard-conf.php:112
 msgid "The key below was previously validated but a connection to wangguard.com can not be established at this time. Please check your server configuration."
 msgstr "La API key fue validada correctamente pero no se puede establecer una conexión en estos momentos. Por favor, comprueba la configuración de tu servidor."
 
-#: ../wangguard-conf.php:119
+#: ../wangguard-conf.php:121
 msgid "Options saved."
 msgstr "Opciones guardadas."
 
-#: ../wangguard-conf.php:125
+#: ../wangguard-conf.php:127
 msgid "WangGuard Configuration"
 msgstr "Configuración de WangGuard"
 
-#: ../wangguard-conf.php:131
-#: ../wangguard-conf.php:142
-#: ../wangguard-conf.php:146
+#: ../wangguard-conf.php:133
+#: ../wangguard-conf.php:144
+#: ../wangguard-conf.php:148
 msgid "WangGuard API Key"
 msgstr "API Key de WangGuard"
 
-#: ../wangguard-conf.php:132
-#: ../wangguard-conf.php:169
+#: ../wangguard-conf.php:134
 #: ../wangguard-conf.php:171
+#: ../wangguard-conf.php:173
 msgid "Security questions"
 msgstr "Preguntas de seguridad"
 
-#: ../wangguard-conf.php:133
-#: ../wangguard-conf.php:215
-#: ../wangguard-conf.php:224
+#: ../wangguard-conf.php:135
+#: ../wangguard-conf.php:217
+#: ../wangguard-conf.php:226
 msgid "WangGuard settings"
 msgstr "Opciones de WangGuard"
 
-#: ../wangguard-conf.php:134
-#: ../wangguard-conf.php:285
-#: ../wangguard-conf.php:287
+#: ../wangguard-conf.php:136
+#: ../wangguard-conf.php:292
+#: ../wangguard-conf.php:294
 msgid "Blocked domains"
 msgstr "Dominios bloqueados"
 
-#: ../wangguard-conf.php:135
-#: ../wangguard-conf.php:417
-#: ../wangguard-conf.php:421
+#: ../wangguard-conf.php:137
+#: ../wangguard-conf.php:424
+#: ../wangguard-conf.php:428
 msgid "Server Connectivity"
 msgstr "Conectividad del servidor"
 
-#: ../wangguard-conf.php:144
+#: ../wangguard-conf.php:146
 #, php-format
 msgid "For many people, <a href=\"%1$s\">WangGuard</a> will greatly reduce or even completely eliminate the Sploggers you get on your site. If one does happen to get through, simply mark it as Splogger on the Users screen. If you don't have an API key yet, <a href=\"%2$s\" target=\"_new\">get one here</a>."
 msgstr "Para mucha gente, <a href=\"%1$s\">WangGuard</a> reducirá o incluso eliminará totalmente a los Sploggers de sus sitios. Si sucediera que se registrara uno, simplemente márcalo como Splogger en la pantalla de Usuarios. Si aun no tienes una API Key, <a href=\"%2$s\" target=\"_new\">consíguela aquí</a>."
 
-#: ../wangguard-conf.php:150
+#: ../wangguard-conf.php:152
 msgid "<a href=\"http://wangguard.com/faq\" target=\"_new\">What is this?</a>"
 msgstr "<a href=\"http://wangguard.com/faq\" target=\"_new\">¿Qué es esto?</a>"
 
-#: ../wangguard-conf.php:153
+#: ../wangguard-conf.php:155
 msgid "Why might my key be invalid?"
 msgstr "¿Por qué puede no ser válida?"
 
-#: ../wangguard-conf.php:154
+#: ../wangguard-conf.php:156
 msgid "This can mean one of two things, either you copied the key wrong or that the plugin is unable to reach the WangGuard servers, which is most often caused by an issue with your web host around firewalls or similar."
 msgstr "Esto puede ser por dos cosas, has copiado la API key de forma incorrecta o el plugin es incapaz de conectar con el servidor de WangGuard, que suele estar causado por un firewall o similar en tu hosting."
 
-#: ../wangguard-conf.php:160
+#: ../wangguard-conf.php:162
 msgid "Update options &raquo;"
 msgstr "Actuzalizar opciones &raquo;"
 
-#: ../wangguard-conf.php:172
+#: ../wangguard-conf.php:174
 msgid "Security questions are randomly asked on the registration form to prevent automated signups."
 msgstr "Las preguntas de seguridad se muestran de forma aleatoria en el registro del sitio para frenar los registros automatizados."
 
-#: ../wangguard-conf.php:173
+#: ../wangguard-conf.php:175
 msgid "Security questions are optional, it's up to you whether to use them or not."
 msgstr "Las preguntas de seguridad son opcionales, puedes usarlas o no."
 
-#: ../wangguard-conf.php:174
+#: ../wangguard-conf.php:176
 msgid "Create you own security questions from the form below, or delete the questions you don't want anymore."
 msgstr "Crea tus propias preguntas de seguridad en el siguiente formulario o elimina las que ya no desees usar más."
 
-#: ../wangguard-conf.php:180
+#: ../wangguard-conf.php:182
 msgid "Existing security questions"
 msgstr "Preguntas de seguridad existentes"
 
-#: ../wangguard-conf.php:184
+#: ../wangguard-conf.php:186
 msgid "No security questions created yet"
 msgstr "No se han creado preguntas de seguridad aún"
 
-#: ../wangguard-conf.php:190
+#: ../wangguard-conf.php:192
 msgid "Replied OK / Wrong"
 msgstr "Respondidas Bien / Mal"
 
-#: ../wangguard-conf.php:197
+#: ../wangguard-conf.php:199
 msgid "Add a new security question"
 msgstr "Agregar una nueva pregunta de seguridad"
 
-#: ../wangguard-conf.php:202
+#: ../wangguard-conf.php:204
 msgid "Fill in both the question and the answer fields to create a new security question"
 msgstr "Completa los campos de pregunta y respuesta para crear una nueva pregunta de seguridad"
 
-#: ../wangguard-conf.php:204
+#: ../wangguard-conf.php:206
 msgid "Create question &raquo;"
 msgstr "Crear pregunta &raquo;"
 
-#: ../wangguard-conf.php:231
+#: ../wangguard-conf.php:233
 msgid "<strong>Delete users when reporting them to WangGuard.</strong><br/>By checking this option, the users you report as Sploggers will be deleted from your site."
 msgstr "<strong>Eliminar los usuarios al reportarlos a WangGuard.</strong><br/>Al seleccionar esta opción los usuarios que reportes como Sploggers serán eliminados del sitio."
 
-#: ../wangguard-conf.php:237
+#: ../wangguard-conf.php:239
 msgid "<strong>Show the 'report user' button on BuddyPress.</strong><br/>BuddyPress only. By checking this option a link called 'report user' will be shown on each user's activity and profile page."
 msgstr "<strong>Mostrar el botón de \"Reportar usuario\" en BuddyPress.</strong><br/>Solo para BuddyPress. Al seleccionar esta opción un nuevo botón llamado 'Reportar usuario' se mostrará en cada actividad de los usuarios y en la pantalla de perfil."
 
-#: ../wangguard-conf.php:243
+#: ../wangguard-conf.php:245
 msgid "<strong>Show the 'Report blog and author' menu item in the Admin Bar.</strong><br/>By checking this option a new menu item on the Admin Bar called 'Report blog and author' will be shown on each blog."
 msgstr "<strong>Mostrar el item de menú de 'Reportar blog y autor' en la barra de administración.</strong><br/>Al seleccionar esta opción, un nuevo item de menu llamado 'Reportar blog y autor' será mostrado en cada blog."
 
-#: ../wangguard-conf.php:249
+#: ../wangguard-conf.php:251
 msgid "<strong>Check for duplicated gmail.com and googlemail.com emails on sign up.</strong><br/>Checks that duplicated accounts @gmail.com and @googlemail.com accounts doesn't exists, also takes in count that gMail ignores the dots and what's after a + sign on the left side of the @."
 msgstr "<strong>Verificar cuentas duplicadas de emails de gmail.com y googlemail.com en el registro.</strong><br/>Verifica que no existan alias de cuentas registradas en @gmail.com y @googlemail.com al momento de registrarse un usuario, tamibién tiene en cuenta que gMail ignora los puntos y lo que esta luego de un signo + en la parte izquierda de la @."
 
-#: ../wangguard-conf.php:257
+#: ../wangguard-conf.php:259
 msgid "<strong>Check email domains agains the DNS server.</strong><br/>Verifies that an associated Mail eXchange (MX) record exists for the email domain, if the verification fails, the sign up process is stopped. Recommeded for non multi user or BuddyPress WordPress installations. Users may notice a small delay of around 1 or 2 seconds on the sign up process due to the DNS verification."
 msgstr "<strong>Verificar dominios de email contra el servidor DNS.</strong><br/>Verifica que exista un registro Mail eXchange (MX) asociado al dominio del email, si la verificació falla, el proceso de registro no es completado. Recomendado para instalaciones de WordPress no multi usuario o BuddyPress. Los usuarios pueden notar una pequeña demora de alrededor de 1 o 2 segundos en el proceso de registro debido a la verificación de DNS."
 
-#: ../wangguard-conf.php:260
+#: ../wangguard-conf.php:262
 msgid "<strong>Warning:</strong> PHP function <strong>getmxrr()</strong> is not available on your server. Contact your server admin to enable it in order to activate this feature."
 msgstr "<strong>Advertencia:</strong> La función de PHP <strong>getmxrr()</strong> no esta disponible en su servidor. Contacte con su administrador del servidor para activarla y habilitar esta opción."
 
-#: ../wangguard-conf.php:267
+#: ../wangguard-conf.php:269
+msgid "<strong>Do NOT verify client IP address.</strong><br/>By checking this option, when checking a user, the IP address of the user will not be sent along with the e-mail address to the WangGuard service. Selecting this option reduces WangGuard effectiveness, but if your new accounts come mostly from the same IP, in the case of colleges, universities or other large institutions, this would prevent WangGuard from flagging the IP address as suspicious."
+msgstr "<strong>NO verificar la dirección IP de los usuarios.</ strong><br/>Al marcar esta opción, al comprobar un usuario, la dirección IP del mismo no se enviará junto con su dirección de correo electrónico al servicio de WangGuard. Al seleccionar esta opción se reduce la eficacia de WangGuard, pero si sus nuevas cuentas provienen en su mayoría desde el mismo rango de direcciones IP, en el caso de colegios, universidades u otras grandes instituciones, esto impediría que WangGuard marcara estas direcciones IP como sospechosas."
+
+#: ../wangguard-conf.php:274
 msgid "<strong>Ninja mode.</strong><br/>By checking this option no confirmation message will be asked for report operations on the Users manager. Just remember that users gets deleted when reported and the option 'Delete users when reporting them to WangGuard' is selected."
 msgstr "<strong>Modo Ninja.</strong><br/>Al seleccionar esta opción no se pedirá confirmación para las operaciones de reporte en la consola de Usuarios. Recuerda que los usuarios son eliminados una vez reportados si has seleccionado la opción 'Eliminar los usuarios al reportarlos a WangGuard'."
 
-#: ../wangguard-conf.php:270
+#: ../wangguard-conf.php:277
 msgid "Save options &raquo;"
 msgstr "Guardar opciones &raquo;"
 
-#: ../wangguard-conf.php:288
+#: ../wangguard-conf.php:295
 msgid "Here are different domain lists maintained by WangGuard."
 msgstr "A continuación encontrarás diferentes listados de dominios mantenidos por WangGuard."
 
-#: ../wangguard-conf.php:289
+#: ../wangguard-conf.php:296
 msgid "You should never block all domains contained in these listings or no one can register on your site."
 msgstr "Nunca debes bloquear la totalidad de los dominios que figuran en estos listados o nadie podrá registrarse en tu sitio."
 
-#: ../wangguard-conf.php:290
+#: ../wangguard-conf.php:297
 msgid "If a domain is in this list, it is because one or more of its users have used for undesirable activities, but that does not mean they are entirely sploggers."
 msgstr "Si un dominio está en este listado, es por que uno o varios de sus usuarios lo han usado para realizar actividades no deseadas, pero eso no quiere decir que su totalidad sean sploggers."
 
-#: ../wangguard-conf.php:291
+#: ../wangguard-conf.php:298
 msgid "These lists are updated automatically each time you enter this screen."
 msgstr "Estas listas son actualizadas automáticamente cada vez que ingresas a esta pantalla."
 
-#: ../wangguard-conf.php:298
+#: ../wangguard-conf.php:305
 msgid "There was an error while pulling the domains list from WangGuard, please try again later. If the problem persists please contact WangGuard to report it."
 msgstr "Hubo un error al obtener la lista de dominios desde WangGuard, por favor intente nuevamente en unos instantes. Si el problema persiste por favor pongase en contacto con WangGuard."
 
-#: ../wangguard-conf.php:318
+#: ../wangguard-conf.php:325
 #, php-format
 msgid "out of %d domains selected"
 msgstr "de %d dominios seleccionados"
 
-#: ../wangguard-conf.php:328
+#: ../wangguard-conf.php:335
 msgid "select / unselect all domains"
 msgstr "seleccinar todos o ningun dominio"
 
-#: ../wangguard-conf.php:368
+#: ../wangguard-conf.php:375
 msgid "Save blocked domains &raquo;"
 msgstr "Guardar dominios bloqueados &raquo;"
 
-#: ../wangguard-conf.php:425
+#: ../wangguard-conf.php:432
 msgid "Network functions are disabled."
 msgstr "Las funciones de red estan deshabilitadas."
 
-#: ../wangguard-conf.php:426
+#: ../wangguard-conf.php:433
 msgid "Your web host or server administrator has disabled PHP's <code>fsockopen</code> or <code>gethostbynamel</code> functions.  <strong>WangGuard cannot work correctly until this is fixed.</strong>  Please contact your web host or firewall administrator."
 msgstr "Tu hosting o el administrador del servidor a deshabilitado <code>fsockopen</code> o la función <code>gethostbynamel</code> de PHP. <strong>WangGuard no puede funcionar de forma correcta hasta que esto se solucione.</strong> Por favor, contacta con tu hosting o con "
 
-#: ../wangguard-conf.php:435
+#: ../wangguard-conf.php:442
 msgid "Unable to reach some WangGuard servers."
 msgstr "Imposible contactar con alguno de los servidores de WangGuard."
 
-#: ../wangguard-conf.php:436
+#: ../wangguard-conf.php:443
 msgid "A network problem or firewall is blocking some connections from your web server to WangGuard.com.  WangGuard is working but this may cause problems during times of network congestion."
 msgstr "Un problema en la red o un firewall está bloqueando las conexiones desde tu servidor web a WanGuard. WangGuard está funcionando pero esto puede causar problemas en momentos de congestión de red."
 
-#: ../wangguard-conf.php:440
+#: ../wangguard-conf.php:447
 msgid "Unable to reach any WangGuard servers."
 msgstr "No se ha podido conectar con ningún servidor de WangGuard."
 
-#: ../wangguard-conf.php:441
+#: ../wangguard-conf.php:448
 msgid "A network problem or firewall is blocking all connections from your web server to WangGuard.com.  <strong>WangGuard cannot work correctly until this is fixed.</strong>"
 msgstr "Un problema con la red o firewall está bloqueando todas las conexiones desde tu servidor con WangGuard. <strong>WangGuard no puede funcionar de forma correcta hasta que soluciones ente problema.</strong>"
 
-#: ../wangguard-conf.php:445
+#: ../wangguard-conf.php:452
 msgid "All WangGuard servers are available."
 msgstr "Todos los servidores de WangGuard estas disponibles."
 
-#: ../wangguard-conf.php:446
+#: ../wangguard-conf.php:453
 msgid "WangGuard is working correctly.  All servers are accessible."
 msgstr "WangGuard está funcionando correctamente. Todos los servidores son accesibles."
 
-#: ../wangguard-conf.php:451
+#: ../wangguard-conf.php:458
 msgid "Unable to find WangGuard servers."
 msgstr "No se han encontrado servidores de WangGuard."
 
-#: ../wangguard-conf.php:452
+#: ../wangguard-conf.php:459
 msgid "A DNS problem or firewall is preventing all access from your web server to wangguard.com.  <strong>WangGuard cannot work correctly until this is fixed.</strong>"
 msgstr "Un problema de DNS o firewall no permite el acceso desde tu sitio a los servidores de wangguard.com. <strong>WangGuard no puede funcionar de forma correcta hasta que se solucione.</strong>"
 
-#: ../wangguard-conf.php:461
+#: ../wangguard-conf.php:468
 msgid "WangGuard server"
 msgstr "Servidores de WangGuard"
 
-#: ../wangguard-conf.php:462
+#: ../wangguard-conf.php:469
 msgid "Network Status"
 msgstr "Estado de la red"
 
-#: ../wangguard-conf.php:471
+#: ../wangguard-conf.php:478
 msgid "No problems"
 msgstr "Sin problemas"
 
-#: ../wangguard-conf.php:471
+#: ../wangguard-conf.php:478
 msgid "Obstructed"
 msgstr "Obstruído"
 
-#: ../wangguard-conf.php:480
+#: ../wangguard-conf.php:487
 #, php-format
 msgid "Last checked %s ago."
 msgstr "Verificado por última vez hace %s."
 
-#: ../wangguard-conf.php:481
+#: ../wangguard-conf.php:488
 msgid "Check network status &raquo;"
 msgstr "Verificar estado de red &raquo;"
 
-#: ../wangguard-core.php:242
+#: ../wangguard-core.php:247
 msgid "Settings"
 msgstr "Opciones"
 
-#: ../wangguard-core.php:842
+#: ../wangguard-core.php:854
 msgid "WangGuard is almost ready."
 msgstr "WangGuard está casi listo."
 
-#: ../wangguard-core.php:842
+#: ../wangguard-core.php:854
 #, php-format
 msgid "You must <a href=\"%1$s\">enter your WangGuard API key</a> for it to work."
 msgstr "Debes <a href=\"%1$s\">introducir la API key de WangGuard</a> para que funcione."
 
-#: ../wangguard-core.php:859
+#: ../wangguard-core.php:871
 msgid "WangGuard has detected a problem."
 msgstr "WangGuard ha detectado un problema."
 
-#: ../wangguard-core.php:859
+#: ../wangguard-core.php:871
 #, php-format
 msgid "A server or network problem is preventing WangGuard from working correctly.  <a href=\"%1$s\">Click here for more information</a> about how to fix the problem."
 msgstr "Un servidor o un problema con la red está impidiendo que WangGuard funcione de forma correcta. <a href=\"%1$s\">Clic aquí para más información</a> de cómo arreglar este problema."
 
-#: ../wangguard-core.php:900
+#: ../wangguard-core.php:912
 msgid "These are the improvements of the new version"
 msgstr "Estas son las mejoras de la nueva versión (solo inglés)"
 
-#: ../wangguard-core.php:948
+#: ../wangguard-core.php:960
 #, php-format
 msgid "WangGuard has checked %d users, and detected %d Sploggers."
 msgstr "WangGuard ha comprobado %d usuarios y ha detectado a %d Sploggers."
 
-#: ../wangguard-core.php:978
-#: ../wangguard-core.php:1006
-#: ../wangguard-core.php:1028
+#: ../wangguard-core.php:990
+#: ../wangguard-core.php:1018
+#: ../wangguard-core.php:1040
 msgid "WangGuard Status"
 msgstr "Estado de WangGuard"
 
-#: ../wangguard-core.php:1000
+#: ../wangguard-core.php:1012
 msgid "Name"
 msgstr "Nombre"
 
-#: ../wangguard-core.php:1005
+#: ../wangguard-core.php:1017
 msgid "Sites"
 msgstr "Sitios"
 
-#: ../wangguard-core.php:1053
+#: ../wangguard-core.php:1065
 msgid "Automatically reported as Splogger"
 msgstr "Reportado automáticamente como Splogger"
 
-#: ../wangguard-core.php:1081
+#: ../wangguard-core.php:1093
 msgid "Not a Splogger"
 msgstr "No es Splogger"
 
-#: ../wangguard-core.php:1084
-#: ../wangguard-core.php:1131
+#: ../wangguard-core.php:1096
+#: ../wangguard-core.php:1143
 msgid "Splogger"
 msgstr "Splogger"
 
-#: ../wangguard-core.php:1089
+#: ../wangguard-core.php:1101
 msgid "Recheck"
 msgstr "Verificar"
 
-#: ../wangguard-core.php:1090
+#: ../wangguard-core.php:1102
 msgid "Open Web"
 msgstr "Visitar web"
 
