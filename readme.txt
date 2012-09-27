@@ -22,7 +22,7 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 1,742,000 Splogger/unwanted users blocked in just 8 months!
+Over 3,400,000 Splogger/unwanted users blocked in just 1 year and half!
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
