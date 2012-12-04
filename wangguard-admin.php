@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.5.1
+Version: 1.5.2
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.5.1');
+define('WANGGUARD_VERSION', '1.5.2');
 define('WANGGUARD_PLUGIN_FILE', 'wangguard/wangguard-admin.php');
 define('WANGGUARD_README_URL', 'http://plugins.trac.wordpress.org/browser/wangguard/trunk/readme.txt?format=txt');
 
@@ -910,7 +910,7 @@ function wangguard_plugin_user_register($userid) {
 	$table_name = $wpdb->base_prefix . "wangguarduserstatus";
 
 	$user_status = $wpdb->get_var( $wpdb->prepare("select ID from $table_name where ID = %d" , $userid));
-	if ($user_status == null)
+	if (is_null($user_status))
 		//insert the new status
 		$wpdb->query( $wpdb->prepare("insert into $table_name(ID , user_status , user_ip , user_proxy_ip) values (%d , '%s' , '%s' , '%s')" , $userid , $wangguard_user_check_status , wangguard_getRemoteIP() , wangguard_getRemoteProxyIP() ) );
 	else
@@ -1929,16 +1929,19 @@ function wangguard_cronjob_runner($cronid) {
 		$spamFieldName = "user_status";
 	}
 	
-	
+
+	//get job ID
 	$cronid = (int)$cronid;
 	$cronjobs_table_name = $wpdb->base_prefix . "wangguardcronjobs";
 	$wgcron = $wpdb->get_results("select * from $cronjobs_table_name where id = $cronid");
 
 
+	
 	if (!isset($wgcron[0]))
 		return;
 	
 
+	
 	//init vars
 	$cronjob = $wgcron[0];
 	$checkedUsers = $detectedSploggers = 0;
@@ -1947,10 +1950,26 @@ function wangguard_cronjob_runner($cronid) {
 	$message = 'WangGuard Cron Job # '.$cronid . "\n\n";
 
 
-	//reeschedule the job at the configured time
+	//setup cron args
 	$args = array((int)$cronjob->id);
-	wp_schedule_single_event( wangguard_get_next_schedule($cronjob->RunOn , $cronjob->RunAt ), 'wangguard_cronjob_runner' , $args);	
+
 	
+	//delete the job, prevents being locked and runned again, WP should re schedule it
+	$timestamp = wp_next_scheduled( 'wangguard_cronjob_runner' , $args );
+    wp_unschedule_event($timestamp, 'wangguard_cronjob_runner' , $args );
+	
+	//store last run time
+	$wpdb->query("update $cronjobs_table_name set LastRun = CURRENT_TIMESTAMP where id = $cronid");
+
+	
+	
+	//re schedule the job at the configured time
+	$timestampNextRun = wangguard_get_next_schedule($cronjob->RunOn , $cronjob->RunAt );
+	wp_schedule_single_event( $timestampNextRun, 'wangguard_cronjob_runner' , $args);	
+
+	
+	$humanizedNextRun = date(get_option('date_format') . ' ' . get_option('time_format'), $timestampNextRun);
+
 	
 	//api key is valid?
 	$valid = wangguard_verify_key($wangguard_api_key);
@@ -2035,19 +2054,16 @@ function wangguard_cronjob_runner($cronid) {
 		}
 	}
 	
-
+	
 	//bottom link
 	$urlFunc = "admin_url";
 	if ($wangguard_is_network_admin && function_exists("network_admin_url"))
 		$urlFunc = "network_admin_url";
 
 	$site_url = $urlFunc( "admin.php?page=wangguard_users" );
+	$message .= "\n\n" . __("Next run","wangguard") . $humanizedNextRun;
 	$message .= "\n\n" . __("Click here to manage users: ","wangguard") . "\n" . $site_url;
 	$message .= "\n\nWangGuard - www.wangguard.com";
-	
-	
-	//store last run time
-	$wpdb->query("update $cronjobs_table_name set LastRun = CURRENT_TIMESTAMP where id = $cronid");
 	
 	
 	//Notify admin
@@ -2113,8 +2129,11 @@ function wangguard_delete_user_and_blogs($userid) {
 
 	if (wangguard_is_multisite () && function_exists("wpmu_delete_user"))
 		wpmu_delete_user($userid);
-	else
+	else {
+		if (!function_exists('wp_delete_user'))
+			@include_once( ABSPATH . 'wp-admin/includes/user.php' );
 		wp_delete_user($userid);
+	}
 }
 
 
@@ -2659,7 +2678,7 @@ function wangguard_add_admin_menu() {
 	if ( !is_super_admin() )
 		return false;
 
-	global $menu, $admin_page_hooks, $_registered_pages , $wpdb;
+	global $menu, $admin_page_hooks, $_registered_pages , $wpdb , $wangguard_api_key;
 
 	$params = array(
 		'page_title' => __( 'WangGuard', 'wangguard' ),
@@ -2693,10 +2712,18 @@ function wangguard_add_admin_menu() {
 	$_registered_pages[$hookname] = true;
 
 	$countSpan = "";
-	$table_name = $wpdb->base_prefix . "wangguardreportqueue";
-	$Count = $wpdb->get_col( "select count(*) as q from $table_name" );
-	if ($Count[0] > 0)
-		$countSpan = '<span class="update-plugins" ><span class="pending-count">'.$Count[0].'</span></span>';
+	$table_name = $wpdb->base_prefix . "wangguardreportqueue"; 
+
+	$doCount = true;
+	
+	if (empty($wangguard_api_key))
+		$doCount = $wpdb->get_var("show tables like '$table_name'") == $table_name;
+		
+	if ($doCount) {
+		$Count = $wpdb->get_col( "select count(*) as q from $table_name" );
+		if ($Count[0] > 0)
+			$countSpan = '<span class="update-plugins" ><span class="pending-count">'.$Count[0].'</span></span>';
+	}
 	
 	
 	@include_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );

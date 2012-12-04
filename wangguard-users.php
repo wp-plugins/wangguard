@@ -22,12 +22,16 @@ function wangguard_users() {
 			if (!wp_verify_nonce($_REQUEST['_wpnonce'], "bulk-users" )) die("bad nonce");
 			//report selected users
 			$reportedUsers = 0;
-			$users = (array)$_REQUEST['users'];
+			$users = (array)@$_REQUEST['users'];
 
 			if (wangguard_is_multisite () && function_exists("wpmu_delete_user"))
 				$delFunc = 'wpmu_delete_user';
-			else
+			else {
+				if (!function_exists('wp_delete_user'))
+					@include_once( ABSPATH . 'wp-admin/includes/user.php' );
+				
 				$delFunc = 'wp_delete_user';
+			}
 
 			$deletedUsers = 0;
 			foreach ($users as $spuserID) {

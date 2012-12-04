@@ -24,19 +24,31 @@ function wangguard_init() {
 		wp_enqueue_script("jquery");
 
 
+	if (wangguard_get_option('wangguard_disable-meta-header') == 1)
+		remove_action('wp_head', 'wp_generator');
+	
 	wangguard_admin_warnings();
 }
 add_action('init', 'wangguard_init');
 
 
 
+function wangguard_activate() {
+	wangguard_admin_init();
+}
+register_activation_hook( 'wangguard/wangguard-admin.php', 'wangguard_activate' );
+
+
 //Admin init function
 function wangguard_admin_init() {
-	global $wangguard_db_version;
+	global $wangguard_db_version , $wpdb;
 	
 	wp_enqueue_style( 'wangguardCSS', "/" . PLUGINDIR . '/wangguard/wangguard.css' );
 
-	$version = wangguard_get_option("wangguard_db_version");
+	$table_name = $wpdb->base_prefix . "wangguardoptions";
+	$optionsTableCreated = ($wpdb->get_var("show tables like '$table_name'") == $table_name);
+	$version = $optionsTableCreated ? wangguard_get_option("wangguard_db_version") : false;
+	
 	if (false === $version)
 		$version = get_option("wangguard_db_version");
 	
@@ -167,7 +179,7 @@ function wangguard_install($current_version) {
 		delete_option("wangguard-enable-bp-report-blog");
 	}
 	
-	if ($current_version < 1.4) {
+	if ($current_version && ($current_version < 1.4)) {
 		$table_name = $wpdb->base_prefix . "wangguarduserstatus";
 		$sql = "ALTER TABLE " . $table_name . " ADD user_proxy_ip VARCHAR(15) NOT NULL;";
 		@$wpdb->query($sql);
@@ -567,9 +579,13 @@ function wangguard_verify_user($user_object) {
 
 //get option from the main blog's options table
 function wangguard_get_option($option) {
-	global $wpdb;
-	
+	global $wpdb , $wangguard_api_key;
+
 	$table_name = $wpdb->base_prefix . "wangguardoptions";
+
+	if (empty($wangguard_api_key) && ($wpdb->get_var("show tables like '$table_name'") != $table_name))
+		return false;
+		
 	
 	$row = $wpdb->get_row( $wpdb->prepare( "SELECT option_value FROM {$table_name} WHERE option_name = %s LIMIT 1", $option ) );
 	

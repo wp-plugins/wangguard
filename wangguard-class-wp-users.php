@@ -85,7 +85,7 @@ class WangGuard_Users_Table extends WP_List_Table {
 
 		
 		//Total users
-		$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $wpdb->users where 1=1"));
+		$Count = $wpdb->get_col( "select count(*) as q from $wpdb->users where 1=1");
 		$total_users = $Count[0];
 		
 		$class = empty($requestType) ? ' class="current"' : '';
@@ -98,11 +98,11 @@ class WangGuard_Users_Table extends WP_List_Table {
 		$wgLegitimateSQL = " AND EXISTS (select user_status from $table_name where $table_name.ID = {$wpdb->users}.ID and $table_name.user_status IN ( 'checked', 'force-checked' ))";
 		
 		if (wangguard_is_multisite())
-			$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $wpdb->users where $wpdb->users.user_status <> 1 AND $wpdb->users.spam = 0" . $wgLegitimateSQL));
+			$Count = $wpdb->get_col( "select count(*) as q from $wpdb->users where $wpdb->users.user_status <> 1 AND $wpdb->users.spam = 0" . $wgLegitimateSQL);
 		elseif (defined( 'BP_VERSION' ))
-			$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $wpdb->users where $wpdb->users.user_status <> 1" . $wgLegitimateSQL));
+			$Count = $wpdb->get_col( "select count(*) as q from $wpdb->users where $wpdb->users.user_status <> 1" . $wgLegitimateSQL);
 		else 
-			$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $wpdb->users where $wpdb->users.user_status <> 1" . $wgLegitimateSQL));
+			$Count = $wpdb->get_col( "select count(*) as q from $wpdb->users where $wpdb->users.user_status <> 1" . $wgLegitimateSQL);
 		
 		$legitimate_users = $Count[0];
 		
@@ -114,9 +114,9 @@ class WangGuard_Users_Table extends WP_List_Table {
 		//Spam users, only BP or MS
 		if (wangguard_is_multisite() || defined( 'BP_VERSION' )) {
 			if (wangguard_is_multisite())
-				$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $wpdb->users where $wpdb->users.user_status = 1 OR $wpdb->users.spam = 1"));
+				$Count = $wpdb->get_col( "select count(*) as q from $wpdb->users where $wpdb->users.user_status = 1 OR $wpdb->users.spam = 1");
 			else
-				$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $wpdb->users where $wpdb->users.user_status = 1"));
+				$Count = $wpdb->get_col( "select count(*) as q from $wpdb->users where $wpdb->users.user_status = 1");
 			$spam_users = $Count[0];
 			
 			$class = ($requestType == "spam") ? ' class="current"' : '';
@@ -126,7 +126,7 @@ class WangGuard_Users_Table extends WP_List_Table {
 		
 		//Sploggers users
 		$table_name = $wpdb->base_prefix . "wangguarduserstatus";
-		$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $wpdb->users where EXISTS (select user_status from $table_name where $table_name.ID = {$wpdb->users}.ID and $table_name.user_status IN ( 'reported', 'autorep' ))"));
+		$Count = $wpdb->get_col( "select count(*) as q from $wpdb->users where EXISTS (select user_status from $table_name where $table_name.ID = {$wpdb->users}.ID and $table_name.user_status IN ( 'reported', 'autorep' ))");
 		$splog_users = $wangguard_g_splog_users_count = $Count[0];
 		
 		$class = ($requestType == "spl") ? ' class="current"' : '';

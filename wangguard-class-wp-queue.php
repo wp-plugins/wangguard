@@ -79,10 +79,10 @@ class WangGuard_Queue_Table extends WP_List_Table {
 			$requestType = $_REQUEST['type'];
 		
 		$table_name = $wpdb->base_prefix . "wangguardreportqueue";
-		$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $table_name where ID IS NOT NULL"));
+		$Count = $wpdb->get_col( "select count(*) as q from $table_name where ID IS NOT NULL");
 		$total_users = $Count[0];
 
-		$Count = $wpdb->get_col( $wpdb->prepare("select count(*) as q from $table_name where blog_id IS NOT NULL"));
+		$Count = $wpdb->get_col( "select count(*) as q from $table_name where blog_id IS NOT NULL");
 		$total_blogs = $Count[0];
 
 		$class = empty($requestType) ? ' class="current"' : '';

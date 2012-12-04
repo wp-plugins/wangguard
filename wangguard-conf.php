@@ -67,6 +67,8 @@ function wangguard_conf() {
 
 			wangguard_update_option('wangguard-verify-gmail', @$_POST['wangguard-verify-gmail']=='1' ? 1 : 0 );
 			
+			wangguard_update_option('wangguard_disable-meta-header', @$_POST['wangguard_disable-meta-header']=='1' ? 1 : 0 );
+			
 			wangguard_update_option('wangguard-verify-dns-mx', @$_POST['wangguard-verify-dns-mx']=='1' ? 1 : 0 );
 
 			wangguard_update_option('wangguard-do-not-check-client-ip', @$_POST['wangguard-do-not-check-client-ip']=='1' ? 1 : 0 );
@@ -249,6 +251,11 @@ function wangguard_conf() {
 					<p>
 						<input type="checkbox" name="wangguard-verify-gmail" id="wangguard-verify-gmail" value="1" <?php echo wangguard_get_option("wangguard-verify-gmail")=='1' ? 'checked' : ''?> />
 						<label for="wangguard-verify-gmail"><?php _e("<strong>Check for duplicated gmail.com and googlemail.com emails on sign up.</strong><br/>Checks that duplicated accounts @gmail.com and @googlemail.com accounts doesn't exists, also takes in count that gMail ignores the dots and what's after a + sign on the left side of the @.", 'wangguard') ?></label>
+					</p>
+
+					<p>
+						<input type="checkbox" name="wangguard_disable-meta-header" id="wangguard_disable-meta-header" value="1" <?php echo wangguard_get_option("wangguard_disable-meta-header")=='1' ? 'checked' : ''?> />
+						<label for="wangguard_disable-meta-header"><?php _e("<strong>Remove the generator META tag.</strong><br/>By checking this option, WangGuard will remove the generator META tag from the generated pages of your site, this will prevent automated bots to easilly identify a WordPress site by looking at this META tag.", 'wangguard') ?></label>
 					</p>
 
 					<?php 
