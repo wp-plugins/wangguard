@@ -24,7 +24,6 @@ function wangguard_cronjobs() {
 	if ( !current_user_can('level_10') )
 		die(__('Cheatin&#8217; uh?', 'wangguard'));
 	
-	
 	?>
 
 <div class="wrap" id="wangguard-wizard-cont">

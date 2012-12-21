@@ -577,6 +577,53 @@ function wangguard_verify_user($user_object) {
 	return $user_check_status;
 }
 
+
+
+/**
+ * wangguard_verify_email: takes a WP_User object and checks its status against WangGuard service, possible responses are:
+ * 
+ * @param string $email: e-mail address to check
+ * @param string $clientIP: client IP
+ * @param string $proxyIP: client proxy ip if available - use the wangguard_getRemoteProxyIP() function to get the client proxy ip
+ * @return string:
+ * not-checked : user was not checked, admins aren't checked, also replied when a WangGuard server error occurs
+ * reported : user is reported on WangGuard
+ * checked : user isn't reported on WangGuard
+ * error:XXX : WangGuard server replied with an error code (mostly protocol issues)
+ */
+function wangguard_verify_email($email , $clientIP , $proxyIP = '') {
+	global $wangguard_api_key;
+	
+	$user_check_status = "not-checked";
+
+	wangguard_stats_update("check");
+
+	if ( wangguard_get_option("wangguard-do-not-check-client-ip")=='1') {
+		$clientIP = '';
+		$proxyIP = '';
+	}
+
+	//Rechecks the user agains WangGuard service
+	$response = wangguard_http_post("wg=<in><apikey>$wangguard_api_key</apikey><email>".$email."</email><ip>".$clientIP."</ip><proxyip>".$proxyIP."</proxyip></in>", 'query-email.php');
+	$responseArr = XML_unserialize($response);
+	if ( is_array($responseArr)) {
+		if (($responseArr['out']['cod'] == '10') || ($responseArr['out']['cod'] == '11')) {
+			$user_check_status = 'reported';
+			wangguard_stats_update("detected");
+		}
+		else {
+			if ($responseArr['out']['cod'] == '20') {
+				$user_check_status = 'checked';
+			}
+			else {
+				$user_check_status = 'error:'.$responseArr['out']['cod'];
+			}
+		}
+	}
+
+	return $user_check_status;
+}
+
 //get option from the main blog's options table
 function wangguard_get_option($option) {
 	global $wpdb , $wangguard_api_key;
