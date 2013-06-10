@@ -91,7 +91,14 @@ class WangGuard_Users_Table extends WP_List_Table {
 		$class = empty($requestType) ? ' class="current"' : '';
 		$total['all'] = "<a href='$url'$class>" . sprintf( __( 'All Members <span class="count">(%s)</span>' , $total_users, 'wangguard' ), number_format_i18n( $total_users ) ) . '</a>';
 		
-
+		//Unchecked users
+		$table_name = $wpdb->base_prefix . "wangguarduserstatus";
+		$Count = $wpdb->get_col( "select count(*) as q from $wpdb->users where EXISTS (select user_status from $table_name where $table_name.ID = {$wpdb->users}.ID and $table_name.user_status IN ( '', 'not-checked' ))");
+		$uncheked_users = $wangguard_g_unchecked_users_count = $Count[0];
+			
+		$class = ($requestType == "uncheked") ? ' class="current"' : '';
+		$total['uncheked'] = "<a href='" . add_query_arg( 'type', "uncheked", $url ) . "'$class>".sprintf( __( 'Unchecked Users <span class="count">(%s)</span>' , 'wangguard'), number_format_i18n( $uncheked_users ) )."</a>";
+		
 		
 		//Legitimate users
 		$table_name = $wpdb->base_prefix . "wangguarduserstatus";
@@ -122,6 +129,8 @@ class WangGuard_Users_Table extends WP_List_Table {
 			$class = ($requestType == "spam") ? ' class="current"' : '';
 			$total['spam'] = "<a href='" . add_query_arg( 'type', "spam", $url ) . "'$class>".sprintf( __( 'Spammers <span class="count">(%s)</span>' , 'wangguard'), number_format_i18n( $spam_users ) )."</a>";
 		}
+		
+		
 		
 		
 		//Sploggers users
@@ -155,6 +164,7 @@ class WangGuard_Users_Table extends WP_List_Table {
 	function get_columns() {
 		$c = array(
 			'cb'		=> '<input type="checkbox" />',
+			// This will be the next ;-) 'info'		=> __( 'Info' ),
 			'username'	=> __( 'Username' ),
 			'email'		=> __( 'E-mail' ),
 			'user_registered'=> __( 'Signed up on' , 'wangguard' ),
@@ -211,7 +221,7 @@ class WangGuard_Users_Table extends WP_List_Table {
 			
 			// Set up the hover actions for this user
 			$actions['edituser'] = "<a href='{$user_editobj_link}' target='_blank'>" . __( 'Edit user', 'wangguard' ) . "</a>";
-			$actions['bpprofile'] = "<a href='{$editobj_link}' target='_blank'>" . __( 'BP Profile', 'wangguard' ) . "</a>";
+			$actions['bpprofile'] = "<a href='{$editobj_link}?TB_iframe=true&width=900&height=550' class='thickbox'>" . __( 'BP Profile', 'wangguard' ) . "</a>";
 			$report = "<strong><a target=\"_blank\" href=\"$editobj_link\">{$row_data->user_login}</a></strong><br />";
 		}
 		else {
@@ -252,6 +262,9 @@ class WangGuard_Users_Table extends WP_List_Table {
 				case 'cb':
 					$r .= "<th scope='row' class='check-column'>$checkbox</th>";
 					break;
+			// This will be the next ;-) 	case 'info':
+			// This will be the next ;-) 		$r .= "<td  width='25'><a title='" . __( 'Info about','wangguard') . "  $row_data->first_name $row_data->last_name' href='" . plugins_url( 'img/info-wgg.png' , __FILE__ ) . "'><img class='alignnone size-full wp-image-2055' alt='Info about $row_data->first_name $row_data->last_name' src='http://XXXXXXXXXXXXXXXXXX' width='15' height='15' /> " . __('User Info', 'wangguard' ) . "</a>";
+			// This will be the next ;-) 		break;
 				case 'username':
 					$r .= "<td $attributes>$avatar $report <span style='font-size:11px'>{$role}" . ($actions ? $this->row_actions( $actions ) : "") . "</span></td>";
 					break;
@@ -298,13 +311,14 @@ class WangGuard_Users_Table extends WP_List_Table {
 					$r .= "</td>";
 					break;
 				case 'blogs':
+				add_thickbox();
 					$r .= "<td $attributes>";
 					if (function_exists("get_blogs_of_user")) {
 						$blogs = @get_blogs_of_user( $row_data->ID, true );
 						if (is_array($blogs))
 							foreach ( (array) $blogs as $key => $details ) {
-								$r .= '- <a href="'. $details->siteurl .'" title="'. htmlentities($details->siteurl, 0, 'UTF-8') .'" target="_new">'.$details->blogname.'</a><br/>';
-							}
+								$r .= '- <a href="'. $details->siteurl .'?TB_iframe=true&width=900&height=550" class="thickbox" title="'. htmlentities($details->siteurl, 0, 'UTF-8') .'">'.$details->blogname.'</a><br/>';							
+						}
 					}
 					
 					$r .= "</td>";
@@ -319,20 +333,6 @@ class WangGuard_Users_Table extends WP_List_Table {
 		return $r;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class WangGuard_Users_Query {
 
@@ -368,8 +368,8 @@ class WangGuard_Users_Query {
 	function __construct( $query = null ) {
 		if ( !empty( $query ) ) {
 			$this->query_vars = wp_parse_args( $query, array(
-				'orderby' => 'login',
-				'order' => 'ASC',
+				'orderby' => 'user_registered',
+				'order' => 'DESC',
 				'search' => '',
 				'offset' => '', 
 				'number' => '',
@@ -461,6 +461,19 @@ class WangGuard_Users_Query {
 					$this->query_where_u .= " AND ";
 
 				$wgLegitimateSQL = " $tableUserStatus.user_status IN ( 'reported', 'autorep' )";
+
+				$this->query_where_u .= $wgLegitimateSQL;
+				
+				break;
+				
+			case 'uncheked':
+				//Unchecked users filter
+				if (empty($this->query_where_u))
+					$this->query_where_u = " WHERE ";
+				else
+					$this->query_where_u .= " AND ";
+
+				$wgLegitimateSQL = " $tableUserStatus.user_status IN ( '', 'not-checked' )";
 
 				$this->query_where_u .= $wgLegitimateSQL;
 				

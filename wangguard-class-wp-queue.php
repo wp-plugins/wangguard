@@ -181,7 +181,7 @@ class WangGuard_Queue_Table extends WP_List_Table {
 
 				// Set up the hover actions for this user
 				$actions['edituser'] = "<a href='{$user_editobj_link}' target='_blank'>" . __( 'Edit user', 'wangguard' ) . "</a>";
-				$actions['bpprofile'] = "<a href='{$editobj_link}' target='_blank'>" . __( 'BP Profile', 'wangguard' ) . "</a>";
+				$actions['bpprofile'] = "<a href='{$editobj_link}?TB_iframe=true&width=900&height=550' class='thickbox'>" . __( 'BP Profile', 'wangguard' ) . "</a>";
 				$report = "<strong><a target=\"_blank\" href=\"$editobj_link\">{$row_data->user_login}</a></strong><br />";
 			}
 			else {
