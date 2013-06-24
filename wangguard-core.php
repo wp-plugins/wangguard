@@ -43,8 +43,6 @@ register_activation_hook( 'wangguard/wangguard-admin.php', 'wangguard_activate' 
 function wangguard_admin_init() {
 	global $wangguard_db_version , $wpdb;
 	
-	wp_enqueue_style( 'wangguardCSS', "/" . PLUGINDIR . '/wangguard/wangguard.css' );
-
 	$table_name = $wpdb->base_prefix . "wangguardoptions";
 	$optionsTableCreated = ($wpdb->get_var("show tables like '$table_name'") == $table_name);
 	$version = $optionsTableCreated ? wangguard_get_option("wangguard_db_version") : false;
@@ -60,6 +58,17 @@ function wangguard_admin_init() {
 		wangguard_install ($version);
 }
 add_action('admin_init', 'wangguard_admin_init');
+
+//WangGuard Styles
+
+add_action( 'admin_enqueue_scripts', 'wangguard_styles_css' );
+
+function wangguard_styles_css(){
+
+wp_register_style(  'wangguardCSS', plugins_url('css/wangguard.css', __FILE__),array(),'1.5.6'  );
+wp_enqueue_style( 'wangguardCSS' );
+
+}
 
 
 
@@ -969,7 +978,7 @@ function wangguard_plugin_update_message() {
 			$path = site_url() . '/' . $path;
 			
 			echo '<div style="margin-top:5px">';
-			echo '<span style="color: #a00000; font-weight:bold;"><img src="'.$path.'/newver.jpg" style="vertical-align:middle;margin-right:3px"/> '.__('These are the improvements of the new version', 'wangguard').':</span>';
+			echo '<span style="color: #a00000; font-weight:bold;"><img src="'.$path.'/img/newver.jpg" style="vertical-align:middle;margin-right:3px"/> '.__('These are the improvements of the new version', 'wangguard').':</span>';
 			$ul = false;
 
 			foreach ($changelog as $index => $line) {
@@ -1068,7 +1077,6 @@ add_filter("manage_wangguard_page_wangguard_queue-network_columns", "wangguard_p
 function wangguard_page_wangguard_users_headers($v) {
 	$cols = array(
 			'cb'			=> '<input type="checkbox" />',
-			// This will be the next ;-)'info'			=> __( 'Info' ),
 			'username'		=> __( 'Username' ),
 			'name'			=> __( 'Name' ),
 			'email'			=> __( 'E-mail' ),
