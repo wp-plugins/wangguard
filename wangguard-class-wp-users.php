@@ -261,7 +261,6 @@ class WangGuard_Users_Table extends WP_List_Table {
 			switch ( $column_name ) {
 				case 'cb':
 					$r .= "<th scope='row' class='check-column'>$checkbox</th>";
-					
 					break;
 				case 'username':
 					$r .= "<td $attributes>$avatar $report <span style='font-size:11px'>{$role}" . ($actions ? $this->row_actions( $actions ) : "") . "</span></td>";
