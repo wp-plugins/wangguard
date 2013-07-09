@@ -288,7 +288,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 = 1.5.7 - 9 Jul 2013 =
 
 - NEW WooCommerce Compatibility.
-- Minor tweaks to WangGurd cron to look for fix the cron problem in some installations
+- Minor tweaks to WangGuard cron to look for fix the cron problem in some installations
 - Minor tweaks to registration Form
 
 
