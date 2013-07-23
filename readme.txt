@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users, ip, ip information, user admin, user management, advanced user management, ip info, appthemes, user registration spam, users registration spam, user registration spam prevention, users registration spam prevention, woocommerce
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.5.7.1
+Stable tag: 1.5.8
 License: GPLv2
 
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
@@ -110,6 +110,8 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
  * Protect bbPress 2.0 registration page against Web Service from Sploggers, spam-user or unwanted users
  * Anti-splog Web Service.
  * [AppThemes](http://www.appthemes.com/) compatible
+ * WooCommerce Compatible
+ * CloudFlare Compatible
  
 
 = WordPress Simple Features =
@@ -285,9 +287,14 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 == Changelog ==
 
+= 1.5.8 - 19 Jul 2013 =
+
+- NEW Full Compatibility with CloudFlare. Now you will get the user's real IP instead of CloudFlare's IP. Thats means WangGuard will work 400% better on your website because WangGuard will know the real user IP with this update. If you use CloudFlare, you need this update.
+
 = 1.5.7.1 - 10 Jul 2013 =
 
 - Fix a possible bug with WooCommerce
+
 = 1.5.7 - 9 Jul 2013 =
 
 - NEW WooCommerce Compatibility.
