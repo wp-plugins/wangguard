@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.5.8
+Version: 1.5.9
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.5.8');
+define('WANGGUARD_VERSION', '1.5.9');
 define('WANGGUARD_PLUGIN_FILE', 'wangguard/wangguard-admin.php');
 define('WANGGUARD_README_URL', 'http://plugins.trac.wordpress.org/browser/wangguard/trunk/readme.txt?format=txt');
 
@@ -554,7 +554,10 @@ function wangguard_register_add_question(){
 		
 		echo $html;}
 		
-		else {		
+		else {
+		
+		
+		
 		 $AppthemeName = get_theme_data( get_template_directory() . '/style.css' );
 			
 			if ('JobRoller' == $AppthemeName['Title']) {
@@ -1017,12 +1020,19 @@ function wangguard_plugin_user_delete($userid) {
 function wangguard_make_spam_user($userid) {
 	global $wpdb;
 
-	//flag a user
-	//get the recordset of the user to flag
-	$wpusersRs = $wpdb->get_col( $wpdb->prepare("select ID from $wpdb->users where ID = %d" , $userid ) );
-
-	wangguard_report_users($wpusersRs , "email" , false);
+	if (function_exists("bp_core_process_spammer_status")){
+				$status = 'spam';
+				bp_core_process_spammer_status($userid, $status);
+				$wpusersRs = $wpdb->get_col( $wpdb->prepare("select ID from $wpdb->users where ID = %d" , $userid ) );
+				wangguard_report_users($wpusersRs , "email" , false);
+				} else {
+						//flag a user
+						//get the recordset of the user to flag
+						$wpusersRs = $wpdb->get_col( $wpdb->prepare("select ID from $wpdb->users where ID = %d" , $userid ) );
+						wangguard_report_users($wpusersRs , "email" , false);
+						}
 }
+
 
 /**
  * User has been reported as safe, rollback on WangGuard
@@ -1302,6 +1312,7 @@ function wangguard_isjQuery17()	 {
 
 
 jQuery(document).ready(function($) {
+
 	jQuery("a.wangguard-splogger").click(function() {
 		var userid = jQuery(this).attr("rel");
 		wangguard_report(userid , false);
@@ -1892,8 +1903,24 @@ function wangguard_ajax_callback() {
 		default:
 			//flag a user
 			//get the recordset of the user to flag
+			if (wangguard_is_multisite()) {
+					$spamFieldName = "spam";
+			}
+			else {
+					$spamFieldName = "user_status";
+			}
+			if (function_exists("bp_core_process_spammer_status")){
+												$status = 'spam';
+												bp_core_process_spammer_status($userid, $status);
+												} 
+			if (function_exists("update_user_status")) { update_user_status($userid, $spamFieldName, 1);	//when flagging the user as spam, the wangguard hook is called to report the user
+			} else {
+								$wpdb->query( $wpdb->prepare("update $wpdb->users set $spamFieldName = 1 where ID = %d" , $userid ) );
+					}
 			$wpusersRs = $wpdb->get_col( $wpdb->prepare("select ID from $wpdb->users where ID = %d" , $userid ) );
+			wangguard_make_spam_user($userid);
 			echo wangguard_report_users($wpusersRs , $scope);
+			
 			break;
 	}
 
@@ -2039,7 +2066,7 @@ function wangguard_cronjob_runner($cronid) {
 				
 				//get the WangGuard user status, if status is force-checked then ignore the user
 				$user_status = $wpdb->get_var( $wpdb->prepare("select user_status from $userStatusTable where ID = %d" , $userid));
-				if ($user_status == 'force-checked') {
+				if (($user_status == 'force-checked') || ($user_status == 'buyer') ) {
 					$user_check_status = "force-checked";
 				}
 				else {
@@ -2059,6 +2086,10 @@ function wangguard_cronjob_runner($cronid) {
 					switch ($cronjob->Action) {
 						case "f":
 							//Flag detected Sploggers as Sploggers and Spam users --------------------------------------------------------------------------------
+							if (function_exists("bp_core_process_spammer_status")){
+												$status = 'spam';
+												bp_core_process_spammer_status($userid, $status);
+												} 
 							if (function_exists("update_user_status"))
 								update_user_status($userid, $spamFieldName, 1);	//when flagging the user as spam, the wangguard hook is called to report the user
 							else
@@ -2134,7 +2165,6 @@ function wangguard_delete_user_and_blogs($userid) {
 		$blogs = get_blogs_of_user( $userid, true );
 		if (is_array($blogs))
 			foreach ( (array) $blogs as $key => $details ) {
-
 				$isMainBlog = false;
 				if (isset ($current_site)) {
 					$isMainBlog = ($details->userblog_id != $current_site->blog_id); // main blog not a spam !
@@ -2166,12 +2196,25 @@ function wangguard_delete_user_and_blogs($userid) {
 			}
 	}
 
-	if (wangguard_is_multisite () && function_exists("wpmu_delete_user"))
-		wpmu_delete_user($userid);
+	if (wangguard_is_multisite () && function_exists("wpmu_delete_user")) {
+		if (function_exists("bp_core_process_spammer_status")) {
+			$status = 'spam';
+			bp_core_process_spammer_status($userid, $status);
+			wpmu_delete_user($userid);
+			} else {
+				wpmu_delete_user($userid);
+				}
+			}
 	else {
-		if (!function_exists('wp_delete_user'))
+		if (!function_exists('wp_delete_user') && function_exists("bp_core_process_spammer_status")) {
 			@include_once( ABSPATH . 'wp-admin/includes/user.php' );
-		wp_delete_user($userid);
+			$status = 'spam';
+			bp_core_process_spammer_status($userid, $status);
+			wp_delete_user($userid);
+			} else {
+				@include_once( ABSPATH . 'wp-admin/includes/user.php' );
+				wp_delete_user($userid);
+			}
 	}
 }
 
@@ -2783,6 +2826,7 @@ function wangguard_add_admin_menu() {
 	$statsPage = add_submenu_page( 'wangguard_conf', __( 'Stats', 'wangguard'), __( 'Stats', 'wangguard' ), 'manage_options', 'wangguard_stats', 'wangguard_stats' );
     add_action("admin_print_scripts-$statsPage", 'wangguard_add_StatsJS');
     
+    
 }
 function wangguard_add_StatsJS() {
 	wangguard_add_jQueryJS();
@@ -2930,5 +2974,6 @@ else
 /********************************************************************/
 /*** DASHBOARD ENDS ***/
 /********************************************************************/
+
 
 ?>

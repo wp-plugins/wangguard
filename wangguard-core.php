@@ -27,6 +27,14 @@ function wangguard_init() {
 	if (wangguard_get_option('wangguard_disable-meta-header') == 1)
 		remove_action('wp_head', 'wp_generator');
 	
+	if ((wangguard_get_option ("wangguard-do-not-show-adminbar")==1) && defined( 'BP_VERSION' ) ) {
+		remove_action('bp_adminbar_menus', 'wangguard_add_bp_admin_bar_menus' , 10 );
+		remove_action('admin_bar_menu', 'wangguard_add_wp_admin_bar_menus', 100 );
+	}
+	
+	if  ((wangguard_get_option ("wangguard-do-not-show-adminbar")==1) && ! defined( 'BP_VERSION' ) )
+		remove_action('admin_bar_menu', 'wangguard_add_wp_admin_bar_menus', 100 );
+	
 	wangguard_admin_warnings();
 }
 add_action('init', 'wangguard_init');
@@ -69,7 +77,6 @@ wp_register_style(  'wangguardCSS', plugins_url('css/wangguard.css', __FILE__),a
 wp_enqueue_style( 'wangguardCSS' );
 
 }
-
 
 
 
@@ -274,11 +281,6 @@ add_filter('plugin_action_links', 'wangguard_action_links', 10, 2);
 /********************************************************************/
 
 
-
-
-
-
-
 /********************************************************************/
 /*** HELPER FUNCS BEGINS ***/
 /********************************************************************/
@@ -286,11 +288,11 @@ add_filter('plugin_action_links', 'wangguard_action_links', 10, 2);
  * Returns the client IP
  */
 function wangguard_getRemoteIP() {
-		if(isset($_SERVER['HTTP_CF_CONNECTING_IP'])){
-				return $_SERVER['HTTP_CF_CONNECTING_IP'];
-				} else {
-					return $_SERVER['REMOTE_ADDR'];
-					}
+if(isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+      return $_SERVER['HTTP_CF_CONNECTING_IP'];}
+      else {
+	return $_SERVER['REMOTE_ADDR'];
+	}
 }
 
 /**
@@ -717,10 +719,6 @@ if (  (!function_exists('getmxrr')) && (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN
 /********************************************************************/
 
 
-
-
-
-
 /********************************************************************/
 /*** KEY FUNCS BEGINS ***/
 /********************************************************************/
@@ -753,18 +751,6 @@ function wangguard_verify_key( $key, $ip = null ) {
 /********************************************************************/
 /*** KEY FUNCS ENDS ***/
 /********************************************************************/
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /********************************************************************/
@@ -1081,19 +1067,23 @@ add_filter("manage_wangguard_page_wangguard_queue-network_columns", "wangguard_p
 function wangguard_page_wangguard_users_headers($v) {
 	$cols = array(
 			'cb'			=> '<input type="checkbox" />',
-			'username'		=> __( 'Username' ),
-			'name'			=> __( 'Name' ),
-			'email'			=> __( 'E-mail' ),
+			'username'		=> __( 'Username' , 'wangguard' ),
+			'name'			=> __( 'Name' , 'wangguard' ),
+			'email'			=> __( 'E-mail' , 'wangguard' ),
 			'user_registered'=> __( 'Signed up on' , 'wangguard' ),
 			'from_ip'=>		__( 'User IP' , 'wangguard' ),
-			'posts'			=> __( 'Posts' ),
-			'blogs'			=> __( 'Sites' ),
+			'posts'			=> __( 'Posts' , 'wangguard' ),
+			'blogs'			=> __( 'Sites' , 'wangguard' ),
+			'groups'        => __( 'Admin Group' , 'wangguard' ),
 			'wgstatus'		=> __( 'WangGuard Status' , 'wangguard' )
 		);
 	
-	if (! wangguard_is_multisite())
+	if (! wangguard_is_multisite() && defined( 'BP_VERSION')) {
 		unset($cols['blogs']);
-	
+		}
+	if (! defined( 'BP_VERSION')){
+						unset($cols['groups']);
+						}
 	return $cols;
 }
 add_filter("manage_wangguard_page_wangguard_users_columns", "wangguard_page_wangguard_users_headers" );
