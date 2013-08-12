@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users, ip, ip information, user admin, user management, advanced user management, ip info, appthemes, user registration spam, users registration spam, user registration spam prevention, users registration spam prevention, woocommerce
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 1.5.9.1
+Stable tag: 1.5.10
 License: GPLv2
 
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
@@ -22,7 +22,7 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 22.500.000+ Splogger/unwanted users blocked in just 2 years!
+Over 23.500.000+ Splogger/unwanted users blocked in just 2 years.
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
@@ -287,6 +287,12 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 
 == Changelog ==
+
+= 1.5.10 - 12 Aug 2013 =
+
+- Fixed a problem with WangGuard users and BuddyPress without Groups component enabled.
+- Added compatibility with the latest jQuery version in "Blocked Domains" WangGuard screen.
+- Removed WangGuard statistics from Dashboard in WordPress 3.6. This is a temporal decision waiting for Wijmo update.
 
 = 1.5.9.1 - 30 Jul 2013 =
 

@@ -3,7 +3,7 @@
 Plugin Name: WangGuard
 Plugin URI: http://www.wangguard.com
 Description: <strong>Stop Sploggers</strong>. It is very important to use <a href="http://www.wangguard.com" target="_new">WangGuard</a> at least for a week, reporting your site's unwanted users as sploggers from the Users panel. WangGuard will learn at that time to protect your site from sploggers in a much more effective way. WangGuard protects each web site in a personalized way using information provided by Administrators who report sploggers world-wide, that's why it's very important that you report your sploggers to WangGuard. The longer you use WangGuard, the more effective it will become.
-Version: 1.5.9.2
+Version: 1.5.10
 Author: WangGuard
 Author URI: http://www.wangguard.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('WANGGUARD_VERSION', '1.5.9.2');
+define('WANGGUARD_VERSION', '1.5.10');
 define('WANGGUARD_PLUGIN_FILE', 'wangguard/wangguard-admin.php');
 define('WANGGUARD_README_URL', 'http://plugins.trac.wordpress.org/browser/wangguard/trunk/readme.txt?format=txt');
 
@@ -2824,9 +2824,7 @@ function wangguard_add_admin_menu() {
     add_action("admin_print_scripts-$cronHook", 'wangguard_add_jQueryJS');
 	
 	$statsPage = add_submenu_page( 'wangguard_conf', __( 'Stats', 'wangguard'), __( 'Stats', 'wangguard' ), 'manage_options', 'wangguard_stats', 'wangguard_stats' );
-    add_action("admin_print_scripts-$statsPage", 'wangguard_add_StatsJS');
-    
-    
+    add_action("admin_print_scripts-$statsPage", 'wangguard_add_StatsJS');    
 }
 function wangguard_add_StatsJS() {
 	wangguard_add_jQueryJS();
@@ -2967,13 +2965,16 @@ function wangguard_dashboard_stats_render() {
 		echo '<div style="text-align:center"><a href="'.$urlFunc( "admin.php?page=wangguard_stats" ).'">'.__( 'Click here to access the WangGuard stats' , 'wangguard' ).'</a></div>';
 }
 
+$wpversion = get_bloginfo('version');
+if ($wpversion >= '3.6') {
+	return;
+} else {
 if ( $wangguard_is_network_admin )
 	add_action( 'wp_network_dashboard_setup', 'wangguard_dashboard_stats' );
 else
 	add_action( 'wp_dashboard_setup', 'wangguard_dashboard_stats' );
+	}
 /********************************************************************/
 /*** DASHBOARD ENDS ***/
 /********************************************************************/
-
-
 ?>
