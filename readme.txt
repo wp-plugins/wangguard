@@ -41,7 +41,7 @@ One time we believe that we've added all the necessary tools, we will begin to c
 * +60.000 queries day, contact with us.
 
 
-Over 25.500.000+ Splogger/unwanted users blocked in just 2 years.
+Over 43.500.000+ Splogger/unwanted users blocked in just 2 years and half.
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
