@@ -10,18 +10,18 @@ License: GPLv2
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
 
 
-== WangGuard Add-ons ==
-
- * [WangGuard - MailPoet Connector](http://wordpress.org/plugins/wangguard-wysija-newsletter-connector/)
- * [WangGuard Blacklisted Words](http://wordpress.org/plugins/wangguard-blacklisted-words-add-on/)
- * [WangGuard Limited Registration Domain](Add-On http://wordpress.org/plugins/wangguard-limited-registration-domain-add-on/)
- * [WangGuard Registration Notice](http://wordpress.org/plugins/wangguard-registration-notice-add-on/)
-
-And more to come!
-
 == Description ==
 
 = Welcome to WangGuard, Welcome to the revolution =
+
+= WangGuard Add-ons =
+
+ * [WangGuard - MailPoet Connector](http://wordpress.org/plugins/wangguard-wysija-newsletter-connector/)
+ * [WangGuard Blacklisted Words](http://wordpress.org/plugins/wangguard-blacklisted-words-add-on/)
+ * [WangGuard Limited Registration Domain](http://wordpress.org/plugins/wangguard-limited-registration-domain-add-on/)
+ * [WangGuard Registration Notice](http://wordpress.org/plugins/wangguard-registration-notice-add-on/)
+
+And more to come!
 
 [Please, read the WangGuard's philosophy](http://wangguard.org/2011/12/26/welcome-to-wangguard-welcome-to-the-revolution/)
 
