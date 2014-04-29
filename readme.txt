@@ -2,13 +2,22 @@
 Contributors: j.conti,maxidirienzo,InTouchSystem
 Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users, ip, ip information, user admin, user management, advanced user management, ip info, appthemes, user registration spam, users registration spam, user registration spam prevention, users registration spam prevention, woocommerce
-Requires at least: 3.8
+Requires at least: 3.0
 Tested up to: 3.9
 Stable tag: 1.6-RC1
 License: GPLv2
 
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
 
+
+== WangGuard Add-ons ==
+
+ * [WangGuard - MailPoet Connector](http://wordpress.org/plugins/wangguard-wysija-newsletter-connector/)
+ * [WangGuard Blacklisted Words](http://wordpress.org/plugins/wangguard-blacklisted-words-add-on/)
+ * [WangGuard Limited Registration Domain](Add-On http://wordpress.org/plugins/wangguard-limited-registration-domain-add-on/)
+ * [WangGuard Registration Notice](http://wordpress.org/plugins/wangguard-registration-notice-add-on/)
+
+And more to come!
 
 == Description ==
 
@@ -22,7 +31,7 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 43.500.000+ Splogger/unwanted users blocked in just 2 years and half.
+Over 54.500.000+ Splogger/unwanted users blocked in just 2 years and half.
 
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
@@ -172,7 +181,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 = Requirements/Restrictions =
 
 
- * Works with Wordpress 2.8+, WPMU 2.8+, BuddyPress 1.0.3+, bbPress 2.0+ (Wordpress 3.5+ is highly recommended)
+ * Works with Wordpress 3.8+, WPMU 3.8+, BuddyPress 1.0.3+, bbPress 2.0+ (Wordpress 3.9+ is highly recommended)
  * PHP 4.3 or above. (PHP 5+ is highly recommended)
   
  
