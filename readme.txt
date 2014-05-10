@@ -33,6 +33,24 @@ WangGuard Always will be free for personal use, this means that whenever you hav
 
 Over 54.500.000+ Splogger/unwanted users blocked in just 2 years and half.
 
+But now, WangGuard is free for every one for limited time.
+
+One time we believe that we've added all the necessary tools, we will begin to charge for WangGuard to users that have more than 500 queries a day, making more than $200/month or are companies.
+
+= These are preliminary prices = 
+
+* From 0 to 500 queries day FREE (only personal use. Companies and webmasters making more than $200/month, see next level).
+
+* From 501 to 5.000 queries day, 4€/month. (this will be the basic level for Companies and webmasters making more than $200/month).
+
+* From 5.001 to 15.000 queries day, 8€/month.
+
+* From 15.001 to 30.000 queries day, 15€/month.
+
+* From 30.001 to 60.000 queries day, 50€/month
+
+* +60.000 queries day, contact with us.
+
 WangGuard already is blocking 99.90% of sploggers and unwanted users.
 
 [What are users and Sploggers saying?](http://wordpress.org/extend/plugins/wangguard/other_notes/)
