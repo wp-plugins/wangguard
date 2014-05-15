@@ -4,7 +4,7 @@ Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users, ip, ip information, user admin, user management, advanced user management, ip info, appthemes, user registration spam, users registration spam, user registration spam prevention, users registration spam prevention, woocommerce
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.6-RC1
+Stable tag: 1.6-RC2
 License: GPLv2
 
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
@@ -31,7 +31,7 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 54.500.000+ Splogger/unwanted users blocked in just 2 years and half.
+Over 57.000.000+ Splogger/unwanted users blocked
 
 But now, WangGuard is free for every one for limited time.
 
@@ -317,6 +317,14 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 
 == Changelog ==
+
+= 1.6 RC2 - 14 May 2014 =
+
+- Fixed an issue that breaks the signup forms (Domain not Allowed) in some installations.
+- Fixed an issue with security questions that are not showed in some installation.
+- Fixed a bug related to non Multisite websites.
+- Fixed some translation problems
+- Added CSS style for Whitelisted Users
 
 = 1.6 RC1 - 23 April 2014 =
 
