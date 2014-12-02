@@ -3,14 +3,15 @@ Contributors: j.conti,maxidirienzo,InTouchSystem
 Author URI: http://wangguard.com
 Tags: wangguard, wgg, sploggers, splog, anti-splog, user spam, anti spam users, anti-spam, spam blog, spam blogs, wordpress, buddypress, wpmu, wordpress mu, wordpress multisite, standard WordPress, registration, security, security questions, plugin, sign up, signup, spam, wp-login.php, wp-signup.php, wp-register.php, register, registration, protect, protect registration, block agents, block ip, blog secure, bots, secure blog, secure wordpress, secure wp, website security, wp secure, wp security, block users, block user, block, block emails, block e-mails, block domains, block bots, block bot, bp, captcha, no captcha, recaptcha, unwanted users, block unwanted users, block splog, black hat, blackhat, bbpress, clean, clean database, clean splog, clean users, untrusted, untrusted users, ip, ip information, user admin, user management, advanced user management, ip info, appthemes, user registration spam, users registration spam, user registration spam prevention, users registration spam prevention, woocommerce
 Requires at least: 3.0
-Tested up to: 4.0.1
-Stable tag: 1.6-RC4
+Tested up to: 4.1
+Stable tag: 1.6
 License: GPLv2
 
 The most advanced protection against sploggers and spam users registration, is fully WordPress,WordPress MU ,BuddyPress and bbPress 2.0 compatible
 
-
 == Description ==
+
+Our API works over SSL, so all connections are secure connections. This is mandatory for all European websites because you are sending information. We are Europeans, so we respect the law, even the most demanding of all Europe, the law of Spain. Use a service that does not comply with all European laws or send information without encryption, it can mean heavy fines. If you don't want to use secure connection, you can disable it from WangGuard configuration page.
 
 = Welcome to WangGuard, Welcome to the revolution =
 
@@ -31,7 +32,7 @@ WangGuard works by incorporating an antivirus philosophy.
 
 WangGuard Always will be free for personal use, this means that whenever you have less than 500 daily registrations or you make less than $200/month, you never have to pay anything for WangGuard.
 
-Over 57.000.000+ Splogger/unwanted users blocked
+Over 105.000.000+ Splogger/unwanted users blocked
 
 But now, WangGuard is free for every one for limited time.
 
@@ -120,6 +121,7 @@ No need to put any kind of filter in the user registration page (eg captcha). Th
 
  * Free API key for personal use
  * Free to everyone for a limited time!
+ * API works over SSL
  * Clean your installation of unwanted users and sploggers.
  * Centralized database of sploggers.
  * Block users emails by domains.
@@ -317,6 +319,17 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 
 == Changelog ==
+
+= 1.6 - ? 2014 =
+
+- Added secure connection to WangGuard API. Now all connections to WangGuard server are SSL/TLS by default, you can disable it from WangGuard Configuration.
+- Added email notification when a user or blog are reported.
+- Added ability to allow a user registration when hi is detected as sploggers by WangGuard (False Positive). You only need to add the user email in the WangGuard configuration. The user will be marked as "Whitelisted".
+- Added new filters and actions.
+- Fixed CHARACTER SET and COLLATION in database table creation.
+- Removed hardcoded CSS in security questions. Now is loaded with a CSS file.
+- Fixed historical bug with users_per_page in WordPress simple.
+- Removed white spaces.
 
 = 1.6 RC4 - 26 May 2014 =
 
