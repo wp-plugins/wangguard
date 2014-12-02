@@ -320,7 +320,7 @@ It is free for personal use. If you earn more than $200/month with your site or 
 
 == Changelog ==
 
-= 1.6 - ? 2014 =
+= 1.6 - 2 Dec 2014 =
 
 - Added secure connection to WangGuard API. Now all connections to WangGuard server are SSL/TLS by default, you can disable it from WangGuard Configuration.
 - Added email notification when a user or blog are reported.
