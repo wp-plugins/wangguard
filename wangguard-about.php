@@ -15,7 +15,7 @@
 */
 	function wangguard_about() {
 		global $wpdb,$wangguard_nonce, $wangguard_api_key;
-		$wangguard_plugin_url = plugin_dir_url('wangguard-admin.php');
+		$wangguard_plugin_url = plugins_url() . '/';
 		if ( defined('WANGGUARD_API_HOST') ) {$wangguard_api_host = WANGGUARD_API_HOST;}
 		if ( defined('WANGGUARD_REST_PATH') ) {$wangguard_rest_path = WANGGUARD_REST_PATH;}
 		if ( !current_user_can('level_10') )die(__('Cheatin&#8217; uh?', 'wangguard'));
@@ -63,8 +63,8 @@
 						<p><?php  _e( 'After many month, WanGuard 1.6 is here. It comes with many new features and many fixed bugs.', 'wangguard' ); ?></p>
 					</div>
 					<div class="last-feature">
-					<h4><?php  _e( 'Now WangGuard API with secure connection', 'wangguard' ); ?></h4>
-					<p><?php  _e( 'Now WangGuard API works over SSL. In this way we give greater security and privacy to your site and your users..', 'wangguard' ); ?></p>
+					<h4><?php  _e( 'New in 1.6.2', 'wangguard' ); ?></h4>
+					<p><?php  _e( 'Added Whitelisted users list in WangGuard Users Screen, and some Tweaks to code', 'wangguard' ); ?></p>
 					</div>
 				</div>
 			</div>
