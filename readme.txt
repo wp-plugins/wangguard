@@ -76,7 +76,7 @@ If you have signup enabled on your Standard WordPress, WordPress MU, WordPress M
 WangGuard not only protect your site from sploggers, spam users or unwanted users, WangGuard cleans your database from them. No plugin or service does this, only with WangGuard you will get this feature.
 
 
-Now Free to everyone for a limited time!. Who make more than $200/month, need more than 500 API Queries/month or a company they not have to pay anything until at least January 2013. We will not charge anything until we develop everything that we want to develop and be the best service by far.
+Now Free to everyone for a limited time!. Who make more than $200/month, need more than 5,000 API Queries/month or a company they not have to pay anything until at least January 2015. We will not charge anything until we develop everything that we want to develop and be the best service by far.
 
 
 = Introduction to WangGuard: =
